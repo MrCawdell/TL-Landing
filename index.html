@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TipperLink — The UK's Tipper Haulage Exchange</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:   #1a2333;
+    --navy2:  #253045;
+    --gold:   #f5c400;
+    --gold2:  #e6a800;
+    --white:  #ffffff;
+    --off:    #F0F2F7;
+    --text:   #1a2333;
+    --mid:    #4A5568;
+    --soft:   #8A95A3;
+    --border: #E4E7ED;
+    --green:  #059669;
+    --red:    #DC2626;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  h1,h2,h3 { font-family: 'Syne', sans-serif; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--navy);
+    border-bottom: 3px solid var(--gold);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px; height: 68px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
+  .logo { display:flex; align-items:center; gap:12px; text-decoration:none; }
+  .logo-icon {
+    width:38px; height:38px; background:var(--gold); border-radius:10px;
+    display:flex; align-items:center; justify-content:center; font-size:20px;
+  }
+  .logo-text { line-height:1; }
+  .logo-text strong { font-family:'Syne',sans-serif; font-size:18px; color:#fff; display:block; }
+  .logo-text span { font-size:9px; letter-spacing:2.5px; color:var(--gold); text-transform:uppercase; font-weight:600; }
+  .nav-links { display:flex; gap:32px; }
+  .nav-links a { color:#c8d0de; text-decoration:none; font-size:14px; font-weight:500; transition:color 0.15s; }
+  .nav-links a:hover { color:var(--gold); }
+  .nav-cta {
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    color: var(--navy); border:none; border-radius:9px;
+    padding: 10px 24px; font-weight:700; font-size:14px;
+    cursor:pointer; font-family:'DM Sans',sans-serif;
+    box-shadow: 0 4px 14px rgba(245,196,0,0.4);
+    transition: transform 0.15s, box-shadow 0.15s;
+    text-decoration:none; display:inline-block;
+  }
+  .nav-cta:hover { transform:translateY(-1px); box-shadow:0 6px 20px rgba(245,196,0,0.5); }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(160deg, var(--navy) 0%, var(--navy2) 55%, #1e3a5f 100%);
+    padding: 160px 48px 100px;
+    position: relative; overflow: hidden;
+    min-height: 100vh; display:flex; align-items:center;
+  }
+  .hero::before {
+    content:''; position:absolute; top:-120px; right:-120px;
+    width:600px; height:600px; border-radius:50%;
+    background: radial-gradient(circle, rgba(245,196,0,0.08) 0%, transparent 70%);
+    pointer-events:none;
+  }
+  .hero::after {
+    content:''; position:absolute; bottom:-80px; left:-80px;
+    width:400px; height:400px; border-radius:50%;
+    background: radial-gradient(circle, rgba(245,196,0,0.05) 0%, transparent 70%);
+    pointer-events:none;
+  }
+  /* Grid dots */
+  .hero-grid {
+    position:absolute; inset:0; pointer-events:none;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 36px 36px;
+  }
+  .hero-inner {
+    max-width:1100px; margin:0 auto; position:relative; z-index:1;
+    display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;
+  }
+  .hero-badge {
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(245,196,0,0.12); border:1px solid rgba(245,196,0,0.3);
+    border-radius:20px; padding:6px 16px; margin-bottom:24px;
+    font-size:12px; font-weight:600; color:var(--gold); letter-spacing:0.5px;
+  }
+  .hero-badge span { width:6px; height:6px; border-radius:50%; background:var(--gold); display:inline-block; animation:pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+  .hero h1 { font-size:clamp(36px,5vw,58px); color:#fff; line-height:1.1; margin-bottom:20px; letter-spacing:-1px; }
+  .hero h1 em { color:var(--gold); font-style:normal; }
+  .hero p { font-size:18px; color:#a0aab8; line-height:1.7; margin-bottom:36px; max-width:480px; }
+  .hero-actions { display:flex; gap:14px; flex-wrap:wrap; }
+  .btn-primary {
+    background:linear-gradient(135deg,var(--gold),var(--gold2));
+    color:var(--navy); border:none; border-radius:10px;
+    padding:15px 32px; font-weight:700; font-size:16px;
+    cursor:pointer; font-family:'DM Sans',sans-serif;
+    box-shadow:0 6px 20px rgba(245,196,0,0.4);
+    transition:all 0.2s; text-decoration:none; display:inline-block;
+  }
+  .btn-primary:hover { transform:translateY(-2px); box-shadow:0 10px 28px rgba(245,196,0,0.5); }
+  .btn-outline {
+    background:transparent; color:#fff;
+    border:2px solid rgba(255,255,255,0.25); border-radius:10px;
+    padding:13px 28px; font-weight:600; font-size:16px;
+    cursor:pointer; font-family:'DM Sans',sans-serif;
+    transition:all 0.2s; text-decoration:none; display:inline-block;
+  }
+  .btn-outline:hover { border-color:var(--gold); color:var(--gold); }
+  .hero-stats {
+    display:flex; gap:32px; margin-top:48px;
+    padding-top:32px; border-top:1px solid rgba(255,255,255,0.1);
+  }
+  .hero-stat-val { font-family:'Syne',sans-serif; font-size:28px; color:var(--gold); font-weight:800; }
+  .hero-stat-label { font-size:12px; color:#6b7a8d; font-weight:500; margin-top:2px; }
+
+  /* ── DEMO SECTION ── */
+  .demo-section {
+    background: var(--off); padding: 100px 48px;
+    position: relative;
+  }
+  .section-label {
+    text-align:center; font-size:12px; font-weight:700;
+    letter-spacing:3px; text-transform:uppercase; color:var(--gold);
+    margin-bottom:12px;
+  }
+  .section-title {
+    text-align:center; font-size:clamp(28px,4vw,42px);
+    color:var(--navy); margin-bottom:16px; letter-spacing:-0.5px;
+  }
+  .section-sub {
+    text-align:center; font-size:17px; color:var(--mid);
+    max-width:560px; margin:0 auto 56px; line-height:1.6;
+  }
+
+  /* Animated demo window */
+  .demo-wrapper {
+    max-width:960px; margin:0 auto;
+    background:var(--navy);
+    border-radius:20px;
+    box-shadow:0 32px 80px rgba(26,35,51,0.35), 0 0 0 1px rgba(255,255,255,0.06);
+    overflow:hidden;
+  }
+  .demo-titlebar {
+    background:#111a28; padding:14px 20px;
+    display:flex; align-items:center; gap:10px;
+    border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+  .demo-dot { width:12px; height:12px; border-radius:50%; }
+  .demo-url {
+    flex:1; background:rgba(255,255,255,0.07); border-radius:6px;
+    padding:5px 14px; font-size:12px; color:#6b7a8d;
+    margin:0 12px; font-family:monospace;
+  }
+  .demo-body { padding:0; position:relative; min-height:480px; }
+
+  /* Step slides */
+  .demo-slide {
+    position:absolute; inset:0; opacity:0; transition:opacity 0.5s ease;
+    display:flex; flex-direction:column;
+  }
+  .demo-slide.active { opacity:1; position:relative; }
+
+  /* Fake app chrome inside demo */
+  .fake-nav {
+    background:#1a2333; border-bottom:3px solid var(--gold);
+    padding:0 24px; height:52px; display:flex; align-items:center;
+    justify-content:space-between; flex-shrink:0;
+  }
+  .fake-nav-logo { display:flex;align-items:center;gap:8px; }
+  .fake-nav-logo .ico { width:26px;height:26px;background:var(--gold);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px; }
+  .fake-nav-logo strong { color:#fff;font-size:14px;font-family:'Syne',sans-serif; }
+  .fake-tabs { display:flex;gap:4px; }
+  .fake-tab { padding:5px 14px;border-radius:6px;border:none;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:600; }
+  .fake-tab.active { background:var(--gold);color:var(--navy); }
+  .fake-tab:not(.active) { background:transparent;color:#c8d0de; }
+  .fake-btn { background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy);border:none;border-radius:7px;padding:7px 16px;font-size:12px;font-weight:700;cursor:pointer; }
+
+  .slide-content { padding:24px; flex:1; overflow:hidden; }
+
+  /* Step cards */
+  .step-pills { display:flex;gap:8px;justify-content:center;margin-bottom:40px;flex-wrap:wrap; }
+  .step-pill {
+    display:flex;align-items:center;gap:8px;
+    padding:8px 18px;border-radius:20px;border:none;
+    font-size:13px;font-weight:600;cursor:pointer;
+    font-family:'DM Sans',sans-serif;transition:all 0.2s;
+  }
+  .step-pill.active { background:var(--navy);color:var(--gold); box-shadow:0 4px 14px rgba(26,35,51,0.2); }
+  .step-pill:not(.active) { background:var(--border);color:var(--mid); }
+  .step-num { width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,0.2);font-size:11px;display:flex;align-items:center;justify-content:center;font-weight:700; }
+  .step-pill.active .step-num { background:var(--gold);color:var(--navy); }
+
+  .demo-controls {
+    display:flex; align-items:center; justify-content:center; gap:16px;
+    padding:24px; background:rgba(0,0,0,0.2); border-top:1px solid rgba(255,255,255,0.06);
+  }
+  .demo-ctrl-btn {
+    background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.12);
+    color:#fff; border-radius:8px; padding:8px 20px; font-size:13px;
+    cursor:pointer; font-family:'DM Sans',sans-serif; font-weight:600;
+    transition:all 0.15s;
+  }
+  .demo-ctrl-btn:hover { background:rgba(255,255,255,0.18); }
+  .demo-dots { display:flex;gap:8px; }
+  .demo-dot-ind { width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);cursor:pointer;transition:all 0.2s; }
+  .demo-dot-ind.active { background:var(--gold);width:24px;border-radius:4px; }
+  .demo-progress {
+    position:absolute; bottom:0; left:0; height:3px;
+    background:var(--gold); transition:width 4s linear;
+    border-radius:0 2px 2px 0;
+  }
+
+  /* Fake load cards in demo */
+  .fake-load {
+    background:#fff; border:1.5px solid #e4e7ed; border-radius:10px;
+    padding:14px 18px; margin-bottom:10px;
+    display:flex; justify-content:space-between; align-items:center;
+    animation: slideIn 0.4s ease forwards;
+  }
+  @keyframes slideIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+  .fake-load:nth-child(2) { animation-delay:0.1s; opacity:0; }
+  .fake-load:nth-child(3) { animation-delay:0.2s; opacity:0; }
+  .fake-load-mat { font-weight:700;font-size:14px;color:#1a2333;margin-bottom:4px; }
+  .fake-load-route { font-size:12px;color:#6b7a8d; }
+  .fake-load-rate { font-weight:800;font-size:18px;color:#1a2333;text-align:right; }
+  .fake-load-basis { font-size:11px;color:#8a95a3; }
+  .fake-pill { font-size:10px;font-weight:700;letter-spacing:0.3px;text-transform:uppercase;padding:2px 8px;border-radius:10px; }
+  .pill-green { background:#ecfdf5;color:#059669; }
+  .pill-amber { background:#fffbeb;color:#d97706; }
+
+  /* Fake form */
+  .fake-form { background:#f0f2f7;border-radius:12px;padding:20px; }
+  .fake-form-title { font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:#1a2333;margin-bottom:16px; }
+  .fake-field-row { display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px; }
+  .fake-field { display:flex;flex-direction:column;gap:4px; }
+  .fake-label { font-size:10px;font-weight:700;color:#6b7a8d;text-transform:uppercase;letter-spacing:0.3px; }
+  .fake-input {
+    background:#fff;border:1.5px solid #e4e7ed;border-radius:7px;
+    padding:8px 10px;font-size:13px;color:#1a2333;font-family:'DM Sans',sans-serif;
+  }
+  .fake-input.filled { border-color:#f5c400;background:#fffbeb; }
+  .fake-submit { width:100%;background:linear-gradient(135deg,#f5c400,#e6a800);color:#1a2333;border:none;border-radius:8px;padding:12px;font-weight:700;font-size:14px;cursor:pointer;margin-top:12px;font-family:'DM Sans',sans-serif; }
+
+  /* Fake quote panel */
+  .fake-quote-card {
+    background:#fff;border:1.5px solid #e4e7ed;border-radius:10px;padding:16px 18px;margin-bottom:10px;
+    animation: slideIn 0.4s ease forwards;
+  }
+  .fake-quote-card:nth-child(2) { animation-delay:0.15s;opacity:0; }
+  .fake-quote-haulier { font-weight:700;font-size:14px;color:#1a2333; }
+  .fake-quote-detail { font-size:12px;color:#6b7a8d;margin-top:3px; }
+  .fake-quote-actions { display:flex;gap:8px;margin-top:10px; }
+  .fake-accept { background:#ecfdf5;color:#059669;border:1.5px solid #6ee7b7;border-radius:6px;padding:6px 14px;font-size:12px;font-weight:700;cursor:pointer; }
+  .fake-decline { background:#fef2f2;color:#dc2626;border:1.5px solid #fca5a5;border-radius:6px;padding:6px 14px;font-size:12px;font-weight:700;cursor:pointer; }
+  .fake-accepted-banner { background:#ecfdf5;border:1px solid #6ee7b7;border-radius:8px;padding:12px 16px;text-align:center;font-weight:700;color:#059669;font-size:14px; }
+
+  /* Stats bar fake */
+  .fake-stats { display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px; }
+  .fake-stat { background:#fff;border:1px solid #e4e7ed;border-radius:8px;padding:12px; }
+  .fake-stat-val { font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#1a2333; }
+  .fake-stat-label { font-size:10px;color:#8a95a3;font-weight:600;margin-top:2px; }
+
+  /* ── HOW IT WORKS ── */
+  .how-section { background:#fff; padding:100px 48px; }
+  .how-grid { max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:32px; }
+  .how-card {
+    background:var(--off); border-radius:16px; padding:36px 32px;
+    border:1.5px solid var(--border); position:relative; overflow:hidden;
+    transition:all 0.2s;
+  }
+  .how-card:hover { transform:translateY(-4px); box-shadow:0 16px 40px rgba(26,35,51,0.1); border-color:var(--gold); }
+  .how-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--gold),var(--gold2)); }
+  .how-num { font-family:'Syne',sans-serif;font-size:48px;font-weight:800;color:rgba(245,196,0,0.15);line-height:1;margin-bottom:12px; }
+  .how-icon { font-size:32px;margin-bottom:16px; }
+  .how-title { font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:var(--navy);margin-bottom:12px; }
+  .how-text { font-size:15px;color:var(--mid);line-height:1.65; }
+
+  /* ── WHO IS IT FOR ── */
+  .who-section { background:var(--navy);padding:100px 48px; }
+  .who-grid { max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:32px; }
+  .who-card { background:var(--navy2);border-radius:16px;padding:48px 40px;border:1px solid rgba(255,255,255,0.06); }
+  .who-card-icon { font-size:40px;margin-bottom:20px; }
+  .who-card-title { font-family:'Syne',sans-serif;font-size:26px;color:#fff;margin-bottom:16px; }
+  .who-card-sub { font-size:15px;color:#8a95a3;line-height:1.65;margin-bottom:28px; }
+  .who-list { list-style:none;display:flex;flex-direction:column;gap:10px; }
+  .who-list li { display:flex;align-items:flex-start;gap:10px;font-size:14px;color:#c8d0de; }
+  .who-list li::before { content:'✓';color:var(--gold);font-weight:700;flex-shrink:0;margin-top:1px; }
+
+  /* ── FEATURES ── */
+  .features-section { background:var(--off);padding:100px 48px; }
+  .features-grid { max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px; }
+  .feat-card {
+    background:#fff;border-radius:14px;padding:28px;
+    border:1.5px solid var(--border);transition:all 0.2s;
+  }
+  .feat-card:hover { border-color:var(--gold);box-shadow:0 8px 24px rgba(26,35,51,0.08); }
+  .feat-icon { font-size:28px;margin-bottom:14px; }
+  .feat-title { font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--navy);margin-bottom:8px; }
+  .feat-text { font-size:14px;color:var(--mid);line-height:1.6; }
+
+  /* ── CTA ── */
+  .cta-section {
+    background:linear-gradient(135deg,var(--navy) 0%,#1e3a5f 100%);
+    padding:100px 48px; text-align:center; position:relative;overflow:hidden;
+  }
+  .cta-section::before {
+    content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    width:800px;height:800px;border-radius:50%;
+    background:radial-gradient(circle,rgba(245,196,0,0.07) 0%,transparent 65%);
+    pointer-events:none;
+  }
+  .cta-section h2 { font-size:clamp(28px,4vw,44px);color:#fff;margin-bottom:16px;letter-spacing:-0.5px;position:relative; }
+  .cta-section p { font-size:17px;color:#a0aab8;margin-bottom:40px;position:relative; }
+  .cta-buttons { display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative; }
+  .cta-note { font-size:13px;color:#6b7a8d;margin-top:20px;position:relative; }
+
+  /* ── FOOTER ── */
+  footer {
+    background:var(--navy); border-top:3px solid var(--gold);
+    padding:40px 48px; display:flex; justify-content:space-between;
+    align-items:center; flex-wrap:wrap; gap:16px;
+  }
+  footer p { color:#6b7a8d;font-size:13px; }
+  .footer-links { display:flex;gap:24px; }
+  .footer-links a { color:#6b7a8d;text-decoration:none;font-size:13px;transition:color 0.15s; }
+  .footer-links a:hover { color:var(--gold); }
+
+  /* ── ANIMATIONS ── */
+  .fade-up { opacity:0; transform:translateY(24px); transition:opacity 0.6s ease, transform 0.6s ease; }
+  .fade-up.visible { opacity:1; transform:none; }
+
+  @media(max-width:768px) {
+    nav { padding:0 20px; }
+    .nav-links { display:none; }
+    .hero { padding:120px 24px 80px; }
+    .hero-inner { grid-template-columns:1fr; }
+    .hero-right { display:none; }
+    .how-grid,.features-grid { grid-template-columns:1fr; }
+    .who-grid { grid-template-columns:1fr; }
+    .demo-section,.how-section,.who-section,.features-section,.cta-section { padding:64px 24px; }
+    footer { padding:32px 24px; flex-direction:column; text-align:center; }
+    .step-pills { gap:6px; }
+    .step-pill { padding:6px 12px; font-size:12px; }
+    .fake-stats { grid-template-columns:1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-icon">🚚</div>
+    <div class="logo-text">
+      <strong>TipperLink</strong>
+      <span>Haulage Exchange</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="#how">How It Works</a>
+    <a href="#demo">See Demo</a>
+    <a href="#features">Features</a>
+    <a href="#join">Join</a>
+  </div>
+  <a href="#join" class="nav-cta">Get Early Access</a>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-badge"><span></span> Now live — UK tipper haulage exchange</div>
+      <h1>Connect. <em>Haul.</em><br>Get Paid Faster.</h1>
+      <p>TipperLink links customers who need tipper haulage with verified UK hauliers — instantly. Post a load, get quotes, accept the best rate. Done.</p>
+      <div class="hero-actions">
+        <a href="#join" class="btn-primary">Get Early Access →</a>
+        <a href="#demo" class="btn-outline">▶ Watch Demo</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-val">2 min</div>
+          <div class="hero-stat-label">To post a load</div>
+        </div>
+        <div>
+          <div class="hero-stat-val">100%</div>
+          <div class="hero-stat-label">UK-based hauliers</div>
+        </div>
+        <div>
+          <div class="hero-stat-val">Free</div>
+          <div class="hero-stat-label">To join & browse</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <!-- Floating load card preview -->
+      <div style="position:relative; padding:20px;">
+        <div style="background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,0.3);">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
+            <div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                <span style="font-size:10px;font-family:monospace;color:#6b7a8d;">TH-1042</span>
+                <span class="fake-pill pill-green">Open</span>
+              </div>
+              <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:#fff;">Topsoil</div>
+              <div style="font-size:13px;color:#8a95a3;margin-top:4px;">Grays, Essex → Dartford, Kent</div>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--gold);">£18.50</div>
+              <div style="font-size:11px;color:#6b7a8d;">per tonne</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;font-size:12px;color:#8a95a3;padding-top:14px;border-top:1px solid rgba(255,255,255,0.07);">
+            <span>📦 120t</span><span>·</span><span>🚛 6 loads</span><span>·</span><span>📅 16 Mar</span>
+          </div>
+          <div style="margin-top:14px;display:flex;gap:8px;">
+            <div style="flex:1;background:rgba(245,196,0,0.1);border:1px solid rgba(245,196,0,0.2);border-radius:8px;padding:10px;font-size:11px;color:#f5c400;font-weight:600;text-align:center;">2 Quotes received</div>
+            <button style="background:linear-gradient(135deg,#f5c400,#e6a800);color:#1a2333;border:none;border-radius:8px;padding:10px 18px;font-size:12px;font-weight:700;cursor:pointer;">View →</button>
+          </div>
+        </div>
+        <!-- Second card peeking -->
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:20px;margin-top:12px;opacity:0.6;">
+          <div style="display:flex;justify-content:space-between;">
+            <div>
+              <span class="fake-pill pill-amber" style="font-size:10px;">Filling</span>
+              <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:#fff;margin-top:6px;">Hardcore / Type 1</div>
+              <div style="font-size:12px;color:#6b7a8d;margin-top:3px;">Purfleet → Basildon</div>
+            </div>
+            <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--gold);">£15.00</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ── -->
+<section class="how-section" id="how">
+  <div style="max-width:1100px;margin:0 auto;">
+    <p class="section-label">How It Works</p>
+    <h2 class="section-title">Simple for everyone</h2>
+    <p class="section-sub">Whether you're posting a load or looking for work, TipperLink keeps it straightforward.</p>
+    <div class="how-grid">
+      <div class="how-card fade-up">
+        <div class="how-num">01</div>
+        <div class="how-icon">📋</div>
+        <h3 class="how-title">Post Your Load</h3>
+        <p class="how-text">Customers fill in a simple form — material, quantity, collection & delivery points, date and target rate. Goes live on the exchange in seconds.</p>
+      </div>
+      <div class="how-card fade-up" style="transition-delay:0.1s">
+        <div class="how-num">02</div>
+        <div class="how-icon">💬</div>
+        <h3 class="how-title">Hauliers Quote</h3>
+        <p class="how-text">Verified UK hauliers browse live loads and submit competitive quotes with their rate and availability. No phone calls needed.</p>
+      </div>
+      <div class="how-card fade-up" style="transition-delay:0.2s">
+        <div class="how-num">03</div>
+        <div class="how-icon">✅</div>
+        <h3 class="how-title">Accept & Move</h3>
+        <p class="how-text">Customers review quotes, accept the best one, and the haulier is confirmed immediately. The load moves from board to booked.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── INTERACTIVE DEMO ── -->
+<section class="demo-section" id="demo">
+  <p class="section-label">Interactive Demo</p>
+  <h2 class="section-title">See TipperLink in action</h2>
+  <p class="section-sub">Step through the platform from both sides — customer and haulier.</p>
+
+  <div class="step-pills">
+    <button class="step-pill active" onclick="goStep(0)"><span class="step-num">1</span> Browse Loads</button>
+    <button class="step-pill" onclick="goStep(1)"><span class="step-num">2</span> Post a Load</button>
+    <button class="step-pill" onclick="goStep(2)"><span class="step-num">3</span> Submit a Quote</button>
+    <button class="step-pill" onclick="goStep(3)"><span class="step-num">4</span> Accept a Quote</button>
+  </div>
+
+  <div class="demo-wrapper">
+    <div class="demo-titlebar">
+      <div class="demo-dot" style="background:#ff5f56;"></div>
+      <div class="demo-dot" style="background:#ffbd2e;"></div>
+      <div class="demo-dot" style="background:#27c93f;"></div>
+      <div class="demo-url">tipperlink.co.uk/board</div>
+    </div>
+
+    <div class="demo-body" id="demoBody">
+
+      <!-- STEP 1: Browse loads -->
+      <div class="demo-slide active" id="step0">
+        <div class="fake-nav">
+          <div class="fake-nav-logo">
+            <div class="ico">🚚</div>
+            <strong>TipperLink</strong>
+          </div>
+          <div class="fake-tabs">
+            <button class="fake-tab active">Load Board</button>
+            <button class="fake-tab">My Loads</button>
+          </div>
+          <button class="fake-btn">+ Post Load</button>
+        </div>
+        <div class="slide-content">
+          <div class="fake-stats">
+            <div class="fake-stat"><div class="fake-stat-val">12</div><div class="fake-stat-label">Live Loads</div></div>
+            <div class="fake-stat"><div class="fake-stat-val">3</div><div class="fake-stat-label">Filling</div></div>
+            <div class="fake-stat"><div class="fake-stat-val">28</div><div class="fake-stat-label">Quotes Today</div></div>
+            <div class="fake-stat"><div class="fake-stat-val">47</div><div class="fake-stat-label">Active Hauliers</div></div>
+          </div>
+          <div class="fake-load">
+            <div>
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+                <span style="font-size:10px;color:#8a95a3;font-family:monospace;">TH-1042</span>
+                <span class="fake-pill pill-green">Open</span>
+                <span class="fake-pill" style="background:#eef3ff;color:#0057ff;">2 quotes</span>
+              </div>
+              <div class="fake-load-mat">Topsoil</div>
+              <div class="fake-load-route">Grays, Essex → Dartford, Kent · 120t · 6 loads · 8-Wheeler</div>
+            </div>
+            <div><div class="fake-load-rate">£18.50</div><div class="fake-load-basis">per tonne · 16 Mar</div></div>
+          </div>
+          <div class="fake-load">
+            <div>
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+                <span style="font-size:10px;color:#8a95a3;font-family:monospace;">TH-1041</span>
+                <span class="fake-pill pill-green">Open</span>
+              </div>
+              <div class="fake-load-mat">Hardcore / Type 1</div>
+              <div class="fake-load-route">Purfleet, Essex → Basildon, Essex · 200t · 8 loads · Artic</div>
+            </div>
+            <div><div class="fake-load-rate">£15.00</div><div class="fake-load-basis">per tonne · 15 Mar</div></div>
+          </div>
+          <div class="fake-load">
+            <div>
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+                <span style="font-size:10px;color:#8a95a3;font-family:monospace;">TH-1040</span>
+                <span class="fake-pill pill-amber">Filling</span>
+                <span class="fake-pill" style="background:#ecfdf5;color:#059669;">1 accepted</span>
+              </div>
+              <div class="fake-load-mat">Sand</div>
+              <div class="fake-load-route">Thurrock, Essex → Chelmsford, Essex · 60t · 4 loads</div>
+            </div>
+            <div><div class="fake-load-rate">£220</div><div class="fake-load-basis">per load · 14 Mar</div></div>
+          </div>
+          <div style="text-align:center;font-size:12px;color:#8a95a3;margin-top:8px;">Click any load to view full details and quote →</div>
+        </div>
+      </div>
+
+      <!-- STEP 2: Post a load -->
+      <div class="demo-slide" id="step1">
+        <div class="fake-nav">
+          <div class="fake-nav-logo">
+            <div class="ico">🚚</div>
+            <strong>TipperLink</strong>
+          </div>
+          <div class="fake-tabs">
+            <button class="fake-tab">Load Board</button>
+            <button class="fake-tab active">Post a Load</button>
+          </div>
+          <button class="fake-btn">+ Post Load</button>
+        </div>
+        <div class="slide-content">
+          <div class="fake-form">
+            <div class="fake-form-title">Post a New Load</div>
+            <div class="fake-field-row">
+              <div class="fake-field"><div class="fake-label">Material *</div><div class="fake-input filled">Topsoil</div></div>
+              <div class="fake-field"><div class="fake-label">Vehicle *</div><div class="fake-input filled">8-Wheeler (20t)</div></div>
+            </div>
+            <div class="fake-field-row">
+              <div class="fake-field"><div class="fake-label">Quantity *</div><div class="fake-input filled">120 tonnes</div></div>
+              <div class="fake-field"><div class="fake-label">No. of Loads *</div><div class="fake-input filled">6</div></div>
+            </div>
+            <div class="fake-field-row">
+              <div class="fake-field"><div class="fake-label">Collection *</div><div class="fake-input filled">Grays, Essex</div></div>
+              <div class="fake-field"><div class="fake-label">Delivery *</div><div class="fake-input filled">Dartford, Kent</div></div>
+            </div>
+            <div class="fake-field-row">
+              <div class="fake-field"><div class="fake-label">Target Rate (£) *</div><div class="fake-input filled">£18.50</div></div>
+              <div class="fake-field"><div class="fake-label">Date *</div><div class="fake-input filled">16 March 2026</div></div>
+            </div>
+            <div class="fake-field" style="margin-bottom:0;"><div class="fake-label">Site Notes</div><div class="fake-input" style="height:40px;">Access via rear gate. Call on arrival.</div></div>
+            <button class="fake-submit">✓ Post Load to Exchange</button>
+          </div>
+          <div style="text-align:center;font-size:12px;color:#8a95a3;margin-top:12px;">Your load goes live immediately — hauliers will start quoting right away</div>
+        </div>
+      </div>
+
+      <!-- STEP 3: Submit a quote -->
+      <div class="demo-slide" id="step2">
+        <div class="fake-nav">
+          <div class="fake-nav-logo">
+            <div class="ico">🚚</div>
+            <strong>TipperLink</strong>
+          </div>
+          <div class="fake-tabs">
+            <button class="fake-tab active">Load Board</button>
+          </div>
+          <div style="font-size:11px;color:#c8d0de;padding:4px 10px;background:rgba(255,255,255,0.07);border-radius:5px;">🚛 Haulier View</div>
+        </div>
+        <div class="slide-content">
+          <div style="background:#fff;border:1.5px solid #e4e7ed;border-radius:10px;padding:16px 18px;margin-bottom:14px;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+              <div>
+                <div style="font-weight:700;font-size:14px;margin-bottom:4px;">Topsoil — TH-1042</div>
+                <div style="font-size:12px;color:#6b7a8d;">Grays, Essex → Dartford, Kent · 120t · 6 loads</div>
+                <div style="font-size:12px;color:#6b7a8d;margin-top:2px;">Customer target: <strong style="color:#1a2333;">£18.50 per tonne</strong></div>
+              </div>
+              <span class="fake-pill pill-green">Open</span>
+            </div>
+          </div>
+          <div class="fake-form" style="background:#f8faff;">
+            <div class="fake-form-title" style="font-size:14px;">Submit Your Quote</div>
+            <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:7px;padding:10px 12px;font-size:12px;color:#92400e;margin-bottom:12px;">
+              💡 Customer's target rate is <strong>£18.50 per tonne</strong>. Quote at or below to be competitive.
+            </div>
+            <div class="fake-field-row">
+              <div class="fake-field"><div class="fake-label">Your Rate (£)</div><div class="fake-input filled">£17.80</div></div>
+              <div class="fake-field"><div class="fake-label">Rate Basis</div><div class="fake-input filled">per tonne</div></div>
+            </div>
+            <div class="fake-field"><div class="fake-label">Message</div><div class="fake-input" style="height:36px;font-size:12px;">Two 8-wheelers available, can start 7am.</div></div>
+            <button class="fake-submit" style="margin-top:10px;">Submit Quote →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 4: Accept a quote -->
+      <div class="demo-slide" id="step3">
+        <div class="fake-nav">
+          <div class="fake-nav-logo">
+            <div class="ico">🚚</div>
+            <strong>TipperLink</strong>
+          </div>
+          <div class="fake-tabs">
+            <button class="fake-tab">Load Board</button>
+            <button class="fake-tab active">My Loads</button>
+          </div>
+          <div style="font-size:11px;color:#c8d0de;padding:4px 10px;background:rgba(255,255,255,0.07);border-radius:5px;">🏗️ Customer View</div>
+        </div>
+        <div class="slide-content">
+          <div style="background:#fff;border:1.5px solid #e4e7ed;border-radius:10px;padding:14px 18px;margin-bottom:14px;">
+            <div style="font-weight:700;margin-bottom:4px;">Topsoil — TH-1042 <span class="fake-pill pill-green" style="margin-left:8px;">Open</span></div>
+            <div style="font-size:12px;color:#6b7a8d;">Grays → Dartford · 16 Mar · Your rate: £18.50/t</div>
+          </div>
+          <div style="font-weight:600;font-size:13px;color:#4a5568;margin-bottom:10px;">Quotes received (2)</div>
+          <div class="fake-quote-card">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+              <div>
+                <div class="fake-quote-haulier">Swift Haulage Ltd</div>
+                <div class="fake-quote-detail">Quoted: <strong>£17.80 per tonne</strong> — saving you £0.70/t</div>
+                <div class="fake-quote-detail" style="font-style:italic;margin-top:4px;">"Two 8-wheelers available, can start 7am."</div>
+              </div>
+              <span class="fake-pill pill-amber">Pending</span>
+            </div>
+            <div class="fake-quote-actions">
+              <button class="fake-accept">✓ Accept Quote</button>
+              <button class="fake-decline">✕ Decline</button>
+            </div>
+          </div>
+          <div class="fake-quote-card">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+              <div>
+                <div class="fake-quote-haulier">County Tippers</div>
+                <div class="fake-quote-detail">Quoted: <strong>£18.20 per tonne</strong></div>
+                <div class="fake-quote-detail" style="font-style:italic;margin-top:4px;">"Regular Essex driver, fully insured."</div>
+              </div>
+              <span class="fake-pill pill-amber">Pending</span>
+            </div>
+            <div class="fake-quote-actions">
+              <button class="fake-accept">✓ Accept Quote</button>
+              <button class="fake-decline">✕ Decline</button>
+            </div>
+          </div>
+          <div style="font-size:11px;color:#8a95a3;text-align:center;margin-top:6px;">Accepting a quote notifies the haulier instantly and marks the load as Filling</div>
+        </div>
+      </div>
+
+      <div class="demo-progress" id="demoProgress" style="width:0%"></div>
+    </div>
+
+    <div class="demo-controls">
+      <button class="demo-ctrl-btn" onclick="prevStep()">← Prev</button>
+      <div class="demo-dots" id="demoDots">
+        <div class="demo-dot-ind active" onclick="goStep(0)"></div>
+        <div class="demo-dot-ind" onclick="goStep(1)"></div>
+        <div class="demo-dot-ind" onclick="goStep(2)"></div>
+        <div class="demo-dot-ind" onclick="goStep(3)"></div>
+      </div>
+      <button class="demo-ctrl-btn" onclick="nextStep()">Next →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHO IS IT FOR ── -->
+<section class="who-section" id="join">
+  <div style="max-width:1100px;margin:0 auto;">
+    <p class="section-label" style="color:var(--gold);">Who It's For</p>
+    <h2 class="section-title" style="color:#fff;">Built for both sides of the job</h2>
+    <p class="section-sub" style="color:#8a95a3;">TipperLink works for anyone involved in tipper haulage across the UK.</p>
+    <div class="who-grid">
+      <div class="who-card">
+        <div class="who-card-icon">🏗️</div>
+        <h3 class="who-card-title">Customers & Site Managers</h3>
+        <p class="who-card-sub">Construction firms, groundworkers, developers, quarries — anyone who regularly needs tipper loads moved.</p>
+        <ul class="who-list">
+          <li>Post loads in under 2 minutes</li>
+          <li>Receive competitive quotes directly</li>
+          <li>Compare rates and haulier details</li>
+          <li>Accept the best quote instantly</li>
+          <li>Track your loads in one dashboard</li>
+          <li>No phone calls or chasing around</li>
+        </ul>
+      </div>
+      <div class="who-card">
+        <div class="who-card-icon">🚛</div>
+        <h3 class="who-card-title">Hauliers & Owner-Drivers</h3>
+        <p class="who-card-sub">Tipper hauliers, owner-operators, and haulage fleets looking to fill their vehicles and grow their work pipeline.</p>
+        <ul class="who-list">
+          <li>Browse live loads anytime, anywhere</li>
+          <li>Filter by location and material type</li>
+          <li>Submit competitive quotes easily</li>
+          <li>Win work without cold calling</li>
+          <li>Keep trucks loaded and earning</li>
+          <li>Free to join and start quoting</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FEATURES ── -->
+<section class="features-section" id="features">
+  <div style="max-width:1100px;margin:0 auto;">
+    <p class="section-label">Platform Features</p>
+    <h2 class="section-title">Everything you need, nothing you don't</h2>
+    <p class="section-sub">Built specifically for UK tipper haulage. No bloat, no complexity.</p>
+    <div class="features-grid">
+      <div class="feat-card fade-up">
+        <div class="feat-icon">⚡</div>
+        <h3 class="feat-title">Instant Load Posting</h3>
+        <p class="feat-text">Post a full load specification — material, route, vehicle type, rate and date — in under 2 minutes. Live immediately.</p>
+      </div>
+      <div class="feat-card fade-up" style="transition-delay:0.05s">
+        <div class="feat-icon">💬</div>
+        <h3 class="feat-title">Competitive Quoting</h3>
+        <p class="feat-text">Hauliers submit their best rate with a message. Customers see all quotes side by side — no back-and-forth needed.</p>
+      </div>
+      <div class="feat-card fade-up" style="transition-delay:0.1s">
+        <div class="feat-icon">✅</div>
+        <h3 class="feat-title">One-Click Acceptance</h3>
+        <p class="feat-text">Accept the quote you want. The haulier is notified instantly, others are automatically declined.</p>
+      </div>
+      <div class="feat-card fade-up" style="transition-delay:0.15s">
+        <div class="feat-icon">📋</div>
+        <h3 class="feat-title">Live Load Board</h3>
+        <p class="feat-text">Filter and search open loads by status, material or location. The board updates in real time as loads are posted and filled.</p>
+      </div>
+      <div class="feat-card fade-up" style="transition-delay:0.2s">
+        <div class="feat-icon">🔒</div>
+        <h3 class="feat-title">UK Hauliers Only</h3>
+        <p class="feat-text">All hauliers are UK-based. Operator licence verification coming soon to add an extra layer of trust to every booking.</p>
+      </div>
+      <div class="feat-card fade-up" style="transition-delay:0.25s">
+        <div class="feat-icon">📱</div>
+        <h3 class="feat-title">Works on Any Device</h3>
+        <p class="feat-text">Fully responsive — use TipperLink on the go from your phone, on-site from a tablet, or at your desk. No app needed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <h2>Ready to try TipperLink?</h2>
+  <p>Join the waitlist and be first to access the exchange when we launch.</p>
+  <div class="cta-buttons">
+    <a href="mailto:hello@tipperlink.co.uk" class="btn-primary">Get Early Access →</a>
+    <a href="#demo" class="btn-outline">See the Demo</a>
+  </div>
+  <p class="cta-note">Free to join · No credit card required · UK haulage only</p>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="logo">
+    <div class="logo-icon" style="width:32px;height:32px;font-size:16px;">🚚</div>
+    <div class="logo-text">
+      <strong style="font-size:16px;">TipperLink</strong>
+      <span>Haulage Exchange</span>
+    </div>
+  </div>
+  <div class="footer-links">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Use</a>
+    <a href="mailto:hello@tipperlink.co.uk">Contact</a>
+  </div>
+  <p>© 2026 TipperLink Ltd. All rights reserved.</p>
+</footer>
+
+<script>
+  // ── Demo stepper ──────────────────────────────────────────────────────────
+  let currentStep = 0;
+  const totalSteps = 4;
+  let autoTimer = null;
+
+  const stepLabels = [
+    "tipperlink.co.uk/board",
+    "tipperlink.co.uk/post",
+    "tipperlink.co.uk/load/TH-1042",
+    "tipperlink.co.uk/my-loads"
+  ];
+
+  function goStep(n) {
+    // Hide current
+    document.getElementById('step' + currentStep).classList.remove('active');
+    document.querySelectorAll('.step-pill')[currentStep].classList.remove('active');
+    document.querySelectorAll('.demo-dot-ind')[currentStep].classList.remove('active');
+
+    currentStep = (n + totalSteps) % totalSteps;
+
+    // Show new
+    document.getElementById('step' + currentStep).classList.add('active');
+    document.querySelectorAll('.step-pill')[currentStep].classList.add('active');
+    document.querySelectorAll('.demo-dot-ind')[currentStep].classList.add('active');
+    document.querySelector('.demo-url').textContent = stepLabels[currentStep];
+
+    // Progress bar
+    const prog = document.getElementById('demoProgress');
+    prog.style.transition = 'none';
+    prog.style.width = '0%';
+    setTimeout(() => {
+      prog.style.transition = 'width 5s linear';
+      prog.style.width = '100%';
+    }, 50);
+
+    resetAutoplay();
+  }
+
+  function nextStep() { goStep(currentStep + 1); }
+  function prevStep() { goStep(currentStep - 1); }
+
+  function resetAutoplay() {
+    if (autoTimer) clearInterval(autoTimer);
+    autoTimer = setInterval(() => nextStep(), 5000);
+  }
+
+  // Start
+  goStep(0);
+
+  // ── Fade-up on scroll ─────────────────────────────────────────────────────
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

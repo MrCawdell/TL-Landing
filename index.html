@@ -57,18 +57,16 @@
 </script>
 
 <!-- ── GOOGLE ANALYTICS 4 ── -->
-<!-- IMPORTANT: Replace G-XXXXXXXXXX with your real GA4 Measurement ID -->
-<!-- Get it free at: analytics.google.com → Admin → Data Streams → Web -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F5W1FGZ105"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX', {
+  gtag('config', 'G-F5W1FGZ105', {
     page_title: 'TipperLink Home',
     page_location: window.location.href
   });
-  // Track modal opens as conversion events
   function trackEvent(action, category, label){
     gtag('event', action, {
       event_category: category,
@@ -1604,8 +1602,7 @@ function resetRole(){
 }
 
 // ── FORM SUBMISSION ──
-// Replace YOUR_FORM_ID with your Formspree form ID (free at formspree.io)
-var FORMSPREE_ID='YOUR_FORM_ID';
+var FORMSPREE_ID='xwvrngvz';
 
 function submitHaulier(){
   var name=document.getElementById('h-name').value.trim();
@@ -1668,7 +1665,6 @@ function submitSupplier(){
 
 function sendToFormspree(payload,btn,eventLabel){
   storeLocally(payload);
-  if(FORMSPREE_ID==='YOUR_FORM_ID'){showModalSuccess(eventLabel);return;}
   fetch('https://formspree.io/f/'+FORMSPREE_ID,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)})
   .then(function(){showModalSuccess(eventLabel);})
   .catch(function(){showModalSuccess(eventLabel);});

@@ -240,8 +240,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--navy);borde
 .cta-section h2{font-size:clamp(28px,4vw,44px);color:var(--navy);margin-bottom:14px;letter-spacing:-0.5px;position:relative}
 .cta-section p{font-size:17px;color:rgba(26,35,51,0.7);margin-bottom:32px;position:relative;max-width:520px;margin-left:auto;margin-right:auto}
 .cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative}
-.btn-navy{background:var(--navy);color:#fff;border:none;border-radius:10px;padding:15px 32px;font-weight:700;font-size:16px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;display:inline-block}
-.btn-navy:hover{background:#253045;transform:translateY(-2px)}
+.btn-navy{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy);border:none;border-radius:10px;padding:15px 32px;font-weight:700;font-size:16px;cursor:pointer;font-family:'DM Sans',sans-serif;box-shadow:0 6px 20px rgba(245,196,0,0.4);transition:all .2s;display:inline-block}
+.btn-navy:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(245,196,0,0.5)}
 .btn-ghost{background:transparent;color:var(--navy);border:2px solid rgba(26,35,51,0.3);border-radius:10px;padding:13px 28px;font-weight:600;font-size:16px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;display:inline-block}
 .btn-ghost:hover{border-color:var(--navy);background:rgba(26,35,51,0.06)}
 .cta-note{font-size:13px;color:rgba(26,35,51,0.5);margin-top:20px;position:relative}
@@ -371,15 +371,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--navy);borde
 .mp-notify-input:focus{border-color:var(--gold)}
 .mp-notify-btn{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy);border:none;border-radius:8px;padding:9px 18px;font-weight:700;font-size:13px;cursor:pointer;white-space:nowrap}
 
-/* demo inside product */
-.demo-section-inner{background:var(--navy);border-radius:16px;box-shadow:0 24px 60px rgba(26,35,51,0.2);overflow:hidden}
-.demo-titlebar{background:#111a28;padding:14px 20px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,0.06)}
-.dtb-dot{width:12px;height:12px;border-radius:50%}
-.demo-url{flex:1;background:rgba(255,255,255,0.07);border-radius:6px;padding:5px 14px;font-size:12px;color:#6b7a8d;margin:0 12px;font-family:monospace}
+/* demo inside product — light card design */
+.demo-section-inner{background:#fff;border-radius:16px;box-shadow:0 8px 40px rgba(26,35,51,0.12);overflow:hidden;border:1.5px solid var(--border)}
+.demo-titlebar{background:#f3f4f6;padding:10px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #e5e7eb}
+.dtb-win-btn{width:12px;height:12px;border-radius:2px;display:inline-block}
+.demo-titlebar-spacer{display:flex;gap:5px;align-items:center}
+.demo-url{flex:1;background:#fff;border-radius:6px;padding:5px 14px;font-size:12px;color:#6b7a8d;margin:0 12px;font-family:monospace;border:1px solid #e5e7eb;text-align:center}
 .demo-body{position:relative;min-height:420px}
 .demo-slide{position:absolute;inset:0;opacity:0;transition:opacity .5s;display:flex;flex-direction:column}
 .demo-slide.active{opacity:1;position:relative}
-.fake-nav{background:#1a2333;border-bottom:3px solid var(--gold);padding:0 24px;height:48px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.fake-nav{background:var(--navy);border-bottom:3px solid var(--gold);padding:0 24px;height:48px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
 .fnl{display:flex;align-items:center;gap:7px}
 .fnl .ico{width:24px;height:24px;background:var(--gold);border-radius:6px;display:flex;align-items:center;justify-content:center}
 .fnl .ico svg{width:16px;height:13px}
@@ -389,19 +390,45 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--navy);borde
 .ftab.on{background:var(--gold);color:var(--navy)}
 .ftab:not(.on){background:transparent;color:#c8d0de}
 .fake-btn{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy);border:none;border-radius:7px;padding:6px 14px;font-size:11px;font-weight:700;cursor:pointer}
-.sc{padding:20px;flex:1;overflow:hidden}
-.step-pills{display:flex;gap:6px;justify-content:center;margin-bottom:18px;flex-wrap:wrap}
-.sp{display:flex;align-items:center;gap:7px;padding:6px 13px;border-radius:20px;border:none;font-size:11px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
-.sp.on{background:var(--navy);color:var(--gold);box-shadow:0 4px 14px rgba(26,35,51,0.2)}
-.sp:not(.on){background:var(--border);color:var(--mid)}
+.sc{padding:16px;flex:1;overflow:hidden;background:#f8f9fb}
+.step-pills{display:flex;gap:6px;justify-content:center;margin-bottom:14px;flex-wrap:wrap}
+.sp{display:flex;align-items:center;gap:7px;padding:5px 11px;border-radius:20px;border:none;font-size:11px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
+.sp.on{background:var(--navy);color:var(--gold);box-shadow:0 4px 14px rgba(26,35,51,0.15)}
+.sp:not(.on){background:#fff;color:var(--mid);border:1px solid var(--border)}
 .sn{width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.2);font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700}
 .sp.on .sn{background:var(--gold);color:var(--navy)}
-.demo-controls{display:flex;align-items:center;justify-content:center;gap:16px;padding:18px;background:rgba(0,0,0,0.2);border-top:1px solid rgba(255,255,255,0.06)}
-.dcb{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.12);color:#fff;border-radius:8px;padding:7px 18px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:600;transition:all .15s}
-.dcb:hover{background:rgba(255,255,255,0.18)}
+.sp:not(.on) .sn{background:var(--border);color:var(--mid)}
+/* Light card components for demo slides */
+.demo-card{background:#fff;border-radius:10px;padding:14px;border:1.5px solid var(--border);box-shadow:0 2px 8px rgba(26,35,51,0.05)}
+.demo-info-banner{background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:9px 12px;margin-bottom:10px;display:flex;align-items:center;gap:8px;font-size:11px;color:#1d4ed8;line-height:1.4}
+.demo-success-banner{background:#ecfdf5;border:1px solid #6ee7b7;border-radius:8px;padding:9px 12px;margin-bottom:10px;display:flex;align-items:center;gap:8px;font-size:11px;color:#059669;line-height:1.4}
+.demo-tip-banner{background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:9px 12px;margin-bottom:10px;display:flex;align-items:center;gap:8px;font-size:11px;color:#92400e;line-height:1.4}
+/* Light load board */
+.lbi{background:#fff;border:1.5px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
+.lbi.hl{border-color:var(--gold);background:#fffbeb}
+.lbi-left .mat{font-weight:700;font-size:13px;color:var(--navy);margin-bottom:2px}
+.lbi-left .route{font-size:11px;color:var(--mid)}
+.lbi-right{text-align:right}
+.lbi-price{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:var(--navy)}
+.lbi-unit{font-size:10px;color:var(--mid)}
+.lbi-veh{font-size:10px;color:var(--mid)}
+/* Light quote list */
+.ql-item{background:#fff;border:1.5px solid var(--border);border-radius:8px;padding:10px 13px;display:flex;align-items:center;justify-content:space-between}
+.ql-item.best{border-color:#059669;background:#f0fdf4}
+.ql-name{font-weight:700;font-size:12px;color:var(--navy);margin-bottom:1px}
+.ql-rating{font-size:10px;color:var(--mid)}
+.ql-price{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--navy);text-align:right}
+.ql-badge{font-size:9px;background:#dcfce7;color:#059669;border-radius:6px;padding:1px 6px;font-weight:700}
+.fstat{background:#fff;border-radius:8px;padding:8px 10px;text-align:center;border:1.5px solid var(--border)}
+.fstat-val{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:1px}
+.fstat-label{font-size:9px;color:var(--mid);font-weight:600}
+.fsub{width:100%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy);border:none;border-radius:8px;padding:9px;font-weight:700;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:8px}
+.demo-controls{display:flex;align-items:center;justify-content:center;gap:16px;padding:14px 18px;background:#f3f4f6;border-top:1px solid #e5e7eb}
+.dcb{background:#fff;border:1.5px solid var(--border);color:var(--navy);border-radius:8px;padding:7px 18px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:600;transition:all .15s}
+.dcb:hover{background:var(--off);border-color:var(--navy)}
 .ddots{display:flex;gap:7px}
-.ddi{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.2);cursor:pointer;transition:all .2s}
-.ddi.on{background:var(--gold);width:20px;border-radius:4px}
+.ddi{width:7px;height:7px;border-radius:50%;background:#d1d5db;cursor:pointer;transition:all .2s}
+.ddi.on{background:var(--navy);width:20px;border-radius:4px}
 .dprog{height:2px;background:var(--gold);width:0%;transition:none}
 /* slide internals */
 .load-board{display:flex;flex-direction:column;gap:7px}
@@ -458,11 +485,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--navy);borde
 .cinfo-item span{font-size:12px;color:var(--soft)}
 
 /* ── FOOTER ── */
-footer{background:var(--navy);border-top:3px solid var(--gold);padding:36px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
-.fl-links{display:flex;gap:24px}
-.fl-links a{color:#6b7a8d;font-size:13px;cursor:pointer;transition:color .15s}
-.fl-links a:hover{color:var(--gold)}
-footer p{color:#3d4d63;font-size:13px}
+footer{background:var(--navy);border-top:3px solid var(--gold);padding:52px 48px 32px}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-cols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-brand .logo{margin-bottom:14px}
+.footer-brand p{font-size:13px;color:#4a5568;line-height:1.65;max-width:240px;margin-bottom:16px}
+.footer-flag{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:#6b7a8d;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:5px 12px}
+.footer-col h4{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#fff;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
+.footer-col a{display:block;color:#6b7a8d;font-size:13px;cursor:pointer;transition:color .15s;margin-bottom:9px;text-decoration:none}
+.footer-col a:hover{color:var(--gold)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.06);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.footer-bottom p{color:#3d4d63;font-size:12px}
+.footer-bottom a{color:#3d4d63;font-size:12px;text-decoration:none;transition:color .15s}
+.footer-bottom a:hover{color:#6b7a8d}
 
 /* ── FADE UP ── */
 .fu{opacity:1;transform:translateY(0);transition:opacity .6s,transform .6s}
@@ -503,7 +538,9 @@ footer p{color:#3d4d63;font-size:13px}
   .contact-inner{padding:40px 20px}
   .form-row2{grid-template-columns:1fr}
   .cinfo{grid-template-columns:1fr}
-  footer{padding:28px 20px;flex-direction:column;text-align:center}
+  footer{padding:40px 20px 24px}
+  .footer-cols{grid-template-columns:1fr 1fr;gap:28px}
+  .footer-brand{grid-column:1/-1}
   .mp-notify{flex-direction:column}
   .mp-notify-form{flex-direction:column;width:100%}
   .mp-notify-input{width:100%}
@@ -538,9 +575,9 @@ footer p{color:#3d4d63;font-size:13px}
   </div>
   <div class="nav-links">
     <a onclick="showPage('home')" id="nav-home">Home</a>
-    <a onclick="showPage('product');showProductTab('demo')" id="nav-demo">Platform Demo</a>
-    <a onclick="showPage('product');showProductTab('dashboard')" id="nav-dashboard">Dashboard</a>
-    <a onclick="showPage('product');showProductTab('marketplace')" id="nav-market">Marketplace</a>
+    <a onclick="openDemoPicker()" id="nav-demo">See It Work</a>
+    <a onclick="showPage('product');showProductTab('dashboard')" id="nav-dashboard">Features</a>
+    <a onclick="showPage('contact')" id="nav-contact">Contact</a>
   </div>
   <button class="nav-cta" onclick="openModal()">Register Interest</button>
   <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
@@ -551,9 +588,9 @@ footer p{color:#3d4d63;font-size:13px}
 <!-- ── MOBILE DRAWER ── -->
 <div class="mobile-menu" id="mobile-menu">
   <a onclick="closeMobileMenu();showPage('home')">Home</a>
-  <a onclick="closeMobileMenu();showPage('product');showProductTab('demo')">Platform Demo</a>
-  <a onclick="closeMobileMenu();showPage('product');showProductTab('dashboard')">Dashboard</a>
-  <a onclick="closeMobileMenu();showPage('product');showProductTab('marketplace')">Marketplace</a>
+  <a onclick="closeMobileMenu();openDemoPicker()">See It Work</a>
+  <a onclick="closeMobileMenu();showPage('product');showProductTab('dashboard')">Features</a>
+  <a onclick="closeMobileMenu();showPage('contact')">Contact</a>
   <div class="mob-divider"></div>
   <a onclick="closeMobileMenu();showPage('privacy')">Privacy Policy</a>
   <a onclick="closeMobileMenu();showPage('terms')">Terms of Use</a>
@@ -570,30 +607,30 @@ footer p{color:#3d4d63;font-size:13px}
   <div class="hero-grid"></div>
   <div class="hero-inner">
     <div>
-      <div class="hero-badge"><span class="dot"></span>Launching May 2026 — register your interest now</div>
+      <div class="hero-badge"><span class="dot"></span>Launching May 2026</div>
       <h1>The UK's First Exchange<br><em>Built for Tippers<br>&amp; Grabs Only.</em></h1>
       <p class="hero-sub">Every other platform buries tipper work in a haystack of curtainsiders. TipperLink is built <strong style="color:var(--gold)">exclusively</strong> for tipper and grab haulage — every load, every member, every rating is relevant to you.</p>
       <div class="hero-actions">
-        <button class="btn-primary" onclick="openModal()">Register Your Interest →</button>
-        <button class="btn-outline" onclick="showPage('product');showProductTab('demo')">See the Platform ↗</button>
+        <button class="btn-primary" onclick="openDemoPicker()">See It in Action →</button>
+        <button class="btn-outline" onclick="openModal()">Register Your Interest →</button>
       </div>
       <hr class="hero-divider"/>
       <div class="hero-props">
         <div class="hero-prop">
           <div class="hero-prop-ico">📈</div>
-          <div><span class="hero-prop-title">Grow beyond your regulars</span><span class="hero-prop-desc">Access a live feed of loads across the UK that match your vehicle. New customers, new routes, more revenue.</span></div>
+          <div><span class="hero-prop-title">Fill every run, cut empty miles</span><span class="hero-prop-desc">Access a live feed of loads that match your vehicle and area. More jobs, less dead mileage, more revenue.</span></div>
         </div>
         <div class="hero-prop">
-          <div class="hero-prop-ico">🔔</div>
-          <div><span class="hero-prop-title">Loads in your area, instantly <span style="background:#f5c400;color:#1a2333;font-size:9px;font-weight:800;padding:2px 7px;border-radius:10px;letter-spacing:0.5px;vertical-align:middle">★ PREMIUM</span></span><span class="hero-prop-desc">Set your coverage zones and vehicle type. The moment a matching load is posted, you get an email alert — before anyone else sees it. Exclusive to paid members.</span></div>
+          <div class="hero-prop-ico">⚡</div>
+          <div><span class="hero-prop-title">Start receiving quotes in minutes</span><span class="hero-prop-desc">Post your load and rated hauliers in your area respond fast. No more ringing round — quotes come to you.</span></div>
         </div>
         <div class="hero-prop">
           <div class="hero-prop-ico">⭐</div>
-          <div><span class="hero-prop-title">Your reputation earns you more</span><span class="hero-prop-desc">A strong rating means customers choose you over cheaper competitors. Build it once — it works for you permanently.</span></div>
+          <div><span class="hero-prop-title">Your rating wins you work</span><span class="hero-prop-desc">A strong completion rate means customers choose you over cheaper competitors. Build it once — it works permanently.</span></div>
         </div>
         <div class="hero-prop">
-          <div class="hero-prop-ico">💷</div>
-          <div><span class="hero-prop-title">Competitive pricing, every time</span><span class="hero-prop-desc">Multiple hauliers quote on every load. See the market rate in real time — not just what one driver tells you.</span></div>
+          <div class="hero-prop-ico">✅</div>
+          <div><span class="hero-prop-title">See who you're hiring before you commit</span><span class="hero-prop-desc">Every haulier's completion rate and rating is on every quote. Spot the unreliable ones before they cost you.</span></div>
         </div>
       </div>
     </div>
@@ -659,46 +696,6 @@ footer p{color:#3d4d63;font-size:13px}
   </div>
 </section>
 
-<!-- ── WHY IT WORKS ── -->
-<section class="why-section" id="why">
-  <div class="why-inner">
-    <p class="sec-label">Why It Works</p>
-    <h2 class="sec-title">Two problems. One platform.</h2>
-    <p class="sec-sub">Hauliers waste miles running empty. Customers overpay because they can't easily compare. TipperLink fixes both — with ratings that hold everyone accountable.</p>
-    <div class="why-panels">
-      <div class="why-panel haulier fu">
-        <div class="why-panel-icon">🚛</div>
-        <div class="why-panel-tag">For Hauliers</div>
-        <h3 class="why-panel-title">Grow your business.<br>Fill every run.</h3>
-        <p class="why-panel-sub">Stop relying on one or two customers. TipperLink gives you a live feed of loads that match your vehicle — so you're always in the right place at the right time.</p>
-        <div class="why-benefits">
-          <div class="why-benefit"><div class="why-benefit-ico">🔔</div><div class="why-benefit-text"><strong>Instant load alerts in your area <span style="background:#f5c400;color:#1a2333;font-size:9px;font-weight:800;padding:2px 7px;border-radius:10px;letter-spacing:0.5px;vertical-align:middle">★ PREMIUM</span></strong><span>Set your counties and vehicle type once. Every time a matching load is posted you get an email the moment it goes live — before the board fills up. Paid members only.</span></div></div>
-          <div class="why-benefit"><div class="why-benefit-ico">📍</div><div class="why-benefit-text"><strong>Cover backloads automatically</strong><span>Find loads near your drop point before you've finished the first job. Stop running empty on the return leg.</span></div></div>
-          <div class="why-benefit"><div class="why-benefit-ico">🗺️</div><div class="why-benefit-text"><strong>Expand your national coverage</strong><span>Take loads further afield with confidence. Build relationships with customers across the UK, not just your local patch.</span></div></div>
-          <div class="why-benefit"><div class="why-benefit-ico">⭐</div><div class="why-benefit-text"><strong>Your rating wins you work</strong><span>A strong completion rate means customers choose you — even when you're not the cheapest quote on the board.</span></div></div>
-          <div class="why-benefit"><div class="why-benefit-ico">💷</div><div class="why-benefit-text"><strong>Keep more of what you earn</strong><span>No middlemen. Quote directly, win directly, invoice directly. You set your own rate — and keep every penny of it.</span></div></div>
-          <div class="why-benefit"><div class="why-benefit-ico">⚡</div><div class="why-benefit-text"><strong>Respond fast, win more</strong><span>Your response time is tracked. Hauliers who reply quickly win more jobs — speed is a competitive advantage here.</span></div></div>
-        </div>
-        <div class="why-panel-cta"><button class="btn-primary" onclick="openModal()">Register as a Haulier →</button></div>
-      </div>
-      <div class="why-panel supplier fu" style="transition-delay:.08s">
-        <div class="why-panel-icon">⛏️</div>
-        <div class="why-panel-tag">For Suppliers &amp; Customers</div>
-        <h3 class="why-panel-title">Know what you're<br>paying. And why.</h3>
-        <p class="why-panel-sub">If you're a quarry, farm, construction site or waste processor, you've probably wondered if you're paying the right rate — and had no easy way to find out. Now you do.</p>
-        <div class="why-benefits">
-          <div class="why-benefit"><div class="why-benefit-ico">📊</div><div class="why-benefit-text"><strong>Find out if you're overpaying</strong><span>Post a load and get competing quotes back. One job and you'll know exactly where your current rate sits in the market.</span></div></div>
-          <div class="why-benefit"><div class="why-benefit-ico">🔄</div><div class="why-benefit-text"><strong>Cut the cost of empty miles</strong><span>Match outbound loads with return freight. Stop paying for a haulier to drive back empty — it's built into the platform.</span></div></div>
-          <div class="why-benefit"><div class="why-benefit-ico">⚡</div><div class="why-benefit-text"><strong>Extra vehicles, same day</strong><span>Regular haulier let you down? Post the load. Rated drivers in your area respond fast — operations don't stop.</span></div></div>
-          <div class="why-benefit"><div class="why-benefit-ico">✅</div><div class="why-benefit-text"><strong>See the record before you commit</strong><span>Every haulier's completion rate and rating is visible on their quote. The unreliable ones are easy to spot — and avoid.</span></div></div>
-          <div class="why-benefit"><div class="why-benefit-ico">🔍</div><div class="why-benefit-text"><strong>No more chasing for updates</strong><span>Track every load in real time. Collected, in transit, delivered — you'll know without having to ring anyone.</span></div></div>
-        </div>
-        <div class="why-panel-cta"><a onclick="openModal()">Post a Load →</a></div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ── RATINGS ── -->
 <section class="rating-section" id="ratings">
   <div class="rating-grid">
@@ -720,27 +717,56 @@ footer p{color:#3d4d63;font-size:13px}
   </div>
 </section>
 
-<!-- ── MARKETPLACE TEASER ── -->
-<section class="mp-teaser" id="marketplace">
-  <div class="mp-teaser-inner">
-    <div>
-      <div class="cs-banner"><span class="dot"></span>Coming Soon</div>
-      <h2>Stop ringing round for aggregate prices</h2>
-      <p>Post what you need — material, quantity, location, date. Quarries and aggregate suppliers quote directly, with reliability ratings attached. The same transparency that fixed haulage pricing, applied to materials.</p>
-      <div class="mp-cats-row">
-        <span class="mp-cat-chip">🪨 Limestone</span>
-        <span class="mp-cat-chip">🏗️ Sharp Sand</span>
-        <span class="mp-cat-chip">🔵 Ballast</span>
-        <span class="mp-cat-chip">🟤 MOT Type 1</span>
-        <span class="mp-cat-chip">🌱 Topsoil</span>
-        <span class="mp-cat-chip">🗑️ Muckaway</span>
-        <span class="mp-cat-chip">🔩 Hardcore</span>
-        <span class="mp-cat-chip">⬛ Scalpings</span>
+<!-- ── WHY IT WORKS ── -->
+<section class="why-section" id="why">
+  <div class="why-inner">
+    <p class="sec-label">Why It Works</p>
+    <h2 class="sec-title">Two problems. One platform.</h2>
+    <p class="sec-sub">Hauliers waste miles running empty. Suppliers waste time ringing round for quotes. TipperLink fixes both — with ratings that hold everyone accountable.</p>
+    <div class="why-panels">
+      <div class="why-panel haulier fu">
+        <div class="why-panel-icon">🚛</div>
+        <div class="why-panel-tag">For Hauliers</div>
+        <h3 class="why-panel-title">Grow your business.<br>Fill every run.</h3>
+        <p class="why-panel-sub">Stop relying on one or two customers. TipperLink gives you a live feed of loads that match your vehicle — so you're always in the right place at the right time.</p>
+        <div class="why-benefits">
+          <div class="why-benefit"><div class="why-benefit-ico">🔔</div><div class="why-benefit-text"><strong>Instant load alerts in your area</strong></div></div>
+          <div class="why-benefit"><div class="why-benefit-ico">📍</div><div class="why-benefit-text"><strong>Cover backloads automatically</strong></div></div>
+          <div class="why-benefit"><div class="why-benefit-ico">⭐</div><div class="why-benefit-text"><strong>Your rating wins you work</strong></div></div>
+          <div class="why-benefit"><div class="why-benefit-ico">💷</div><div class="why-benefit-text"><strong>Keep more of what you earn</strong></div></div>
+        </div>
+        <div class="why-panel-cta"><button class="btn-primary" onclick="openModal()">Register as a Haulier →</button></div>
+      </div>
+      <div class="why-panel supplier fu" style="transition-delay:.08s">
+        <div class="why-panel-icon">⛏️</div>
+        <div class="why-panel-tag">For Suppliers &amp; Customers</div>
+        <h3 class="why-panel-title">Know what you're<br>paying. And why.</h3>
+        <p class="why-panel-sub">If you're a quarry, farm, construction site or waste processor, you've probably wondered if you're paying the right rate — and had no easy way to find out. Now you do.</p>
+        <div class="why-benefits">
+          <div class="why-benefit"><div class="why-benefit-ico">📊</div><div class="why-benefit-text"><strong>Get competing quotes in minutes</strong></div></div>
+          <div class="why-benefit"><div class="why-benefit-ico">⚡</div><div class="why-benefit-text"><strong>Extra vehicles, same day</strong></div></div>
+          <div class="why-benefit"><div class="why-benefit-ico">✅</div><div class="why-benefit-text"><strong>See the record before you commit</strong></div></div>
+          <div class="why-benefit"><div class="why-benefit-ico">🔍</div><div class="why-benefit-text"><strong>No more chasing for updates</strong></div></div>
+        </div>
+        <div class="why-panel-cta"><a onclick="openModal()">Post a Load →</a></div>
       </div>
     </div>
-    <div>
-      <button class="btn-primary" onclick="openModal()">Register Your Interest →</button>
-      <div style="margin-top:12px;font-size:12px;color:#6b7a8d;text-align:center">or <a onclick="showPage('product');showProductTab('marketplace')" style="color:var(--gold);cursor:pointer;font-weight:600">see a preview →</a></div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIAL ── -->
+<section style="background:#fff;padding:64px 48px">
+  <div style="max-width:780px;margin:0 auto;text-align:center">
+    <p class="sec-label">Built From Experience</p>
+    <blockquote style="font-family:'Syne',sans-serif;font-size:clamp(20px,2.8vw,30px);font-weight:700;color:var(--navy);line-height:1.3;letter-spacing:-0.5px;margin:16px 0 28px">
+      "We built TipperLink because we got fed up ringing six hauliers just to get one load covered. Over 15 years in the industry, and it never got easier — so we built the fix ourselves."
+    </blockquote>
+    <div style="display:inline-flex;align-items:center;gap:14px;background:var(--off);border-radius:50px;padding:10px 20px 10px 10px;border:1.5px solid var(--border)">
+      <div style="width:40px;height:40px;background:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--gold);flex-shrink:0">TL</div>
+      <div style="text-align:left">
+        <div style="font-size:13px;font-weight:700;color:var(--navy)">The TipperLink Team</div>
+        <div style="font-size:12px;color:var(--mid)">15+ years in tipper &amp; grab haulage</div>
+      </div>
     </div>
   </div>
 </section>
@@ -748,10 +774,10 @@ footer p{color:#3d4d63;font-size:13px}
 <!-- ── CTA ── -->
 <section class="cta-section">
   <h2>Launching May 2026.<br>Get in first.</h2>
-  <p>Register now for early access. Be first on the platform, shape the features, and get first access to the aggregate marketplace when it goes live.</p>
+  <p>Register your interest now and be first on the platform when we launch in May 2026. Shape the features, get early access, and join a community built by people who actually work in the industry.</p>
   <div class="cta-btns">
-    <button class="btn-navy" onclick="openModal()">Register Your Interest →</button>
-    <button class="btn-ghost" onclick="showPage('product');showProductTab('demo')">See the Platform ↗</button>
+    <button class="btn-navy" onclick="openDemoPicker()">See It in Action →</button>
+    <button class="btn-ghost" onclick="openModal()">Register Your Interest →</button>
   </div>
   <p class="cta-note">UK tipper &amp; grab haulage exchange · Built exclusively for the industry</p>
 </section>
@@ -778,10 +804,12 @@ footer p{color:#3d4d63;font-size:13px}
     <p class="product-section-sub">Step through the full journey — vehicle selection, smart tonnage, ratings and acceptance.</p>
     <div class="demo-section-inner">
       <div class="demo-titlebar">
-        <div class="dtb-dot" style="background:#ff5f57"></div>
-        <div class="dtb-dot" style="background:#febc2e"></div>
-        <div class="dtb-dot" style="background:#28c840"></div>
+        <div class="demo-titlebar-spacer">
+          <svg width="13" height="13" viewBox="0 0 14 14" fill="none" style="opacity:0.35"><rect x="1" y="1" width="12" height="10" rx="1.5" stroke="#374151" stroke-width="1.3" fill="none"/><path d="M1 4h12" stroke="#374151" stroke-width="1.3"/></svg>
+          <svg width="13" height="13" viewBox="0 0 14 14" fill="none" style="opacity:0.35"><rect x="2" y="4" width="10" height="8" rx="1" stroke="#374151" stroke-width="1.3" fill="none"/><path d="M4 4V3a3 3 0 0 1 6 0v1" stroke="#374151" stroke-width="1.3"/></svg>
+        </div>
         <div class="demo-url" id="demoUrl">tipperlink.co.uk/board</div>
+        <div style="opacity:0.3;font-size:10px;color:#374151">— □ ✕</div>
       </div>
       <div class="demo-body">
         <!-- Step 0: Browse Loads -->
@@ -800,54 +828,38 @@ footer p{color:#3d4d63;font-size:13px}
             </div>
             <div class="load-board">
               <div class="lbi hl"><div class="lbi-left"><div class="mat"><strong>Buxton → Sheffield</strong> <span class="pill pg2" style="margin-left:6px">Open</span></div><div class="route">Limestone · 8-wheel tipper · 18 Mar · 300t</div></div><div class="lbi-right"><div class="lbi-price">£14.20</div><div class="lbi-unit">/tonne · 4 quotes</div></div></div>
-              <!-- Premium alert upsell teaser on the board -->
-              <div style="background:rgba(245,196,0,0.06);border:1.5px dashed rgba(245,196,0,0.35);border-radius:8px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px">
-                <div style="display:flex;align-items:center;gap:8px">
-                  <span style="font-size:16px">🔔</span>
-                  <div>
-                    <div style="font-size:11px;font-weight:700;color:var(--gold)">Get loads like this emailed to you instantly</div>
-                    <div style="font-size:10px;color:#6b7a8d;margin-top:1px">Area alerts are a Premium feature — upgrade to never miss a load in your region</div>
-                  </div>
-                </div>
-                <button onclick="openModal()" style="background:linear-gradient(135deg,#f5c400,#e6a800);color:#1a2333;border:none;border-radius:7px;padding:6px 12px;font-size:10px;font-weight:800;cursor:pointer;white-space:nowrap;font-family:'DM Sans',sans-serif">★ Upgrade</button>
-              </div>
+              <div class="demo-tip-banner" style="margin:0"><span>🔔</span><div><strong>Get loads like this emailed to you instantly</strong> — Area alerts keep you first in the queue. Never miss a load in your region.</div></div>
               <div class="lbi"><div class="lbi-left"><div class="mat"><strong>Nottingham → Licensed Tip</strong> <span class="pill pg2" style="margin-left:6px">Open</span></div><div class="route">Muckaway · 8-wheel grab · 20 Mar · 240t</div></div><div class="lbi-right"><div class="lbi-price">£18.50</div><div class="lbi-unit">/tonne · 2 quotes</div></div></div>
               <div class="lbi"><div class="lbi-left"><div class="mat"><strong>Lincolnshire → Northampton</strong> <span class="pill pa" style="margin-left:6px">Filling</span></div><div class="route">Grain · Artic · 22 Mar · 450t</div></div><div class="lbi-right"><div class="lbi-price">£11.50</div><div class="lbi-unit">/tonne · 7 quotes</div></div></div>
               <div class="lbi"><div class="lbi-left"><div class="mat"><strong>Birmingham → Coventry</strong> <span class="pill pg2" style="margin-left:6px">Open</span></div><div class="route">Hardcore / Type 1 · 8-wheel · 19 Mar · 200t</div></div><div class="lbi-right"><div class="lbi-price">£22.00</div><div class="lbi-unit">/tonne · 1 quote</div></div></div>
             </div>
           </div>
         </div>
-        <!-- Step 1: Post Load -->
+        <!-- Step 1: Post Load — Supplier simplified -->
         <div class="demo-slide" id="step1">
           <div class="fake-nav"><div class="fnl"><div class="ico"><svg viewBox="0 0 28 22" fill="none"><path d="M9 4 L25 4 L25 14 L9 16 Z" fill="#f5c400"/><rect x="1" y="17" width="25" height="2.5" rx="1" fill="#f5c400"/><circle cx="5.5" cy="19.5" r="2" fill="#f5c400" stroke="#1a2333" stroke-width="1"/><circle cx="19" cy="19.5" r="2" fill="#f5c400" stroke="#1a2333" stroke-width="1"/><circle cx="24" cy="19.5" r="2" fill="#f5c400" stroke="#1a2333" stroke-width="1"/></svg></div><strong>TipperLink</strong></div><div class="fake-tabs"><button class="ftab">Load Board</button><button class="ftab on">Post Load</button><button class="ftab">My Loads</button></div></div>
           <div class="sc">
             <div class="step-pills"><button class="sp" onclick="goStep(0)"><span class="sn">1</span>Browse</button><button class="sp on" onclick="goStep(1)"><span class="sn">2</span>Post</button><button class="sp" onclick="goStep(2)"><span class="sn">3</span>Haulier View</button><button class="sp" onclick="goStep(3)"><span class="sn">4</span>Quote</button><button class="sp" onclick="goStep(4)"><span class="sn">5</span>Compare</button><button class="sp" onclick="goStep(5)"><span class="sn">6</span>Accept</button><button class="sp" onclick="goStep(7)"><span class="sn">7</span>Alerts</button><button class="sp" onclick="goStep(8)"><span class="sn">8</span>Rate</button></div>
-            <div style="background:rgba(255,255,255,0.04);border-radius:10px;padding:14px;border:1px solid rgba(255,255,255,0.07)">
-              <div style="font-size:11px;font-weight:700;color:#c8d0de;margin-bottom:10px;text-transform:uppercase;letter-spacing:1px">Select Vehicle Type</div>
-              <div class="vtype-row">
-                <button class="vtype-pill" onclick="selectVType(this,'artic',30)">Artic Tipper · 30t</button>
-                <button class="vtype-pill sel" onclick="selectVType(this,'8wheel',20)">8-Wheel Tipper · 20t</button>
-                <button class="vtype-pill" onclick="selectVType(this,'4wheel',10)">4-Wheel Tipper · 10t</button>
-                <button class="vtype-pill" onclick="selectVType(this,'grab',16)">Grab Lorry · 16t</button>
-                <button class="vtype-pill" onclick="selectVType(this,'walking',30)">Walking Floor · 30t</button>
+            <div class="demo-card">
+              <div style="font-size:11px;font-weight:700;color:var(--navy);margin-bottom:10px;text-transform:uppercase;letter-spacing:1px">📋 Post a Load</div>
+              <!-- 5 core fields as filled form pills -->
+              <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px">
+                <div style="background:#f0f7ff;border:1.5px solid #bfdbfe;border-radius:20px;padding:5px 13px;font-size:11px;font-weight:600;color:#1d4ed8">📍 From: Buxton</div>
+                <div style="background:#f0f7ff;border:1.5px solid #bfdbfe;border-radius:20px;padding:5px 13px;font-size:11px;font-weight:600;color:#1d4ed8">📍 To: Sheffield</div>
+                <div style="background:#f0fdf4;border:1.5px solid #6ee7b7;border-radius:20px;padding:5px 13px;font-size:11px;font-weight:600;color:#059669">🪨 Limestone</div>
+                <div style="background:#fffbeb;border:1.5px solid #fde68a;border-radius:20px;padding:5px 13px;font-size:11px;font-weight:600;color:#92400e">🚛 8-Wheel Tipper</div>
+                <div style="background:#f3f4f6;border:1.5px solid #d1d5db;border-radius:20px;padding:5px 13px;font-size:11px;font-weight:600;color:#374151">📦 300t · 18 Mar</div>
               </div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
-                <div style="background:rgba(245,196,0,0.08);border:1px solid rgba(245,196,0,0.2);border-radius:8px;padding:10px">
-                  <div style="font-size:10px;color:#6b7a8d;margin-bottom:3px">Route</div>
-                  <div style="font-size:13px;font-weight:700;color:var(--gold)">Buxton → Sheffield</div>
+              <!-- Requirements section -->
+              <div style="border-top:1px solid var(--border);padding-top:10px;margin-bottom:10px">
+                <div style="font-size:10px;font-weight:700;color:var(--mid);text-transform:uppercase;letter-spacing:1px;margin-bottom:7px">Job Requirements</div>
+                <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px">
+                  <span style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:3px 8px;font-size:10px;font-weight:700;color:#1d4ed8">FORS Silver</span>
+                  <span style="background:#ecfdf5;border:1px solid #6ee7b7;border-radius:6px;padding:3px 8px;font-size:10px;font-weight:700;color:#059669">TASCC</span>
+                  <span style="background:#fef3c7;border:1px solid #fde68a;border-radius:6px;padding:3px 8px;font-size:10px;font-weight:700;color:#92400e">Timed: 08:00–12:00</span>
                 </div>
-                <div style="background:rgba(245,196,0,0.08);border:1px solid rgba(245,196,0,0.2);border-radius:8px;padding:10px">
-                  <div style="font-size:10px;color:#6b7a8d;margin-bottom:3px">Material</div>
-                  <div style="font-size:13px;font-weight:700;color:#fff">Limestone</div>
-                  <div style="font-size:11px;color:#8a95a3;margin-top:2px">Quarry Run · 300t</div>
-                </div>
               </div>
-              <div id="demoTonnage" style="background:rgba(52,211,153,0.08);border:1px solid rgba(52,211,153,0.2);border-radius:8px;padding:10px;margin-top:10px;display:flex;justify-content:space-between;align-items:center">
-                <div style="font-size:12px;color:#34d399;font-weight:600" id="demoLoads">15 loads</div>
-                <div style="font-size:11px;color:#6b7a8d">8-Wheel Tipper · 20t per load · 15 loads</div>
-                <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:#34d399" id="demoTonnageVal">300t total</div>
-              </div>
-              <button class="fsub" style="margin-top:10px">Post to Exchange → Goes live immediately</button>
+              <button class="fsub" style="margin-top:4px">Post to Exchange → Goes live immediately</button>
             </div>
           </div>
         </div>
@@ -856,17 +868,17 @@ footer p{color:#3d4d63;font-size:13px}
           <div class="fake-nav"><div class="fnl"><div class="ico"><svg viewBox="0 0 28 22" fill="none"><path d="M9 4 L25 4 L25 14 L9 16 Z" fill="#f5c400"/><rect x="1" y="17" width="25" height="2.5" rx="1" fill="#f5c400"/><circle cx="5.5" cy="19.5" r="2" fill="#f5c400" stroke="#1a2333" stroke-width="1"/><circle cx="19" cy="19.5" r="2" fill="#f5c400" stroke="#1a2333" stroke-width="1"/><circle cx="24" cy="19.5" r="2" fill="#f5c400" stroke="#1a2333" stroke-width="1"/></svg></div><strong>TipperLink</strong></div><div class="fake-tabs"><button class="ftab on">My Board — 8-Wheel</button><button class="ftab">My Quotes</button></div></div>
           <div class="sc">
             <div class="step-pills"><button class="sp" onclick="goStep(0)"><span class="sn">1</span>Browse</button><button class="sp" onclick="goStep(1)"><span class="sn">2</span>Post</button><button class="sp on" onclick="goStep(2)"><span class="sn">3</span>Haulier View</button><button class="sp" onclick="goStep(3)"><span class="sn">4</span>Quote</button><button class="sp" onclick="goStep(4)"><span class="sn">5</span>Compare</button><button class="sp" onclick="goStep(5)"><span class="sn">6</span>Accept</button><button class="sp" onclick="goStep(7)"><span class="sn">7</span>Alerts</button><button class="sp" onclick="goStep(8)"><span class="sn">8</span>Rate</button></div>
-            <div style="font-size:11px;color:#6b7a8d;margin-bottom:8px">Showing loads for your vehicle: <strong style="color:var(--gold)">8-Wheel Tipper</strong> — greyed loads don't match your vehicle type</div>
+            <div class="demo-info-banner"><span>ℹ️</span><div>Showing loads for your vehicle: <strong>8-Wheel Tipper</strong> — greyed loads don't match your vehicle type</div></div>
             <div class="load-board">
-              <div class="lbi hl"><div class="lbi-left"><div class="mat"><strong>Buxton → Sheffield</strong></div><div class="route">Limestone · 8-wheel tipper · 300t · 18 Mar · 15 runs</div></div><div class="lbi-right"><div class="lbi-price">£14.20</div><div class="lbi-veh">✓ Matches your vehicle</div></div></div>
-              <div class="lbi hl"><div class="lbi-left"><div class="mat"><strong>Nottingham → Licensed Tip</strong></div><div class="route">Muckaway · 8-wheel grab · 240t · 20 Mar · 15 runs</div></div><div class="lbi-right"><div class="lbi-price">£18.50</div><div class="lbi-veh">✓ Matches your vehicle</div></div></div>
-              <div class="lbi" style="opacity:0.35"><div class="lbi-left"><div class="mat"><strong>Lincolnshire → Northampton</strong></div><div class="route">Grain · Artic tipper · 450t · 22 Mar</div></div><div class="lbi-right"><div class="lbi-price" style="color:#6b7a8d">£11.50</div><div class="lbi-veh" style="color:#6b7a8d">✗ Artic only</div></div></div>
+              <div class="lbi hl"><div class="lbi-left"><div class="mat"><strong>Buxton → Sheffield</strong></div><div class="route">Limestone · 8-wheel tipper · 300t · 18 Mar · 15 runs</div></div><div class="lbi-right"><div class="lbi-price">£14.20</div><div class="lbi-veh" style="color:#059669">✓ Matches your vehicle</div></div></div>
+              <div class="lbi hl"><div class="lbi-left"><div class="mat"><strong>Nottingham → Licensed Tip</strong></div><div class="route">Muckaway · 8-wheel grab · 240t · 20 Mar · 15 runs</div></div><div class="lbi-right"><div class="lbi-price">£18.50</div><div class="lbi-veh" style="color:#059669">✓ Matches your vehicle</div></div></div>
+              <div class="lbi" style="opacity:0.4"><div class="lbi-left"><div class="mat"><strong>Lincolnshire → Northampton</strong></div><div class="route">Grain · Artic tipper · 450t · 22 Mar</div></div><div class="lbi-right"><div class="lbi-price" style="color:var(--mid)">£11.50</div><div class="lbi-veh">✗ Artic only</div></div></div>
             </div>
           </div>
         </div>
         <!-- Step 3: Submit Quote -->
         <div class="demo-slide" id="step3">
-          <div class="fake-nav"><div class="fnl"><div class="ico"><svg viewBox="0 0 28 22" fill="none"><path d="M9 4 L25 4 L25 14 L9 16 Z" fill="#f5c400"/><rect x="1" y="17" width="25" height="2.5" rx="1" fill="#f5c400"/><circle cx="5.5" cy="19.5" r="2" fill="#f5c400" stroke="#1a2333" stroke-width="1"/><circle cx="19" cy="19.5" r="2" fill="#f5c400" stroke="#1a2333" stroke-width="1"/><circle cx="24" cy="19.5" r="2" fill="#f5c400" stroke="#1a2333" stroke-width="1"/></svg></div><strong>TipperLink</strong></div><div style="font-size:11px;color:#6b7a8d">Load TH-1048 — Buxton → Sheffield · Submit your quote</div></div>
+          <div class="fake-nav"><div class="fnl"><div class="ico"><svg viewBox="0 0 28 22" fill="none"><path d="M9 4 L25 4 L25 14 L9 16 Z" fill="#f5c400"/><rect x="1" y="17" width="25" height="2.5" rx="1" fill="#f5c400"/><circle cx="5.5" cy="19.5" r="2" fill="#f5c400" stroke="#1a2333" stroke-width="1"/><circle cx="19" cy="19.5" r="2" fill="#f5c400" stroke="#1a2333" stroke-width="1"/><circle cx="24" cy="19.5" r="2" fill="#f5c400" stroke="#1a2333" stroke-width="1"/></svg></div><strong>TipperLink</strong></div><div style="font-size:11px;color:#c8d0de">Load TH-1048 — Buxton → Sheffield · Submit your quote</div></div>
           <div class="sc">
             <div class="step-pills"><button class="sp" onclick="goStep(0)"><span class="sn">1</span>Browse</button><button class="sp" onclick="goStep(1)"><span class="sn">2</span>Post</button><button class="sp" onclick="goStep(2)"><span class="sn">3</span>Haulier View</button><button class="sp on" onclick="goStep(3)"><span class="sn">4</span>Quote</button><button class="sp" onclick="goStep(4)"><span class="sn">5</span>Compare</button><button class="sp" onclick="goStep(5)"><span class="sn">6</span>Accept</button><button class="sp" onclick="goStep(7)"><span class="sn">7</span>Alerts</button><button class="sp" onclick="goStep(8)"><span class="sn">8</span>Rate</button></div>
             <div class="fstats">
@@ -875,74 +887,63 @@ footer p{color:#3d4d63;font-size:13px}
               <div class="fstat"><div class="fstat-val">87</div><div class="fstat-label">Jobs Done</div></div>
               <div class="fstat"><div class="fstat-val">⭐</div><div class="fstat-label">Elite Badge</div></div>
             </div>
-            <!-- Blind quote notice -->
-            <div style="background:rgba(245,196,0,0.07);border:1px solid rgba(245,196,0,0.25);border-radius:8px;padding:9px 12px;margin-bottom:10px;display:flex;align-items:center;gap:8px">
-              <span style="font-size:14px">🔒</span>
-              <div style="font-size:11px;color:#c8d0de;line-height:1.45"><strong style="color:var(--gold)">Blind quoting — your rate is private.</strong> Other hauliers cannot see your quote. Only the supplier sees all quotes. Price on your value, not theirs.</div>
-            </div>
-            <div style="background:rgba(255,255,255,0.04);border-radius:10px;padding:12px;border:1px solid rgba(255,255,255,0.08)">
-              <div style="font-size:11px;color:#6b7a8d;margin-bottom:8px">Your rating and completion rate are attached to this quote automatically</div>
+            <div class="demo-tip-banner"><span>🔒</span><div><strong>Blind quoting — your rate is private.</strong> Other hauliers cannot see your quote. Only the supplier sees all quotes. Price on your value, not theirs.</div></div>
+            <div class="demo-card">
+              <div style="font-size:11px;color:var(--mid);margin-bottom:8px">Your rating and completion rate are attached to this quote automatically</div>
               <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-                <div style="font-size:12px;color:#c8d0de;flex:1">Rate per tonne</div>
-                <div style="background:rgba(245,196,0,0.1);border:1px solid rgba(245,196,0,0.3);border-radius:7px;padding:6px 14px;font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--gold)">£13.40</div>
+                <div style="font-size:12px;color:var(--navy);flex:1;font-weight:600">Rate per tonne</div>
+                <div style="background:#f0f7ff;border:1.5px solid #bfdbfe;border-radius:7px;padding:6px 14px;font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:#1d4ed8">£13.40</div>
               </div>
-              <div style="font-size:11px;color:#6b7a8d;margin-bottom:10px">After the job is awarded, you'll receive market rate feedback so you know where you stood</div>
+              <div style="font-size:11px;color:var(--mid);margin-bottom:10px">After the job is awarded, you'll receive market rate feedback so you know where you stood</div>
               <button class="fsub">Submit Quote → Customer notified instantly</button>
             </div>
           </div>
         </div>
         <!-- Step 4: Compare Quotes — SUPPLIER VIEW ONLY -->
         <div class="demo-slide" id="step4">
-          <div class="fake-nav"><div class="fnl"><div class="ico"><svg viewBox="0 0 28 22" fill="none"><path d="M9 4 L25 4 L25 14 L9 16 Z" fill="#f5c400"/><rect x="1" y="17" width="25" height="2.5" rx="1" fill="#f5c400"/><circle cx="5.5" cy="19.5" r="2" fill="#f5c400" stroke="#1a2333" stroke-width="1"/><circle cx="19" cy="19.5" r="2" fill="#f5c400" stroke="#1a2333" stroke-width="1"/><circle cx="24" cy="19.5" r="2" fill="#f5c400" stroke="#1a2333" stroke-width="1"/></svg></div><strong>TipperLink</strong></div><div style="font-size:11px;color:#6b7a8d">TH-1048 — Compare Quotes</div></div>
+          <div class="fake-nav"><div class="fnl"><div class="ico"><svg viewBox="0 0 28 22" fill="none"><path d="M9 4 L25 4 L25 14 L9 16 Z" fill="#f5c400"/><rect x="1" y="17" width="25" height="2.5" rx="1" fill="#f5c400"/><circle cx="5.5" cy="19.5" r="2" fill="#f5c400" stroke="#1a2333" stroke-width="1"/><circle cx="19" cy="19.5" r="2" fill="#f5c400" stroke="#1a2333" stroke-width="1"/><circle cx="24" cy="19.5" r="2" fill="#f5c400" stroke="#1a2333" stroke-width="1"/></svg></div><strong>TipperLink</strong></div><div style="font-size:11px;color:#c8d0de">TH-1048 — Compare Quotes</div></div>
           <div class="sc">
             <div class="step-pills"><button class="sp" onclick="goStep(0)"><span class="sn">1</span>Browse</button><button class="sp" onclick="goStep(1)"><span class="sn">2</span>Post</button><button class="sp" onclick="goStep(2)"><span class="sn">3</span>Haulier View</button><button class="sp" onclick="goStep(3)"><span class="sn">4</span>Quote</button><button class="sp on" onclick="goStep(4)"><span class="sn">5</span>Compare</button><button class="sp" onclick="goStep(5)"><span class="sn">6</span>Accept</button><button class="sp" onclick="goStep(7)"><span class="sn">7</span>Alerts</button><button class="sp" onclick="goStep(8)"><span class="sn">8</span>Rate</button></div>
-            <!-- Supplier-only notice -->
-            <div style="background:rgba(5,150,105,0.1);border:1px solid rgba(5,150,105,0.35);border-radius:8px;padding:8px 12px;margin-bottom:10px;display:flex;align-items:center;gap:8px">
-              <span style="font-size:13px">👁</span>
-              <div style="font-size:11px;color:#34d399;line-height:1.4"><strong>Supplier view only.</strong> Hauliers cannot see each other's rates or who else has quoted. Quotes are completely private until you make your decision.</div>
-            </div>
+            <!-- Live notification card -->
+            <div class="demo-success-banner" style="justify-content:space-between"><div style="display:flex;align-items:center;gap:8px"><span>📬</span><div><strong>3 quotes received</strong> — more coming in</div></div><span style="font-size:9px;font-weight:700;background:#dcfce7;color:#059669;padding:2px 7px;border-radius:10px">LIVE</span></div>
+            <div class="demo-info-banner"><span>👁</span><div><strong>Supplier view only.</strong> Hauliers cannot see each other's rates or who else has quoted. Completely private until you decide.</div></div>
             <div class="quote-list">
-              <!-- Best value — highest rating, competitive rate -->
               <div class="ql-item best">
                 <div>
                   <div class="ql-name">Peak District Haulage Ltd <span class="ql-badge">Best Value</span></div>
                   <div class="ql-rating">⭐ 4.9 · 98% completion · Elite Haulier · Sheffield</div>
-                  <div style="font-size:10px;color:#6b7a8d;margin-top:2px">87 jobs · Avg response 4 mins · 0 no-shows</div>
+                  <div style="font-size:10px;color:var(--mid);margin-top:2px">87 jobs · Avg response 4 mins · 0 no-shows</div>
                 </div>
                 <div style="text-align:right">
                   <div class="ql-price">£13.40</div>
-                  <div style="font-size:10px;color:#8a95a3">/tonne</div>
+                  <div style="font-size:10px;color:var(--mid)">/tonne</div>
                   <button class="fsub" style="padding:5px 12px;width:auto;font-size:10px;margin-top:5px">Accept →</button>
                 </div>
               </div>
-              <!-- Good rating, slightly higher rate -->
               <div class="ql-item">
                 <div>
                   <div class="ql-name">Midlands Tipper Co.</div>
                   <div class="ql-rating">⭐ 4.1 · 82% completion · Derby</div>
-                  <div style="font-size:10px;color:#6b7a8d;margin-top:2px">34 jobs · Avg response 18 mins</div>
+                  <div style="font-size:10px;color:var(--mid);margin-top:2px">34 jobs · Avg response 18 mins</div>
                 </div>
                 <div style="text-align:right">
                   <div class="ql-price">£13.80</div>
-                  <div style="font-size:10px;color:#8a95a3">/tonne</div>
+                  <div style="font-size:10px;color:var(--mid)">/tonne</div>
                 </div>
               </div>
-              <!-- Lower rating, lower rate — with warning -->
-              <div class="ql-item" style="opacity:0.7">
+              <div class="ql-item" style="opacity:0.65">
                 <div>
                   <div class="ql-name">J. Booth Plant &amp; Haulage <span style="background:#fef3c7;color:#92400e;font-size:9px;font-weight:700;padding:1px 6px;border-radius:6px;margin-left:4px">⚠ Under Review</span></div>
                   <div class="ql-rating" style="color:#dc2626">⚠ 2.4 · 61% completion · Chesterfield</div>
-                  <div style="font-size:10px;color:#6b7a8d;margin-top:2px">3 no-shows recorded · Not recommended</div>
+                  <div style="font-size:10px;color:var(--mid);margin-top:2px">3 no-shows recorded · Not recommended</div>
                 </div>
                 <div style="text-align:right">
-                  <div class="ql-price" style="color:#8a95a3">£12.00</div>
-                  <div style="font-size:10px;color:#8a95a3">/tonne</div>
+                  <div class="ql-price" style="color:var(--mid)">£12.00</div>
+                  <div style="font-size:10px;color:var(--mid)">/tonne</div>
                 </div>
               </div>
             </div>
-            <div style="background:rgba(255,255,255,0.04);border-radius:7px;padding:8px 11px;margin-top:8px;font-size:10px;color:#6b7a8d;line-height:1.5">
-              💡 <strong style="color:#c8d0de">TipperLink tip:</strong> The cheapest quote isn't always cheapest. A haulier with 61% completion means nearly 4 in 10 jobs don't complete — rebooking costs time and money. The £1.40/t saving on the cheaper quote costs you more than it saves.
-            </div>
+            <div class="demo-tip-banner" style="margin-top:8px">💡 <strong>TipperLink tip:</strong> A haulier with 61% completion means nearly 4 in 10 jobs don't complete. The £1.40/t saving costs you far more in rebooking and downtime.</div>
           </div>
         </div>
         <!-- Step 5: Accept -->
@@ -950,124 +951,103 @@ footer p{color:#3d4d63;font-size:13px}
           <div class="fake-nav"><div class="fnl"><div class="ico"><svg viewBox="0 0 28 22" fill="none"><path d="M9 4 L25 4 L25 14 L9 16 Z" fill="#f5c400"/><rect x="1" y="17" width="25" height="2.5" rx="1" fill="#f5c400"/><circle cx="5.5" cy="19.5" r="2" fill="#f5c400" stroke="#1a2333" stroke-width="1"/><circle cx="19" cy="19.5" r="2" fill="#f5c400" stroke="#1a2333" stroke-width="1"/><circle cx="24" cy="19.5" r="2" fill="#f5c400" stroke="#1a2333" stroke-width="1"/></svg></div><strong>TipperLink</strong></div><div style="font-size:11px;color:#34d399;font-weight:600">✓ Quote Accepted — TH-1048 Confirmed</div></div>
           <div class="sc">
             <div class="step-pills"><button class="sp" onclick="goStep(0)"><span class="sn">1</span>Browse</button><button class="sp" onclick="goStep(1)"><span class="sn">2</span>Post</button><button class="sp" onclick="goStep(2)"><span class="sn">3</span>Haulier View</button><button class="sp" onclick="goStep(3)"><span class="sn">4</span>Quote</button><button class="sp" onclick="goStep(4)"><span class="sn">5</span>Compare</button><button class="sp on" onclick="goStep(5)"><span class="sn">6</span>Accept</button><button class="sp" onclick="goStep(7)"><span class="sn">7</span>Alerts</button><button class="sp" onclick="goStep(8)"><span class="sn">8</span>Rate</button></div>
-            <div style="background:rgba(52,211,153,0.08);border:1.5px solid rgba(52,211,153,0.3);border-radius:10px;padding:12px;text-align:center;margin-bottom:8px">
-              <div style="font-size:20px;margin-bottom:4px">✅</div>
-              <div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#34d399;margin-bottom:2px">Job Confirmed</div>
-              <div style="font-size:11px;color:#6b7a8d">Peak District Haulage Ltd notified · All other hauliers automatically declined</div>
+            <div class="demo-success-banner" style="text-align:center;justify-content:center;flex-direction:column;gap:2px;padding:12px">
+              <div style="font-size:20px">✅</div>
+              <div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#059669">Job Confirmed</div>
+              <div style="font-size:11px;color:var(--mid)">Peak District Haulage Ltd notified · All other hauliers automatically declined</div>
             </div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:11px;margin-bottom:8px">
-              <div style="background:rgba(255,255,255,0.05);border-radius:7px;padding:8px"><div style="color:#6b7a8d;margin-bottom:2px">Haulier</div><div style="color:#fff;font-weight:600;font-size:11px">Peak District Haulage Ltd</div></div>
-              <div style="background:rgba(255,255,255,0.05);border-radius:7px;padding:8px"><div style="color:#6b7a8d;margin-bottom:2px">Rate Agreed</div><div style="color:var(--gold);font-weight:700;font-size:13px">£13.40/t · £4,020 total</div></div>
-              <div style="background:rgba(255,255,255,0.05);border-radius:7px;padding:8px"><div style="color:#6b7a8d;margin-bottom:2px">Loads</div><div style="color:#fff;font-weight:600">15 × 8-wheel · 300t</div></div>
-              <div style="background:rgba(255,255,255,0.05);border-radius:7px;padding:8px"><div style="color:#6b7a8d;margin-bottom:2px">Start Date</div><div style="color:#fff;font-weight:600">18 March 2026</div></div>
+              <div class="demo-card" style="padding:8px"><div style="color:var(--mid);margin-bottom:2px;font-size:10px">Haulier</div><div style="color:var(--navy);font-weight:600;font-size:11px">Peak District Haulage Ltd</div></div>
+              <div class="demo-card" style="padding:8px"><div style="color:var(--mid);margin-bottom:2px;font-size:10px">Rate Agreed</div><div style="color:#059669;font-weight:700;font-size:13px">£13.40/t · £4,020 total</div></div>
+              <div class="demo-card" style="padding:8px"><div style="color:var(--mid);margin-bottom:2px;font-size:10px">Loads</div><div style="color:var(--navy);font-weight:600">15 × 8-wheel · 300t</div></div>
+              <div class="demo-card" style="padding:8px"><div style="color:var(--mid);margin-bottom:2px;font-size:10px">Start Date</div><div style="color:var(--navy);font-weight:600">18 March 2026</div></div>
             </div>
-            <!-- Post-award market rate feedback email to unsuccessful hauliers -->
-            <div style="background:rgba(255,255,255,0.97);border-radius:8px;padding:11px;border:1px solid rgba(245,196,0,0.3)">
-              <div style="font-size:10px;font-weight:700;color:#1a2333;margin-bottom:2px">📧 Sent automatically to unsuccessful hauliers</div>
-              <div style="font-size:9px;color:#8a95a3;margin-bottom:8px">Keeps hauliers informed — no race to the bottom, just honest market feedback</div>
-              <div style="background:#f8fafc;border-radius:6px;padding:9px;border:1px solid #e4e7ed">
-                <div style="font-size:11px;font-weight:700;color:#1a2333;margin-bottom:5px">TH-1048 — Buxton → Sheffield · Quote outcome</div>
+            <div class="demo-card">
+              <div style="font-size:10px;font-weight:700;color:var(--navy);margin-bottom:2px">📧 Sent automatically to unsuccessful hauliers</div>
+              <div style="font-size:9px;color:var(--mid);margin-bottom:8px">Keeps hauliers informed — no race to the bottom, just honest market feedback</div>
+              <div style="background:#f8f9fb;border-radius:6px;padding:9px;border:1px solid var(--border)">
+                <div style="font-size:11px;font-weight:700;color:var(--navy);margin-bottom:5px">TH-1048 — Buxton → Sheffield · Quote outcome</div>
                 <div style="display:flex;flex-direction:column;gap:4px;font-size:10px">
-                  <div style="display:flex;justify-content:space-between"><span style="color:#6b7a8d">Your quote</span><span style="font-weight:700;color:#1a2333">£13.80/t</span></div>
-                  <div style="display:flex;justify-content:space-between"><span style="color:#6b7a8d">Winning rate</span><span style="font-weight:700;color:#059669">£13.40/t</span></div>
-                  <div style="display:flex;justify-content:space-between"><span style="color:#6b7a8d">Market range (4 quotes)</span><span style="font-weight:600;color:#1a2333">£12.00 – £13.80/t</span></div>
-                  <div style="display:flex;justify-content:space-between"><span style="color:#6b7a8d">Winner's rating</span><span style="font-weight:600;color:#1a2333">4.9★ · 98% completion</span></div>
-                  <div style="display:flex;justify-content:space-between"><span style="color:#6b7a8d">Your ranking</span><span style="font-weight:700;color:#f59e0b">2nd of 4</span></div>
+                  <div style="display:flex;justify-content:space-between"><span style="color:var(--mid)">Your quote</span><span style="font-weight:700;color:var(--navy)">£13.80/t</span></div>
+                  <div style="display:flex;justify-content:space-between"><span style="color:var(--mid)">Winning rate</span><span style="font-weight:700;color:#059669">£13.40/t</span></div>
+                  <div style="display:flex;justify-content:space-between"><span style="color:var(--mid)">Market range (4 quotes)</span><span style="font-weight:600;color:var(--navy)">£12.00 – £13.80/t</span></div>
+                  <div style="display:flex;justify-content:space-between"><span style="color:var(--mid)">Your ranking</span><span style="font-weight:700;color:#d97706">2nd of 4</span></div>
                 </div>
-                <div style="margin-top:7px;padding-top:7px;border-top:1px solid #e4e7ed;font-size:10px;color:#6b7a8d;font-style:italic">Your rate was competitive. You lost on rating, not price. 4.9 vs your 4.1.</div>
+                <div style="margin-top:7px;padding-top:7px;border-top:1px solid var(--border);font-size:10px;color:var(--mid);font-style:italic">Your rate was competitive. You lost on rating, not price. 4.9 vs your 4.1.</div>
               </div>
             </div>
           </div>
         </div>
         <!-- ── STEP 7: LOAD ALERT PREFERENCES ── -->
         <div class="demo-slide" id="step7">
-          <div class="fake-nav"><div class="fnl"><div class="ico"><svg viewBox="0 0 28 22" fill="none"><path d="M9 4 L25 4 L25 14 L9 16 Z" fill="#f5c400"/><rect x="1" y="17" width="25" height="2.5" rx="1" fill="#f5c400"/><circle cx="5.5" cy="19.5" r="2" fill="#f5c400" stroke="#1a2333" stroke-width="1"/><circle cx="19" cy="19.5" r="2" fill="#f5c400" stroke="#1a2333" stroke-width="1"/><circle cx="24" cy="19.5" r="2" fill="#f5c400" stroke="#1a2333" stroke-width="1"/></svg></div><strong>TipperLink</strong></div><div style="font-size:11px;color:#6b7a8d">My Account — Load Alert Preferences</div></div>
+          <div class="fake-nav"><div class="fnl"><div class="ico"><svg viewBox="0 0 28 22" fill="none"><path d="M9 4 L25 4 L25 14 L9 16 Z" fill="#f5c400"/><rect x="1" y="17" width="25" height="2.5" rx="1" fill="#f5c400"/><circle cx="5.5" cy="19.5" r="2" fill="#f5c400" stroke="#1a2333" stroke-width="1"/><circle cx="19" cy="19.5" r="2" fill="#f5c400" stroke="#1a2333" stroke-width="1"/><circle cx="24" cy="19.5" r="2" fill="#f5c400" stroke="#1a2333" stroke-width="1"/></svg></div><strong>TipperLink</strong></div><div style="font-size:11px;color:#c8d0de">My Account — Load Alert Preferences</div></div>
           <div class="sc">
             <div class="step-pills"><button class="sp" onclick="goStep(0)"><span class="sn">1</span>Browse</button><button class="sp" onclick="goStep(1)"><span class="sn">2</span>Post</button><button class="sp" onclick="goStep(2)"><span class="sn">3</span>Haulier View</button><button class="sp" onclick="goStep(3)"><span class="sn">4</span>Quote</button><button class="sp" onclick="goStep(4)"><span class="sn">5</span>Compare</button><button class="sp" onclick="goStep(5)"><span class="sn">6</span>Accept</button><button class="sp on" onclick="goStep(7)"><span class="sn">7</span>Alerts</button><button class="sp" onclick="goStep(8)"><span class="sn">8</span>Rate</button></div>
-            <div style="background:rgba(255,255,255,0.04);border-radius:10px;padding:14px;border:1px solid rgba(255,255,255,0.08)">
+            <div class="demo-card">
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
                 <div style="display:flex;align-items:center;gap:8px">
-                  <div style="font-size:12px;font-weight:700;color:#fff">🔔 My Load Alert Preferences</div>
-                  <span style="background:#f5c400;color:#1a2333;font-size:9px;font-weight:800;padding:2px 7px;border-radius:10px;letter-spacing:0.5px">★ PREMIUM</span>
+                  <div style="font-size:12px;font-weight:700;color:var(--navy)">🔔 My Load Alert Preferences</div>
                 </div>
-                <span style="background:rgba(52,211,153,0.15);color:#34d399;font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px">Alerts Active</span>
+                <span style="background:#dcfce7;color:#059669;font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px">Active</span>
               </div>
-
-              <!-- Coverage zones -->
               <div style="margin-bottom:10px">
-                <div style="font-size:10px;font-weight:700;color:#8a95a3;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">Coverage Zones</div>
+                <div style="font-size:10px;font-weight:700;color:var(--mid);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">Coverage Zones</div>
                 <div style="display:flex;flex-wrap:wrap;gap:5px">
-                  <span style="background:rgba(245,196,0,0.15);border:1px solid rgba(245,196,0,0.35);color:var(--gold);font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px">Yorkshire ✓</span>
-                  <span style="background:rgba(245,196,0,0.15);border:1px solid rgba(245,196,0,0.35);color:var(--gold);font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px">East Midlands ✓</span>
-                  <span style="background:rgba(245,196,0,0.15);border:1px solid rgba(245,196,0,0.35);color:var(--gold);font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px">Lincolnshire ✓</span>
-                  <span style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#6b7a8d;font-size:11px;padding:3px 10px;border-radius:20px">+ Add region</span>
+                  <span style="background:#eff6ff;border:1px solid #bfdbfe;color:#1d4ed8;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px">Yorkshire ✓</span>
+                  <span style="background:#eff6ff;border:1px solid #bfdbfe;color:#1d4ed8;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px">East Midlands ✓</span>
+                  <span style="background:#eff6ff;border:1px solid #bfdbfe;color:#1d4ed8;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px">Lincolnshire ✓</span>
+                  <span style="background:var(--off);border:1px solid var(--border);color:var(--mid);font-size:11px;padding:3px 10px;border-radius:20px">+ Add region</span>
                 </div>
               </div>
-
-              <!-- Vehicle types -->
               <div style="margin-bottom:10px">
-                <div style="font-size:10px;font-weight:700;color:#8a95a3;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">My Vehicle Types</div>
+                <div style="font-size:10px;font-weight:700;color:var(--mid);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">My Vehicle Types</div>
                 <div style="display:flex;flex-wrap:wrap;gap:5px">
-                  <span style="background:rgba(245,196,0,0.15);border:1px solid rgba(245,196,0,0.35);color:var(--gold);font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px">8-Wheel Tipper ✓</span>
-                  <span style="background:rgba(245,196,0,0.15);border:1px solid rgba(245,196,0,0.35);color:var(--gold);font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px">Artic Tipper ✓</span>
-                  <span style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#6b7a8d;font-size:11px;padding:3px 10px;border-radius:20px">Grab Lorry</span>
-                  <span style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#6b7a8d;font-size:11px;padding:3px 10px;border-radius:20px">Walking Floor</span>
+                  <span style="background:#eff6ff;border:1px solid #bfdbfe;color:#1d4ed8;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px">8-Wheel Tipper ✓</span>
+                  <span style="background:#eff6ff;border:1px solid #bfdbfe;color:#1d4ed8;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px">Artic Tipper ✓</span>
+                  <span style="background:var(--off);border:1px solid var(--border);color:var(--mid);font-size:11px;padding:3px 10px;border-radius:20px">Grab Lorry</span>
+                  <span style="background:var(--off);border:1px solid var(--border);color:var(--mid);font-size:11px;padding:3px 10px;border-radius:20px">Walking Floor</span>
                 </div>
               </div>
-
-              <!-- Alert frequency -->
               <div style="margin-bottom:12px">
-                <div style="font-size:10px;font-weight:700;color:#8a95a3;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">Alert Frequency</div>
+                <div style="font-size:10px;font-weight:700;color:var(--mid);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">Alert Frequency</div>
                 <div style="display:flex;gap:6px">
-                  <span style="background:rgba(245,196,0,0.15);border:1px solid rgba(245,196,0,0.35);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px">⚡ Instant</span>
-                  <span style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#6b7a8d;font-size:11px;padding:4px 12px;border-radius:20px">Daily digest</span>
+                  <span style="background:#fffbeb;border:1px solid #fde68a;color:#92400e;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px">⚡ Instant</span>
+                  <span style="background:var(--off);border:1px solid var(--border);color:var(--mid);font-size:11px;padding:4px 12px;border-radius:20px">Daily digest</span>
                 </div>
               </div>
-
-              <!-- Simulated email preview -->
-              <div style="background:rgba(255,255,255,0.97);border-radius:8px;padding:12px;border:1px solid rgba(245,196,0,0.4)">
+              <div style="background:#fff;border-radius:8px;padding:12px;border:1.5px solid var(--gold)">
                 <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
                   <div style="background:#1a2333;border-radius:5px;width:22px;height:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0"><span style="color:#f5c400;font-size:9px;font-weight:700">TL</span></div>
-                  <div>
-                    <div style="font-size:10px;font-weight:700;color:#1a2333">TipperLink · New Load Alert</div>
-                    <div style="font-size:9px;color:#8a95a3">to: j.smith@smithhaulage.co.uk · just now</div>
-                  </div>
+                  <div><div style="font-size:10px;font-weight:700;color:#1a2333">TipperLink · New Load Alert</div><div style="font-size:9px;color:var(--mid)">to: driver@peakdistricthaulage.co.uk · just now</div></div>
                   <span style="margin-left:auto;background:#fef3c7;color:#92400e;font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px">NEW</span>
                 </div>
                 <div style="font-size:11px;font-weight:700;color:#1a2333;margin-bottom:3px">📍 New load in Yorkshire — matches your vehicle</div>
                 <div style="display:flex;justify-content:space-between;align-items:center;background:#f8fafc;border-radius:6px;padding:8px;margin-bottom:8px">
-                  <div>
-                    <div style="font-size:12px;font-weight:800;color:#1a2333">Harrogate → Leeds</div>
-                    <div style="font-size:10px;color:#6b7a8d;margin-top:1px">Limestone · 8-wheel tipper · 180t · Today</div>
-                  </div>
-                  <div style="text-align:right">
-                    <div style="font-size:13px;font-weight:800;color:#1a2333">£15.80</div>
-                    <div style="font-size:9px;color:#6b7a8d">/tonne</div>
-                  </div>
+                  <div><div style="font-size:12px;font-weight:800;color:#1a2333">Harrogate → Leeds</div><div style="font-size:10px;color:var(--mid);margin-top:1px">Limestone · 8-wheel tipper · 180t · Today</div></div>
+                  <div style="text-align:right"><div style="font-size:13px;font-weight:800;color:#1a2333">£15.80</div><div style="font-size:9px;color:var(--mid)">/tonne</div></div>
                 </div>
                 <div style="display:flex;gap:6px">
-                  <button class="fsub" style="flex:1;padding:7px;font-size:10px;margin:0">View & Quote →</button>
-                  <button style="flex:1;background:transparent;border:1px solid #e4e7ed;border-radius:6px;padding:7px;font-size:10px;color:#6b7a8d;cursor:pointer;font-family:'DM Sans',sans-serif">Not interested</button>
+                  <button class="fsub" style="flex:1;padding:7px;font-size:10px;margin:0">View &amp; Quote →</button>
+                  <button style="flex:1;background:transparent;border:1.5px solid var(--border);border-radius:6px;padding:7px;font-size:10px;color:var(--mid);cursor:pointer;font-family:'DM Sans',sans-serif">Not interested</button>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
 
         <!-- ── STEP 8: RATE ── -->
         <div class="demo-slide" id="step8">
-          <div class="fake-nav"><div class="fnl"><div class="ico"><svg viewBox="0 0 28 22" fill="none"><path d="M9 4 L25 4 L25 14 L9 16 Z" fill="#f5c400"/><rect x="1" y="17" width="25" height="2.5" rx="1" fill="#f5c400"/><circle cx="5.5" cy="19.5" r="2" fill="#f5c400" stroke="#1a2333" stroke-width="1"/><circle cx="19" cy="19.5" r="2" fill="#f5c400" stroke="#1a2333" stroke-width="1"/><circle cx="24" cy="19.5" r="2" fill="#f5c400" stroke="#1a2333" stroke-width="1"/></svg></div><strong>TipperLink</strong></div><div style="font-size:11px;color:#6b7a8d">Rate your haulier — TH-1048 complete</div></div>
+          <div class="fake-nav"><div class="fnl"><div class="ico"><svg viewBox="0 0 28 22" fill="none"><path d="M9 4 L25 4 L25 14 L9 16 Z" fill="#f5c400"/><rect x="1" y="17" width="25" height="2.5" rx="1" fill="#f5c400"/><circle cx="5.5" cy="19.5" r="2" fill="#f5c400" stroke="#1a2333" stroke-width="1"/><circle cx="19" cy="19.5" r="2" fill="#f5c400" stroke="#1a2333" stroke-width="1"/><circle cx="24" cy="19.5" r="2" fill="#f5c400" stroke="#1a2333" stroke-width="1"/></svg></div><strong>TipperLink</strong></div><div style="font-size:11px;color:#c8d0de">Rate your haulier — TH-1048 complete</div></div>
           <div class="sc">
             <div class="step-pills"><button class="sp" onclick="goStep(0)"><span class="sn">1</span>Browse</button><button class="sp" onclick="goStep(1)"><span class="sn">2</span>Post</button><button class="sp" onclick="goStep(2)"><span class="sn">3</span>Haulier View</button><button class="sp" onclick="goStep(3)"><span class="sn">4</span>Quote</button><button class="sp" onclick="goStep(4)"><span class="sn">5</span>Compare</button><button class="sp" onclick="goStep(5)"><span class="sn">6</span>Accept</button><button class="sp" onclick="goStep(7)"><span class="sn">7</span>Alerts</button><button class="sp on" onclick="goStep(8)"><span class="sn">8</span>Rate</button></div>
-            <div style="background:rgba(255,255,255,0.04);border-radius:10px;padding:14px;border:1px solid rgba(255,255,255,0.08)">
-              <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:10px">Rate Peak District Haulage Ltd</div>
+            <div class="demo-card">
+              <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:10px">Rate Peak District Haulage Ltd</div>
               <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:10px;font-size:12px">
-                <div style="display:flex;justify-content:space-between;align-items:center"><span style="color:#6b7a8d">All 15 loads completed?</span><span style="color:#059669;font-weight:700">✓ Yes — 15/15</span></div>
-                <div style="display:flex;justify-content:space-between;align-items:center"><span style="color:#6b7a8d">On time every run?</span><span style="color:#059669;font-weight:700">✓ Yes</span></div>
-                <div style="display:flex;justify-content:space-between;align-items:center"><span style="color:#6b7a8d">Professional &amp; communicative?</span><span style="color:#059669;font-weight:700">✓ Yes</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center"><span style="color:var(--mid)">All 15 loads completed?</span><span style="color:#059669;font-weight:700">✓ Yes — 15/15</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center"><span style="color:var(--mid)">On time every run?</span><span style="color:#059669;font-weight:700">✓ Yes</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center"><span style="color:var(--mid)">Professional &amp; communicative?</span><span style="color:#059669;font-weight:700">✓ Yes</span></div>
               </div>
-              <div style="font-size:11px;color:#8a95a3;margin-bottom:8px;font-style:italic">Brilliant driver, on time every run, kept me updated. Would book again.</div>
+              <div style="font-size:11px;color:var(--mid);margin-bottom:8px;font-style:italic;background:var(--off);border-radius:7px;padding:8px">Brilliant driver, on time every run, kept me updated. Would book again.</div>
               <button class="fsub">Submit Rating → Updates their public profile instantly</button>
             </div>
           </div>
@@ -1227,9 +1207,9 @@ footer p{color:#3d4d63;font-size:13px}
   <!-- ── FEATURES ── -->
   <div class="product-section" id="psec-features">
     <h2 class="product-section-title">Platform Features</h2>
-    <p class="product-section-sub">Built for UK tipper and grab haulage. No bloat, no complexity. No bloat, no complexity.</p>
+    <p class="product-section-sub">Built for UK tipper and grab haulage. No bloat, no complexity — just the tools you actually need.</p>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
-      <div class="how-card" style="border-color:#f5c400;border-width:2px;position:relative"><div style="position:absolute;top:12px;right:12px;background:#f5c400;color:#1a2333;font-size:9px;font-weight:800;padding:3px 8px;border-radius:10px;letter-spacing:0.5px">★ PREMIUM</div><div class="how-icon">🔔</div><h3 class="how-title">Area Load Alerts</h3><p class="how-text">Set your coverage zones, vehicle type and preferred materials. The moment a matching load is posted in your area, you get an instant email — before anyone else has seen it. First to know, first to quote. <strong style="color:#1a2333">Paid members only.</strong></p></div>
+      <div class="how-card"><div class="how-icon">🔔</div><h3 class="how-title">Area Load Alerts</h3><p class="how-text">Set your coverage zones, vehicle type and preferred materials. The moment a matching load is posted in your area, you get an instant email — before anyone else has seen it. First to know, first to quote.</p></div>
       <div class="how-card"><div class="how-icon">🚛</div><h3 class="how-title">Vehicle Type Selection</h3><p class="how-text">Choose from artic tipper (30t), 8-wheel tipper (20t), 4-wheel tipper (10t), 8-wheel grab lorry (16t) or walking floor artic (30t). Loads and tonnage calculate automatically.</p></div>
       <div class="how-card"><div class="how-icon">⭐</div><h3 class="how-title">Verified Haulier Ratings</h3><p class="how-text">Every haulier has a public reliability score built from real job history. Completion rates and reviews visible before accepting any quote.</p></div>
       <div class="how-card"><div class="how-icon">🏭</div><h3 class="how-title">Aggregate Marketplace</h3><p class="how-text">Coming soon — post bulk material requirements or supply capacity. Quarries and sand and gravel suppliers quote directly. Pair with a haulier in one platform.</p></div>
@@ -1241,6 +1221,30 @@ footer p{color:#3d4d63;font-size:13px}
 
 </div><!-- /product -->
 
+
+<!-- ══════════════════════════════════════════
+     DEMO PICKER MODAL
+════════════════════════════════════════════ -->
+<div id="demo-picker-overlay" style="display:none;position:fixed;inset:0;z-index:998;background:rgba(10,16,28,0.72);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:20px" onclick="closeDemoPickerOutside(event)">
+  <div id="demo-picker-box" style="background:#fff;border-radius:20px;max-width:460px;width:100%;padding:36px 32px;box-shadow:0 32px 80px rgba(0,0,0,0.4);position:relative">
+    <button onclick="closeDemoPicker()" style="position:absolute;top:14px;right:18px;background:var(--off);border:none;color:var(--navy);width:30px;height:30px;border-radius:50%;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1">&times;</button>
+    <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px">Interactive Demo</div>
+    <h2 style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--navy);margin-bottom:6px">Who are you?</h2>
+    <p style="font-size:14px;color:var(--mid);margin-bottom:24px;line-height:1.5">We'll drop you straight into the right journey — no extra clicks.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <button onclick="closeDemoPicker();showPage('product');showProductTab('demo');startDemo('haulier')" style="border:2px solid var(--border);background:#fff;border-radius:14px;padding:24px 16px;cursor:pointer;text-align:center;transition:all .2s;font-family:'DM Sans',sans-serif" onmouseover="this.style.borderColor='#f5c400';this.style.background='#fffbeb'" onmouseout="this.style.borderColor='var(--border)';this.style.background='#fff'">
+        <div style="font-size:32px;margin-bottom:10px">🚛</div>
+        <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--navy)">I'm a Haulier</div>
+        <div style="font-size:12px;color:var(--mid);margin-top:4px">I run tipper trucks and want more loads</div>
+      </button>
+      <button onclick="closeDemoPicker();showPage('product');showProductTab('demo');startDemo('supplier')" style="border:2px solid var(--border);background:#fff;border-radius:14px;padding:24px 16px;cursor:pointer;text-align:center;transition:all .2s;font-family:'DM Sans',sans-serif" onmouseover="this.style.borderColor='#059669';this.style.background='#f0fdf4'" onmouseout="this.style.borderColor='var(--border)';this.style.background='#fff'">
+        <div style="font-size:32px;margin-bottom:10px">🏗️</div>
+        <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--navy)">I'm a Supplier</div>
+        <div style="font-size:12px;color:var(--mid);margin-top:4px">I need reliable tippers for my loads</div>
+      </button>
+    </div>
+  </div>
+</div>
 
 <!-- ══════════════════════════════════════════
      REGISTER INTEREST MODAL
@@ -1300,7 +1304,7 @@ footer p{color:#3d4d63;font-size:13px}
       </div>
       <div id="h-error" style="display:none;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:10px 14px;margin-top:14px;font-size:13px;color:#dc2626;font-weight:600"></div>
       <button id="h-submit-btn" onclick="submitHaulier()" style="width:100%;background:linear-gradient(135deg,#f5c400,#e6a800);color:#1a2333;border:none;border-radius:12px;padding:15px;font-weight:700;font-size:16px;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:18px;box-shadow:0 6px 20px rgba(245,196,0,0.35)">Register My Interest →</button>
-      <p style="text-align:center;font-size:12px;color:#8a95a3;margin-top:10px">🔒 Launching May 2026 · No spam, ever</p>
+      <p style="text-align:center;font-size:12px;color:#8a95a3;margin-top:10px">🔒 Founding member pricing locked for 12 months at launch</p>
     </div>
 
     <!-- STEP 2b: Supplier form -->
@@ -1323,9 +1327,19 @@ footer p{color:#3d4d63;font-size:13px}
         <div class="fg" style="margin-bottom:0"><label>Email <span style="color:#dc2626">*</span></label><input id="s-email" type="email" placeholder="sarah@peakquarry.co.uk"/></div>
         <div class="fg" style="margin-bottom:0"><label>Phone <span style="color:#dc2626">*</span></label><input id="s-phone" type="tel" placeholder="07700 000000"/></div>
       </div>
+      <div style="margin-top:14px" class="fg">
+        <label>Typical Job Requirements <span style="color:#8a95a3;font-weight:400;font-size:11px">(select all that typically apply)</span></label>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px">
+          <label style="display:flex;align-items:center;gap:5px;font-size:12px;font-weight:400;cursor:pointer;background:var(--off);border:1.5px solid var(--border);border-radius:7px;padding:4px 9px"><input type="checkbox" id="req-fors-b" style="width:auto;margin:0"> FORS Bronze</label>
+          <label style="display:flex;align-items:center;gap:5px;font-size:12px;font-weight:400;cursor:pointer;background:var(--off);border:1.5px solid var(--border);border-radius:7px;padding:4px 9px"><input type="checkbox" id="req-fors-s" style="width:auto;margin:0"> FORS Silver</label>
+          <label style="display:flex;align-items:center;gap:5px;font-size:12px;font-weight:400;cursor:pointer;background:var(--off);border:1.5px solid var(--border);border-radius:7px;padding:4px 9px"><input type="checkbox" id="req-tascc" style="width:auto;margin:0"> TASCC</label>
+          <label style="display:flex;align-items:center;gap:5px;font-size:12px;font-weight:400;cursor:pointer;background:var(--off);border:1.5px solid var(--border);border-radius:7px;padding:4px 9px"><input type="checkbox" id="req-timed" style="width:auto;margin:0"> Timed Delivery</label>
+          <label style="display:flex;align-items:center;gap:5px;font-size:12px;font-weight:400;cursor:pointer;background:var(--off);border:1.5px solid var(--border);border-radius:7px;padding:4px 9px"><input type="checkbox" id="req-induction" style="width:auto;margin:0"> Site Induction</label>
+        </div>
+      </div>
       <div id="s-error" style="display:none;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:10px 14px;margin-top:14px;font-size:13px;color:#dc2626;font-weight:600"></div>
       <button id="s-submit-btn" onclick="submitSupplier()" style="width:100%;background:linear-gradient(135deg,#059669,#047857);color:#fff;border:none;border-radius:12px;padding:15px;font-weight:700;font-size:16px;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:18px;box-shadow:0 6px 20px rgba(5,150,105,0.3)">Register as a Supplier →</button>
-      <p style="text-align:center;font-size:12px;color:#8a95a3;margin-top:10px">🔒 Launching May 2026 · No spam, ever</p>
+      <p style="text-align:center;font-size:12px;color:#8a95a3;margin-top:10px">🔒 Founding member pricing locked for 12 months at launch</p>
     </div>
 
     <!-- SUCCESS -->
@@ -1339,32 +1353,136 @@ footer p{color:#3d4d63;font-size:13px}
   </div>
 </div>
 
+<!-- ══════════════════════════════════════════
+     CONTACT PAGE
+════════════════════════════════════════════ -->
+<div class="pg" id="page-contact">
+  <div style="padding-top:68px;min-height:100vh;background:var(--off)">
+    <div style="max-width:700px;margin:0 auto;padding:60px 48px">
+
+      <div style="margin-bottom:10px">
+        <a onclick="showPage('home')" style="font-size:13px;color:var(--gold);cursor:pointer;font-weight:600;text-decoration:none">← Back to TipperLink</a>
+      </div>
+      <p class="sec-label" style="text-align:left;margin-bottom:8px">Get in Touch</p>
+      <h1 style="font-family:'Syne',sans-serif;font-size:clamp(28px,4vw,40px);font-weight:800;color:var(--navy);margin-bottom:12px;letter-spacing:-0.5px">We'd love to hear from you</h1>
+      <p style="font-size:16px;color:var(--mid);line-height:1.65;margin-bottom:40px">Whether you're a haulier, a supplier, or just want to find out more before we launch — drop us a message. We'll reply personally.</p>
+
+      <!-- Contact card -->
+      <div style="background:#fff;border-radius:20px;border:1.5px solid var(--border);padding:36px;box-shadow:0 8px 32px rgba(26,35,51,0.06);margin-bottom:24px">
+        <div style="display:flex;align-items:flex-start;gap:18px">
+          <div style="width:52px;height:52px;background:var(--navy);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg viewBox="0 0 24 24" fill="none" width="26" height="26"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="#f5c400" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="22,6 12,13 2,6" stroke="#f5c400" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--navy);margin-bottom:4px">Email us</div>
+            <a href="mailto:hello@tipperlink.com" style="font-size:18px;font-weight:600;color:var(--gold);text-decoration:none;letter-spacing:-0.2px">hello@tipperlink.com</a>
+            <p style="font-size:13px;color:var(--mid);margin-top:6px;line-height:1.6">We aim to reply within one business day. If you're registering your interest, you can also use the form on the home page and we'll be in touch before launch.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info cards row -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px">
+        <div style="background:#fff;border-radius:14px;border:1.5px solid var(--border);padding:22px">
+          <div style="font-size:20px;margin-bottom:8px">🚛</div>
+          <div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--navy);margin-bottom:5px">I'm a haulier</div>
+          <p style="font-size:13px;color:var(--mid);line-height:1.6">Want to get more loads, find backloads, or understand how ratings work? Get in touch and we'll walk you through it.</p>
+        </div>
+        <div style="background:#fff;border-radius:14px;border:1.5px solid var(--border);padding:22px">
+          <div style="font-size:20px;margin-bottom:8px">⛏️</div>
+          <div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--navy);margin-bottom:5px">I'm a supplier</div>
+          <p style="font-size:13px;color:var(--mid);line-height:1.6">Running a quarry, construction site or waste operation? Ask us how TipperLink will work for your volumes and location.</p>
+        </div>
+      </div>
+
+      <!-- Register CTA -->
+      <div style="background:var(--navy);border-radius:16px;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;border:1px solid rgba(245,196,0,0.15)">
+        <div>
+          <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:#fff;margin-bottom:4px">Ready to register your interest?</div>
+          <div style="font-size:13px;color:#8a95a3">Launching May 2026 — be first on the platform.</div>
+        </div>
+        <button class="btn-primary" style="font-size:14px;padding:12px 24px;white-space:nowrap" onclick="openModal()">Register Now →</button>
+      </div>
+
+      <!-- Legal note -->
+      <p style="font-size:12px;color:var(--soft);margin-top:28px;line-height:1.6">TipperLink Ltd · Registered in England &amp; Wales · <a href="mailto:hello@tipperlink.com" style="color:var(--mid);text-decoration:none">hello@tipperlink.com</a> · <a onclick="showPage('privacy')" style="color:var(--mid);cursor:pointer;text-decoration:none">Privacy Policy</a> · <a onclick="showPage('terms')" style="color:var(--mid);cursor:pointer;text-decoration:none">Terms of Use</a></p>
+
+    </div>
+  </div>
+</div>
+
 <!-- ── FOOTER ── -->
 <footer>
-  <div class="logo" onclick="showPage('home')">
-    <div class="logo-icon">
-      <svg viewBox="0 0 36 22" fill="none">
-        <rect x="1" y="7" width="10" height="11" rx="2" fill="#1a2333"/>
-        <rect x="2" y="8" width="6" height="5" rx="1" fill="#a8d4ff" opacity="0.9"/>
-        <path d="M3 7 Q5 3 9 3 L11 7 Z" fill="#1a2333"/>
-        <rect x="9.5" y="1.5" width="1.5" height="5" rx="0.5" fill="#1a2333"/>
-        <rect x="10" y="14" width="3" height="2" rx="0.5" fill="#253045"/>
-        <rect x="12" y="13" width="22" height="2" rx="1" fill="#1a2333"/>
-        <path d="M13 5 L33 5 L34 13 L13 13 Z" fill="#1a2333"/>
-        <path d="M13 5 L33 5 L33 6 L13 6 Z" fill="#f5c400" opacity="0.6"/>
-        <rect x="1" y="17" width="34" height="2" rx="1" fill="#1a2333"/>
-        <circle cx="8" cy="19.5" r="2.2" fill="#1a2333" stroke="#f5c400" stroke-width="1.3"/><circle cx="8" cy="19.5" r="0.85" fill="#f5c400"/>
-        <circle cx="24" cy="19.5" r="2.2" fill="#1a2333" stroke="#f5c400" stroke-width="1.3"/><circle cx="24" cy="19.5" r="0.85" fill="#f5c400"/>
-        <circle cx="30" cy="19.5" r="2.2" fill="#1a2333" stroke="#f5c400" stroke-width="1.3"/><circle cx="30" cy="19.5" r="0.85" fill="#f5c400"/>
-      </svg>
+  <div class="footer-inner">
+    <div class="footer-cols">
+
+      <!-- Brand column -->
+      <div class="footer-brand">
+        <div class="logo" onclick="showPage('home')" style="margin-bottom:14px">
+          <div class="logo-icon">
+            <svg viewBox="0 0 36 22" fill="none">
+              <rect x="1" y="7" width="10" height="11" rx="2" fill="#1a2333"/>
+              <rect x="2" y="8" width="6" height="5" rx="1" fill="#a8d4ff" opacity="0.9"/>
+              <path d="M3 7 Q5 3 9 3 L11 7 Z" fill="#1a2333"/>
+              <rect x="9.5" y="1.5" width="1.5" height="5" rx="0.5" fill="#1a2333"/>
+              <rect x="10" y="14" width="3" height="2" rx="0.5" fill="#253045"/>
+              <rect x="12" y="13" width="22" height="2" rx="1" fill="#1a2333"/>
+              <path d="M13 5 L33 5 L34 13 L13 13 Z" fill="#1a2333"/>
+              <path d="M13 5 L33 5 L33 6 L13 6 Z" fill="#f5c400" opacity="0.6"/>
+              <rect x="1" y="17" width="34" height="2" rx="1" fill="#1a2333"/>
+              <circle cx="8" cy="19.5" r="2.2" fill="#1a2333" stroke="#f5c400" stroke-width="1.3"/><circle cx="8" cy="19.5" r="0.85" fill="#f5c400"/>
+              <circle cx="24" cy="19.5" r="2.2" fill="#1a2333" stroke="#f5c400" stroke-width="1.3"/><circle cx="24" cy="19.5" r="0.85" fill="#f5c400"/>
+              <circle cx="30" cy="19.5" r="2.2" fill="#1a2333" stroke="#f5c400" stroke-width="1.3"/><circle cx="30" cy="19.5" r="0.85" fill="#f5c400"/>
+            </svg>
+          </div>
+          <div class="logo-text"><strong>TipperLink</strong><span>Haulage Exchange</span></div>
+        </div>
+        <p>The UK's only digital exchange built exclusively for tipper and grab haulage. Every load, every member, every rating — relevant to you.</p>
+        <div class="footer-flag">🇬🇧 Built in the UK, for UK haulage</div>
+      </div>
+
+      <!-- Platform column -->
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <a onclick="openDemoPicker()">See It in Action</a>
+        <a onclick="showPage('product');showProductTab('dashboard')">Features</a>
+        <a onclick="showPage('product');showProductTab('performance')">Performance Metrics</a>
+        <a onclick="showPage('product');showProductTab('marketplace')">Aggregate Marketplace</a>
+      </div>
+
+      <!-- Get Started column -->
+      <div class="footer-col">
+        <h4>Get Started</h4>
+        <a onclick="openModal()">Register as a Haulier</a>
+        <a onclick="openModal()">Register as a Supplier</a>
+        <a href="mailto:hello@tipperlink.com">hello@tipperlink.com</a>
+      </div>
+
+      <!-- Company column -->
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a onclick="showPage('contact')">Contact Us</a>
+        <a onclick="showPage('privacy')">Privacy Policy</a>
+        <a onclick="showPage('terms')">Terms of Use</a>
+        <a href="mailto:hello@tipperlink.com">hello@tipperlink.com</a>
+      </div>
+
     </div>
-    <div class="logo-text"><strong>TipperLink</strong><span>Haulage Exchange</span></div>
+
+    <!-- Bottom bar -->
+    <div class="footer-bottom">
+      <p>© 2026 TipperLink Ltd · Registered in England &amp; Wales · Launching May 2026</p>
+      <div style="display:flex;gap:20px">
+        <a onclick="showPage('privacy')">Privacy</a>
+        <a onclick="showPage('terms')">Terms</a>
+        <a href="mailto:hello@tipperlink.com">hello@tipperlink.com</a>
+      </div>
+    </div>
+
   </div>
-  <div class="fl-links"><a onclick="showPage('privacy')" style="cursor:pointer">Privacy Policy</a><a onclick="showPage('terms')" style="cursor:pointer">Terms of Use</a><a onclick="openModal();return false;">Contact Us</a></div>
-  <p>© 2026 TipperLink Ltd. All rights reserved. Currently in development.</p>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ── PAGE ROUTING ──
 function showPage(n){
   document.querySelectorAll('.pg').forEach(function(p){p.classList.remove('active');});
@@ -1387,6 +1505,33 @@ function showProductTab(tab){
   if(ptab) ptab.classList.add('on');
   if(psec) psec.classList.add('on');
   if(tab==='demo') goStep(0);
+}
+
+// ── DEMO PICKER MODAL ──
+function openDemoPicker(){
+  var el=document.getElementById('demo-picker-overlay');
+  if(el){el.style.display='flex';}
+  document.body.style.overflow='hidden';
+  if(typeof gtag!=='undefined') gtag('event','demo_picker_open',{event_category:'Engagement',event_label:'Demo Picker'});
+}
+function closeDemoPicker(){
+  var el=document.getElementById('demo-picker-overlay');
+  if(el){el.style.display='none';}
+  document.body.style.overflow='';
+}
+function closeDemoPickerOutside(e){
+  if(e.target===document.getElementById('demo-picker-overlay')) closeDemoPicker();
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDemoPicker();closeModal();}});
+
+// startDemo — drops visitor into step 1 of their role journey
+function startDemo(role){
+  if(typeof gtag!=='undefined') gtag('event','demo_role_selected',{event_category:'Engagement',event_label:role});
+  if(role==='supplier'){
+    goStep(1); // supplier starts at Post Load
+  } else {
+    goStep(0); // haulier starts at Browse
+  }
 }
 
 // ── MODAL ──
@@ -1419,6 +1564,7 @@ function resetModal(){
   ['h-name','h-company','h-areas','h-email','h-phone','s-name','s-company','s-region','s-email','s-phone'].forEach(function(id){var el=document.getElementById(id);if(el) el.value='';});
   ['h-fleet','s-type','s-loads'].forEach(function(id){var el=document.getElementById(id);if(el) el.value='';});
   ['vt-8wheel','vt-artic','vt-grab','vt-6wheel','vt-walking'].forEach(function(id){var el=document.getElementById(id);if(el) el.checked=false;});
+  ['req-fors-b','req-fors-s','req-tascc','req-timed','req-induction'].forEach(function(id){var el=document.getElementById(id);if(el) el.checked=false;});
   var hBtn2=document.getElementById('h-submit-btn');
   var sBtn2=document.getElementById('s-submit-btn');
   if(hBtn2){hBtn2.textContent='Register My Interest →';hBtn2.disabled=false;}
@@ -1428,8 +1574,6 @@ function resetModal(){
   if(hErr) hErr.style.display='none';
   if(sErr) sErr.style.display='none';
 }
-document.addEventListener('keydown',function(e){if(e.key==='Escape') closeModal();});
-
 // ── ROLE SELECTION ──
 var selectedRole='';
 function selectRole(role){
@@ -1514,7 +1658,11 @@ function submitSupplier(){
   if(errEl) errEl.style.display='none';
   var btn=document.getElementById('s-submit-btn');
   if(btn){btn.textContent='Sending…';btn.disabled=true;}
-  var payload={role:'Supplier',name:name,company:company,business_type:type,loads_per_month:loads||'Not specified',region:region,email:email,phone:phone,_subject:'New TipperLink Supplier Registration: '+name+' — '+company};
+  var reqIds=['req-fors-b','req-fors-s','req-tascc','req-timed','req-induction'];
+  var reqLabels=['FORS Bronze','FORS Silver','TASCC','Timed Delivery','Site Induction'];
+  var reqs=[];
+  reqIds.forEach(function(id,i){var el=document.getElementById(id);if(el&&el.checked) reqs.push(reqLabels[i]);});
+  var payload={role:'Supplier',name:name,company:company,business_type:type,loads_per_month:loads||'Not specified',region:region,email:email,phone:phone,typical_requirements:reqs.length?reqs.join(', '):'None specified',_subject:'New TipperLink Supplier Registration: '+name+' — '+company};
   sendToFormspree(payload,btn,'Supplier Registration');
 }
 
@@ -1549,25 +1697,16 @@ function mpNotify(){
   if(typeof gtag!=='undefined') gtag('event','marketplace_notify',{event_category:'Lead',event_label:'Marketplace Waitlist'});
 }
 
-// ── VEHICLE TYPE SELECTOR ──
+// ── VEHICLE TYPE SELECTOR (legacy — step1 vehicle picker removed from supplier demo) ──
 var vTypeData={artic:{label:'Artic Tipper',t:30},'8wheel':{label:'8-Wheel Tipper',t:20},'4wheel':{label:'4-Wheel Tipper',t:10},grab:{label:'Grab Lorry',t:16},walking:{label:'Walking Floor',t:30}};
 var currentVType='8wheel',currentLoads=15,timer=null;
 
 function selectVType(el,type){
   document.querySelectorAll('.vtype-pill').forEach(function(p){p.classList.remove('sel');});
-  el.classList.add('sel');
+  if(el) el.classList.add('sel');
   currentVType=type;
-  updateTonnage();
   if(timer) clearInterval(timer);
   timer=setInterval(function(){nextStep();},7000);
-}
-function updateTonnage(){
-  var d=vTypeData[currentVType]||vTypeData['8wheel'];
-  var total=currentLoads*d.t;
-  var loadsEl=document.getElementById('demoLoads');
-  var tEl=document.getElementById('demoTonnageVal');
-  if(loadsEl) loadsEl.textContent=currentLoads+' loads';
-  if(tEl) tEl.textContent=total+'t total';
 }
 
 // ── DEMO STEPPER ──
@@ -1641,7 +1780,7 @@ goStep(0);
 
         <div>
           <h2 style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--navy);margin-bottom:10px">1. Who We Are</h2>
-          <p style="font-size:15px;color:#374151;line-height:1.75">TipperLink Ltd is a UK-registered company operating the TipperLink digital exchange platform at tipperlink.co.uk. We are the data controller for the personal information we collect through this website and platform. If you have any questions about this policy, please contact us at <strong>hello@tipperlink.co.uk</strong>.</p>
+          <p style="font-size:15px;color:#374151;line-height:1.75">TipperLink Ltd is a UK-registered company operating the TipperLink digital exchange platform at tipperlink.co.uk. We are the data controller for the personal information we collect through this website and platform. If you have any questions about this policy, please contact us at <strong><a href="mailto:hello@tipperlink.com" style="color:var(--navy)">hello@tipperlink.com</a></strong>.</p>
         </div>
 
         <div>
@@ -1704,7 +1843,7 @@ goStep(0);
             <li>Withdraw consent at any time</li>
             <li>Lodge a complaint with the ICO (ico.org.uk)</li>
           </ul>
-          <p style="font-size:15px;color:#374151;line-height:1.75;margin-top:12px">To exercise any of these rights, email <strong>hello@tipperlink.co.uk</strong>.</p>
+          <p style="font-size:15px;color:#374151;line-height:1.75;margin-top:12px">To exercise any of these rights, email <strong><a href="mailto:hello@tipperlink.com" style="color:var(--navy)">hello@tipperlink.com</a></strong>.</p>
         </div>
 
         <div>
@@ -1718,7 +1857,7 @@ goStep(0);
         </div>
 
         <div style="background:#f8f9fa;border-radius:10px;padding:20px 24px;border-left:4px solid var(--navy)">
-          <p style="font-size:14px;color:#374151;line-height:1.65"><strong>Contact:</strong> TipperLink Ltd · hello@tipperlink.co.uk<br>Registered in England &amp; Wales · tipperlink.co.uk</p>
+          <p style="font-size:14px;color:#374151;line-height:1.65"><strong>Contact:</strong> TipperLink Ltd · <a href="mailto:hello@tipperlink.com" style="color:var(--navy)">hello@tipperlink.com</a><br>Registered in England &amp; Wales · tipperlink.co.uk</p>
         </div>
 
       </div>
@@ -1817,7 +1956,7 @@ goStep(0);
         </div>
 
         <div style="background:#f8f9fa;border-radius:10px;padding:20px 24px;border-left:4px solid var(--navy)">
-          <p style="font-size:14px;color:#374151;line-height:1.65"><strong>Contact:</strong> TipperLink Ltd · hello@tipperlink.co.uk<br>Registered in England &amp; Wales · tipperlink.co.uk</p>
+          <p style="font-size:14px;color:#374151;line-height:1.65"><strong>Contact:</strong> TipperLink Ltd · <a href="mailto:hello@tipperlink.com" style="color:var(--navy)">hello@tipperlink.com</a><br>Registered in England &amp; Wales · tipperlink.co.uk</p>
         </div>
 
       </div>
@@ -1825,33 +1964,5 @@ goStep(0);
   </div>
 </div>
 
-<script>
-// ── HAMBURGER MOBILE MENU ──
-function toggleMobileMenu(){
-  var menu=document.getElementById('mobile-menu');
-  var btn=document.getElementById('hamburger');
-  if(!menu||!btn) return;
-  var isOpen=menu.classList.contains('open');
-  if(isOpen){
-    menu.classList.remove('open');
-    btn.classList.remove('open');
-    document.body.style.overflow='';
-  } else {
-    menu.classList.add('open');
-    btn.classList.add('open');
-    document.body.style.overflow='hidden';
-  }
-}
-function closeMobileMenu(){
-  var menu=document.getElementById('mobile-menu');
-  var btn=document.getElementById('hamburger');
-  if(menu) menu.classList.remove('open');
-  if(btn) btn.classList.remove('open');
-  document.body.style.overflow='';
-}
-// Close mobile menu when modal opens
-var _origOpenModal=openModal;
-openModal=function(){closeMobileMenu();_origOpenModal();};
-</script>
-</body>
-</html>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ── HAMBURGER MOBILE MENU ─ 

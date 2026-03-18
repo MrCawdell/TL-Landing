@@ -1,0 +1,2409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+
+<!-- Hidden page — not indexed by search engines -->
+<meta name="robots" content="noindex, nofollow"/>
+<title>TipperLink — Interactive Platform Demo</title>
+<meta name="description" content="Try TipperLink before it launches. Walk through the full haulier and supplier experience."/>
+
+<!-- GA4 — same as main site -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F5W1FGZ105"></script>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
+<style>
+/* ── Site-level reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:  #1A2333;
+  --gold:  #F5C400;
+  --white: #FFFFFF;
+  --off:   #F8F9FB;
+  --mid:   #6B7A8D;
+  --border:#E2E6ED;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #0D1520;
+  color: var(--white);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── Site nav ── */
+.site-nav {
+  background: var(--navy);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.site-nav-logo {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--gold);
+  text-decoration: none;
+}
+.site-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.nav-back-link {
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.nav-back-link:hover { color: rgba(255,255,255,0.8); }
+.nav-register-btn {
+  background: linear-gradient(135deg, var(--gold), #E6B000);
+  color: var(--navy);
+  border: none;
+  border-radius: 8px;
+  padding: 9px 20px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+.nav-register-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(245,196,0,0.4);
+}
+
+/* ── Demo intro banner ── */
+.demo-intro-banner {
+  background: linear-gradient(135deg, rgba(245,196,0,0.06), rgba(26,35,51,0.3));
+  border-bottom: 1px solid rgba(245,196,0,0.12);
+  padding: 18px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.demo-intro-text {
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.5;
+}
+.demo-intro-text strong { color: var(--white); }
+.demo-launching-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(245,196,0,0.1);
+  border: 1px solid rgba(245,196,0,0.25);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.demo-launching-badge::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
+
+/* ── Site footer ── */
+.site-footer {
+  background: var(--navy);
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding: 32px 40px;
+  text-align: center;
+  margin-top: 60px;
+}
+.site-footer-logo {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.site-footer-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.site-footer-link {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.site-footer-link:hover { color: rgba(255,255,255,0.7); }
+.site-footer-copy {
+  font-size: 12px;
+  color: rgba(255,255,255,0.25);
+}
+
+/* ── Register interest modal ── */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 999;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-overlay.open { display: flex; }
+.modal-box {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 32px;
+  max-width: 440px;
+  width: 100%;
+  position: relative;
+  animation: modalIn 0.25s cubic-bezier(0.16,1,0.3,1);
+}
+@keyframes modalIn { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+.modal-close {
+  position: absolute;
+  top: 14px; right: 16px;
+  background: none; border: none;
+  font-size: 20px; color: var(--mid);
+  cursor: pointer; line-height: 1;
+}
+.modal-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+.modal-sub { font-size: 14px; color: var(--mid); margin-bottom: 20px; }
+.modal-fg { margin-bottom: 12px; }
+.modal-fg label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--mid);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+.modal-input {
+  width: 100%;
+  background: var(--off);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--navy);
+}
+.modal-input:focus { outline: none; border-color: var(--navy); background: white; }
+.modal-submit {
+  width: 100%;
+  background: linear-gradient(135deg, var(--gold), #E6B000);
+  color: var(--navy);
+  border: none;
+  border-radius: 10px;
+  padding: 13px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.modal-submit:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(245,196,0,0.4); }
+.modal-note { font-size: 11px; color: var(--mid); text-align: center; margin-top: 8px; }
+.modal-success { text-align: center; padding: 20px 0; }
+.modal-success-icon { font-size: 48px; margin-bottom: 12px; }
+.modal-success-title { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+.modal-success-sub { font-size: 14px; color: var(--mid); }
+.modal-type-toggle {
+  display: flex; gap: 8px; margin-bottom: 16px;
+}
+.modal-type-btn {
+  flex: 1; padding: 10px; border-radius: 8px;
+  border: 2px solid var(--border); background: var(--off);
+  font-size: 13px; font-weight: 600; font-family: 'DM Sans', sans-serif;
+  color: var(--mid); cursor: pointer; transition: all 0.15s; text-align: center;
+}
+.modal-type-btn.active { border-color: var(--navy); background: var(--navy); color: var(--gold); }
+
+@media (max-width: 600px) {
+  .site-nav { padding: 0 20px; }
+  .demo-intro-banner { padding: 14px 20px; }
+  .site-footer { padding: 24px 20px; }
+  .nav-back-link { display: none; }
+}
+
+
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:   #1A2333;
+  --navy2:  #253045;
+  --gold:   #F5C400;
+  --gold2:  #C49A00;
+  --white:  #FFFFFF;
+  --off:    #F8F9FB;
+  --border: #E2E6ED;
+  --mid:    #6B7A8D;
+  --soft:   #9AABBC;
+  --body:   #2D3748;
+  --green:  #1A7A4A;
+  --green-l:#E8F5EE;
+  --red:    #E24B4A;
+  --red-l:  #FEF2F2;
+  --amber:  #F59E0B;
+  --amber-l:#FFFBEB;
+  --blue:   #185FA5;
+  --blue-l: #EBF3FB;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #0D1520;
+  color: var(--white);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── Demo Wrapper ── */
+.demo-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 24px 80px;
+}
+
+/* ── Header ── */
+.demo-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.demo-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(245,196,0,0.1);
+  border: 1px solid rgba(245,196,0,0.25);
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.demo-eyebrow::before { content: ''; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
+.demo-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+.demo-title span { color: var(--gold); }
+.demo-subtitle {
+  font-size: 16px;
+  color: rgba(255,255,255,0.55);
+  max-width: 500px;
+  margin: 0 auto 32px;
+  line-height: 1.6;
+}
+
+/* ── Role Picker ── */
+.role-picker {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.role-card {
+  background: rgba(255,255,255,0.04);
+  border: 2px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 28px 36px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+  min-width: 200px;
+  position: relative;
+  overflow: hidden;
+}
+.role-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(245,196,0,0.08), transparent);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.role-card:hover { border-color: rgba(245,196,0,0.4); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+.role-card:hover::before { opacity: 1; }
+.role-card.selected { border-color: var(--gold); background: rgba(245,196,0,0.08); }
+.role-card.selected::before { opacity: 1; }
+.role-icon { font-size: 36px; margin-bottom: 10px; display: block; }
+.role-name { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+.role-desc { font-size: 13px; color: rgba(255,255,255,0.45); }
+
+/* ── Progress Bar ── */
+.progress-container {
+  display: none;
+  margin-bottom: 32px;
+}
+.progress-container.visible { display: block; }
+.progress-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.progress-role {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.6);
+}
+.progress-role-badge {
+  background: rgba(245,196,0,0.15);
+  border: 1px solid rgba(245,196,0,0.3);
+  border-radius: 20px;
+  padding: 3px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold);
+}
+.progress-step-info {
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+}
+.progress-steps {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+.progress-step {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+.step-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  overflow: visible;
+  border: 2px solid rgba(255,255,255,0.15);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.3);
+  transition: all 0.3s;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+.step-dot.done { background: var(--green); border-color: var(--green); color: var(--white); }
+.step-dot.active { background: var(--gold); border-color: var(--gold); color: var(--navy); box-shadow: 0 0 0 4px rgba(245,196,0,0.2); }
+.step-line {
+  flex: 1;
+  height: 2px;
+  background: rgba(255,255,255,0.08);
+  transition: background 0.4s;
+}
+.step-line.done { background: var(--green); }
+.step-label {
+  position: absolute;
+  top: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 10px;
+  color: rgba(255,255,255,0.3);
+  transition: color 0.3s;
+}
+.step-dot.active .step-label { color: var(--gold); }
+.step-dot.done .step-label { color: rgba(255,255,255,0.5); }
+
+/* ── Screen Container ── */
+.screen-container {
+  display: none;
+  animation: screenIn 0.35s cubic-bezier(0.16,1,0.3,1);
+}
+.screen-container.active { display: block; }
+@keyframes screenIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Tooltip system ── */
+.tooltip-bar {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 14px 20px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.tooltip-icon {
+  width: 32px;
+  height: 32px;
+  background: rgba(245,196,0,0.15);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.tooltip-text { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.55; }
+.tooltip-text strong { color: var(--white); }
+
+/* ── Browser Window ── */
+.browser-window {
+  background: #1E2A3B;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06);
+  margin-bottom: 20px;
+}
+.browser-chrome {
+  background: #202020;
+  flex-direction: column;
+}
+.browser-tab-bar {
+  display: flex;
+  align-items: center;
+  padding: 6px 8px 0;
+  background: #2B2B2B;
+}
+.browser-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #202020;
+  border-radius: 8px 8px 0 0;
+  padding: 5px 12px 5px 10px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.85);
+  min-width: 160px;
+}
+.browser-favicon {
+  width: 14px; height: 14px;
+  background: var(--gold);
+  border-radius: 3px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 8px; font-weight: 800; color: var(--navy);
+  flex-shrink: 0;
+}
+.browser-tab-x { margin-left: auto; font-size: 10px; color: rgba(255,255,255,0.3); }
+.browser-win-btns { display: flex; margin-left: auto; }
+.browser-win-btn {
+  width: 44px; height: 30px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: rgba(255,255,255,0.5);
+}
+.browser-win-btn.close { background: #C42B1C; color: white; }
+.browser-addr-bar {
+  display: flex; align-items: center;
+  padding: 5px 8px; gap: 6px; background: #202020;
+}
+.browser-nav { display: flex; gap: 2px; }
+.browser-nav-btn {
+  width: 24px; height: 24px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; color: rgba(255,255,255,0.35);
+}
+.browser-url {
+  flex: 1; background: #3A3A3A; border-radius: 20px;
+  padding: 4px 14px 4px 10px;
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  color: rgba(255,255,255,0.7);
+  display: flex; align-items: center; gap: 6px;
+}
+.browser-url-lock { font-size: 10px; color: rgba(255,255,255,0.35); }
+.browser-menu { margin-left: auto; font-size: 14px; color: rgba(255,255,255,0.4); padding: 0 8px; }
+
+/* ── App chrome inside browser ── */
+.app-content { background: var(--off); }
+.tl-nav {
+  background: var(--navy);
+  padding: 10px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.tl-logo { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 800; color: var(--gold); }
+.tl-nav-links { display: flex; gap: 16px; }
+.tl-nav-link { font-size: 12px; color: rgba(255,255,255,0.5); }
+.tl-nav-link.active { color: var(--gold); }
+.tl-nav-avatar {
+  width: 28px; height: 28px;
+  background: rgba(245,196,0,0.15); border: 1.5px solid rgba(245,196,0,0.3);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: var(--gold);
+}
+
+/* ── Shared field components ── */
+.inner { padding: 20px 24px; }
+.inner-sm { padding: 14px 18px; }
+.fg { margin-bottom: 12px; }
+.fg label {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 600; color: var(--mid);
+  text-transform: uppercase; letter-spacing: 0.05em;
+  margin-bottom: 5px;
+}
+.fg label .field-hint {
+  font-size: 10px; font-weight: 500; color: rgba(107,122,141,0.7);
+  text-transform: none; letter-spacing: 0; font-style: italic;
+}
+.input-field {
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: 8px; padding: 9px 12px;
+  font-size: 13px; font-family: 'DM Sans', sans-serif;
+  color: var(--navy); width: 100%;
+  transition: border-color 0.15s;
+}
+.input-field:focus { outline: none; border-color: var(--navy); }
+.input-field.demo-filled {
+  border-color: rgba(26,122,74,0.4);
+  background: #F0FAF5;
+  color: var(--body);
+}
+.input-field::placeholder { color: #B0BEC5; }
+.select-field {
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: 8px; padding: 9px 12px;
+  font-size: 13px; font-family: 'DM Sans', sans-serif;
+  color: var(--navy); width: 100%; appearance: none;
+}
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; }
+
+/* ── Cards & UI ── */
+.card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 14px 16px; margin-bottom: 10px;
+}
+.card-sm {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px 12px; margin-bottom: 8px;
+}
+.badge {
+  display: inline-flex; align-items: center;
+  padding: 2px 8px; border-radius: 20px;
+  font-size: 10px; font-weight: 700;
+}
+.badge-open    { background: #D4EDDA; color: var(--green); }
+.badge-filling { background: #FFF3CD; color: #856404; }
+.badge-conf    { background: #D4EDFF; color: var(--blue); }
+.badge-green   { background: var(--green-l); color: var(--green); }
+.badge-gold    { background: rgba(245,196,0,0.15); color: #7A5C00; border: 1px solid rgba(245,196,0,0.3); }
+.badge-navy    { background: rgba(26,35,51,0.08); color: var(--navy); }
+.badge-red     { background: var(--red-l); color: var(--red); }
+
+.h2 { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--navy); }
+.h3 { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: var(--navy); }
+.body-sm { font-size: 12px; color: var(--body); line-height: 1.5; }
+.muted { font-size: 11px; color: var(--mid); }
+.label-sm { font-size: 10px; font-weight: 600; color: var(--mid); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+.divider { border: none; border-top: 1px solid var(--border); margin: 12px 0; }
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--gold), #E6B000);
+  color: var(--navy); border: none; border-radius: 8px;
+  padding: 11px 22px; font-size: 13px; font-weight: 700;
+  font-family: 'DM Sans', sans-serif; cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(245,196,0,0.4); }
+.btn-navy {
+  background: var(--navy); color: var(--gold);
+  border: none; border-radius: 8px; padding: 11px 22px;
+  font-size: 13px; font-weight: 700;
+  font-family: 'DM Sans', sans-serif; cursor: pointer;
+}
+.btn-green {
+  background: var(--green); color: var(--white);
+  border: none; border-radius: 8px; padding: 11px 22px;
+  font-size: 13px; font-weight: 700;
+  font-family: 'DM Sans', sans-serif; cursor: pointer;
+  transition: transform 0.15s;
+}
+.btn-green:hover { transform: translateY(-1px); }
+.btn-outline {
+  background: transparent; color: var(--navy);
+  border: 1.5px solid var(--border); border-radius: 8px;
+  padding: 9px 18px; font-size: 12px; font-weight: 600;
+  font-family: 'DM Sans', sans-serif; cursor: pointer;
+}
+.btn-sm { padding: 6px 12px !important; font-size: 11px !important; }
+
+.stat-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 8px; padding: 12px;
+}
+.stat-val { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; color: var(--navy); }
+.stat-val-green { color: var(--green); }
+.stat-lbl { font-size: 10px; color: var(--mid); margin-top: 2px; }
+.stat-delta { font-size: 10px; color: var(--green); font-weight: 600; margin-top: 2px; }
+
+.progress-bar { background: var(--border); border-radius: 4px; height: 6px; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--green), #0F6E56); transition: width 0.6s ease; }
+
+.stars { color: var(--gold); font-size: 13px; }
+
+/* ── Field highlight pulse ── */
+@keyframes fieldPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(245,196,0,0.4); }
+  70%  { box-shadow: 0 0 0 8px rgba(245,196,0,0); }
+  100% { box-shadow: 0 0 0 0 rgba(245,196,0,0); }
+}
+.field-highlight { animation: fieldPulse 1.5s ease 0.3s; }
+
+/* ── Sidebar ── */
+.sidebar {
+  background: var(--navy); width: 170px; flex-shrink: 0;
+  min-height: 380px; padding: 14px 0;
+}
+.sidebar-section {
+  font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.2);
+  text-transform: uppercase; letter-spacing: 0.08em;
+  padding: 10px 16px 4px;
+}
+.sidebar-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 16px; font-size: 12px; color: rgba(255,255,255,0.45);
+}
+.sidebar-item.active {
+  background: rgba(245,196,0,0.1); color: var(--gold);
+  border-left: 3px solid var(--gold);
+}
+
+/* ── Step connector ── */
+.step-row { display: flex; align-items: flex-start; gap: 10px; padding: 7px 0; }
+.step-circle {
+  width: 24px; height: 24px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; flex-shrink: 0; margin-top: 1px;
+}
+.step-done   { background: var(--green); color: var(--white); }
+.step-active { background: var(--gold);  color: var(--navy); }
+.step-pending{ background: var(--border); color: var(--mid); }
+
+/* ── Quote rank ── */
+.q-rank {
+  width: 30px; height: 30px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; flex-shrink: 0;
+}
+.q-rank-1 { background: var(--green); color: var(--white); }
+.q-rank-2 { background: var(--navy); color: var(--gold); }
+.q-rank-3 { background: var(--red); color: var(--white); }
+
+/* ── Rating stars ── */
+.rating-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 0; border-bottom: 1px solid var(--border);
+}
+.rating-row:last-child { border-bottom: none; }
+.star-row { display: flex; gap: 3px; }
+.star { font-size: 18px; color: var(--gold); cursor: pointer; transition: transform 0.1s; }
+.star:hover { transform: scale(1.2); }
+.star.empty { color: var(--border); }
+
+/* ── Nav action buttons ── */
+.demo-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.demo-actions-right { display: flex; align-items: center; gap: 10px; }
+.btn-back {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.5);
+  border-radius: 8px; padding: 10px 18px;
+  font-size: 13px; font-weight: 500;
+  font-family: 'DM Sans', sans-serif; cursor: pointer;
+  transition: all 0.15s;
+}
+.btn-back:hover { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.8); }
+.btn-next {
+  background: linear-gradient(135deg, var(--gold), #E6B000);
+  color: var(--navy); border: none; border-radius: 8px;
+  padding: 12px 28px; font-size: 14px; font-weight: 700;
+  font-family: 'DM Sans', sans-serif; cursor: pointer;
+  display: flex; align-items: center; gap: 8px;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 4px 20px rgba(245,196,0,0.3);
+}
+.btn-next:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(245,196,0,0.45); }
+.btn-next-arrow { font-size: 16px; transition: transform 0.15s; }
+.btn-next:hover .btn-next-arrow { transform: translateX(3px); }
+
+/* ── Restart / CTA ── */
+.demo-end {
+  text-align: center;
+  padding: 20px;
+}
+.demo-end-title { font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 800; color: var(--white); margin-bottom: 8px; }
+.demo-end-sub { font-size: 15px; color: rgba(255,255,255,0.55); margin-bottom: 24px; }
+.cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-cta-primary {
+  background: linear-gradient(135deg, var(--gold), #E6B000);
+  color: var(--navy); border: none; border-radius: 10px;
+  padding: 14px 32px; font-size: 15px; font-weight: 700;
+  font-family: 'DM Sans', sans-serif; cursor: pointer;
+  box-shadow: 0 4px 20px rgba(245,196,0,0.35);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.btn-cta-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(245,196,0,0.5); }
+.btn-restart {
+  background: transparent; color: rgba(255,255,255,0.5);
+  border: 1px solid rgba(255,255,255,0.15); border-radius: 10px;
+  padding: 14px 28px; font-size: 14px; font-weight: 500;
+  font-family: 'DM Sans', sans-serif; cursor: pointer;
+  transition: all 0.15s;
+}
+.btn-restart:hover { color: rgba(255,255,255,0.8); border-color: rgba(255,255,255,0.3); }
+
+/* ── Bar chart ── */
+.bar-chart { display: flex; align-items: flex-end; gap: 8px; height: 70px; }
+.bar { flex: 1; background: rgba(255,255,255,0.12); border-radius: 4px 4px 0 0; }
+.bar.hi { background: var(--gold); }
+.bar-lbls { display: flex; gap: 8px; margin-top: 5px; }
+.bar-lbl { flex: 1; text-align: center; font-size: 10px; color: var(--mid); }
+
+/* ── Invoice ── */
+.inv-header { background: var(--navy); padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; }
+.inv-row { display: flex; justify-content: space-between; padding: 7px 0; font-size: 12px; border-bottom: 1px solid var(--border); color: var(--body); }
+.inv-total { background: var(--navy); color: white; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; }
+
+/* ── Chip tags ── */
+.chip-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+.chip {
+  padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;
+  border: 1.5px solid var(--border); background: var(--white); color: var(--mid);
+  cursor: pointer; transition: all 0.15s; user-select: none;
+}
+.chip.on { background: var(--navy); color: var(--gold); border-color: var(--navy); }
+
+/* ── Transition flash ── */
+.screen-flash {
+  position: fixed; inset: 0; background: rgba(245,196,0,0.06);
+  pointer-events: none; z-index: 999;
+  animation: flash 0.4s ease forwards;
+}
+@keyframes flash { from{opacity:1} to{opacity:0} }
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .demo-actions { flex-direction: column; align-items: stretch; }
+  .demo-actions-right { justify-content: space-between; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ── SITE NAV ── -->
+<nav class="site-nav">
+  <a href="https://www.tipperlink.com" class="site-nav-logo">TipperLink</a>
+  <div class="site-nav-right">
+    <a href="https://www.tipperlink.com" class="nav-back-link">← Back to site</a>
+    <button class="nav-register-btn" onclick="openModal()">Register Your Interest →</button>
+  </div>
+</nav>
+
+<!-- ── INTRO BANNER ── -->
+<div class="demo-intro-banner">
+  <div class="demo-intro-text">
+    <strong>You're previewing the TipperLink platform.</strong> This is an interactive walkthrough of the real product — pick your role and explore every feature before we launch.
+  </div>
+  <div class="demo-launching-badge">Launching May 2026</div>
+</div>
+
+
+
+<div class="demo-wrapper">
+
+  <!-- ── HEADER ── -->
+  <div class="demo-header">
+    <div class="demo-eyebrow">Live Interactive Demo</div>
+    <h2 class="demo-title">See TipperLink <span>in action</span></h2>
+    <p class="demo-subtitle">Pick your role below and walk through the platform — no sign-up needed.</p>
+
+    <!-- Role Picker -->
+    <div class="role-picker" id="role-picker">
+      <div class="role-card" onclick="startJourney('haulier')">
+        <span class="role-icon">🚛</span>
+        <div class="role-name">I'm a Haulier</div>
+        <div class="role-desc">Find loads, quote blind, track jobs & get paid</div>
+      </div>
+      <div class="role-card" onclick="startJourney('supplier')">
+        <span class="role-icon">🏗️</span>
+        <div class="role-name">I'm a Supplier</div>
+        <div class="role-desc">Post loads, compare hauliers & manage jobs</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PROGRESS ── -->
+  <div class="progress-container" id="progress-container">
+    <div class="progress-header">
+      <div class="progress-role">
+        <span id="progress-role-label">Haulier Journey</span>
+        <span class="progress-role-badge" id="progress-role-badge">🚛 Haulier</span>
+      </div>
+      <div class="progress-step-info" id="progress-step-info">Step 1 of 8</div>
+    </div>
+    <div style="position:relative;padding-bottom:22px">
+      <div class="progress-steps" id="progress-steps"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       HAULIER JOURNEY
+  ══════════════════════════════════════════════ -->
+
+  <!-- H1: Registration -->
+  <div class="screen-container" id="h-screen-0">
+    <div class="tooltip-bar">
+      <div class="tooltip-icon">📝</div>
+      <div class="tooltip-text"><strong>Step 1 — Register as a haulier.</strong> Fill in your company details, the areas you cover and your vehicle types. This is how TipperLink matches you to the right loads automatically — you'll only ever see loads relevant to your fleet.</div>
+    </div>
+    <div class="browser-window">
+      <div class="browser-chrome">
+        <div class="browser-tab-bar">
+          <div class="browser-tab"><div class="browser-favicon">T</div>Register — TipperLink<div class="browser-tab-x">✕</div></div>
+          <div class="browser-win-btns"><div class="browser-win-btn">—</div><div class="browser-win-btn">⬜</div><div class="browser-win-btn close">✕</div></div>
+        </div>
+        <div class="browser-addr-bar">
+          <div class="browser-nav"><div class="browser-nav-btn">←</div><div class="browser-nav-btn">→</div><div class="browser-nav-btn">↻</div></div>
+          <div class="browser-url"><span class="browser-url-lock">🔒</span>tipperlink.com/register</div>
+          <div class="browser-menu">⋯</div>
+        </div>
+      </div>
+      <div class="app-content">
+        <div class="tl-nav"><div class="tl-logo">TipperLink</div></div>
+        <div class="inner" style="max-width:520px;margin:0 auto;padding-top:24px">
+          <div style="text-align:center;margin-bottom:20px">
+            <div class="muted" style="margin-bottom:4px">STEP 1 OF 3</div>
+            <div class="h2">Register as a Haulier</div>
+            <div class="muted" style="margin-top:4px">Join 84+ hauliers already signed up</div>
+          </div>
+          <div class="grid-2">
+            <div class="fg">
+              <label>Your Name <span class="field-hint">— your full name</span></label>
+              <input class="input-field field-highlight" id="h-name" placeholder="e.g. Tom Rutledge" oninput="syncField(this,'h-name-display')">
+            </div>
+            <div class="fg">
+              <label>Company Name <span class="field-hint">— or your trading name</span></label>
+              <input class="input-field" id="h-company" placeholder="e.g. TMR South Coast Ltd" oninput="syncField(this,'h-company-display')">
+            </div>
+          </div>
+          <div class="fg">
+            <label>Vehicle Types <span class="field-hint">— select all that apply</span></label>
+            <div class="chip-row" id="h-vehicles">
+              <div class="chip on" onclick="toggleChip(this)">✓ 8-Wheel Tipper</div>
+              <div class="chip" onclick="toggleChip(this)">Artic Tipper</div>
+              <div class="chip on" onclick="toggleChip(this)">✓ Grab Lorry</div>
+              <div class="chip" onclick="toggleChip(this)">6-Wheeler</div>
+              <div class="chip" onclick="toggleChip(this)">Walking Floor</div>
+            </div>
+          </div>
+          <div class="fg">
+            <label>Areas You Cover <span class="field-hint">— counties or regions</span></label>
+            <input class="input-field" id="h-areas" placeholder="e.g. Yorkshire, East Midlands, Lincolnshire">
+          </div>
+          <div class="grid-2">
+            <div class="fg">
+              <label>Email Address</label>
+              <input class="input-field" placeholder="your@email.com" type="email">
+            </div>
+            <div class="fg">
+              <label>Phone Number</label>
+              <input class="input-field" placeholder="07xxx xxxxxx" type="tel">
+            </div>
+          </div>
+          <div class="fg">
+            <label>Fleet Size <span class="field-hint">— number of vehicles</span></label>
+            <select class="select-field">
+              <option>1 vehicle (owner-driver)</option>
+              <option selected>2–5 vehicles</option>
+              <option>6–10 vehicles</option>
+              <option>10+ vehicles</option>
+            </select>
+          </div>
+          <button class="btn-primary" style="width:100%;margin-top:6px" onclick="nextStep()">Register & Access the Platform →</button>
+          <div style="text-align:center;margin-top:8px" class="muted">🔒 Your details are kept private and never shared</div>
+        </div>
+      </div>
+    </div>
+    <div class="demo-actions">
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+
+  <!-- H3: Load Board -->
+  <div class="screen-container" id="h-screen-2">
+    <div class="tooltip-bar">
+      <div class="tooltip-icon">📋</div>
+      <div class="tooltip-text"><strong>Step 3 — Your live load board.</strong> Every load shown here already matches your vehicle types and operating areas — no searching required. Click any load card to open it and submit a quote. Loads show a reference, route, material, tonnage and number of runs. Full addresses are hidden until you're accepted.</div>
+    </div>
+    <div class="browser-window">
+      <div class="browser-chrome">
+        <div class="browser-tab-bar">
+          <div class="browser-tab"><div class="browser-favicon">T</div>Load Board — TipperLink<div class="browser-tab-x">✕</div></div>
+          <div class="browser-win-btns"><div class="browser-win-btn">—</div><div class="browser-win-btn">⬜</div><div class="browser-win-btn close">✕</div></div>
+        </div>
+        <div class="browser-addr-bar">
+          <div class="browser-nav"><div class="browser-nav-btn">←</div><div class="browser-nav-btn">→</div><div class="browser-nav-btn">↻</div></div>
+          <div class="browser-url"><span class="browser-url-lock">🔒</span>tipperlink.com/board</div>
+          <div class="browser-menu">⋯</div>
+        </div>
+      </div>
+      <div class="app-content">
+        <div class="tl-nav">
+          <div class="tl-logo">TipperLink</div>
+          <div class="tl-nav-links">
+            <span class="tl-nav-link active">Board</span>
+            <span class="tl-nav-link">My Quotes</span>
+            <span class="tl-nav-link">My Jobs</span>
+          </div>
+          <div class="tl-nav-avatar">TR</div>
+        </div>
+        <div class="inner-sm">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+            <div>
+              <div class="h3">Live Loads</div>
+              <div class="muted">14 loads matched to your fleet — updated in real time</div>
+            </div>
+            <select class="select-field" style="width:auto;font-size:12px;padding:6px 10px">
+              <option>Newest first</option><option>Rate: low–high</option><option>Distance</option>
+            </select>
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px">
+            <div class="chip on" onclick="toggleChip(this)">✓ All vehicles</div>
+            <div class="chip" onclick="toggleChip(this)">8-Wheel</div>
+            <div class="chip" onclick="toggleChip(this)">Artic</div>
+            <div class="chip" onclick="toggleChip(this)">Grab</div>
+            <div class="chip" onclick="toggleChip(this)">This week</div>
+          </div>
+          <!-- Scrollable load list -->
+          <div style="max-height:390px;overflow-y:auto;padding-right:2px;scroll-behavior:smooth">
+
+            <div class="card" id="load-card-1" style="border-color:var(--gold);border-width:2px;cursor:pointer;margin-bottom:8px" onclick="selectLoad()">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start">
+                <div style="flex:1">
+                  <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;flex-wrap:wrap">
+                    <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--mid)">TL-1048</span>
+                    <span class="badge badge-open">Open</span>
+                    <span class="badge badge-navy">FORS Silver</span>
+                    <span style="font-size:10px;color:var(--gold);font-weight:600;background:rgba(245,196,0,0.1);padding:2px 6px;border-radius:4px">👆 Click to quote</span>
+                  </div>
+                  <div class="h3" style="margin-bottom:3px">Buxton → Sheffield</div>
+                  <div class="muted">Limestone · 8-wheel tipper · 300t · 15 runs · 14 May · Yorkshire</div>
+                  <div class="muted" style="margin-top:3px">📬 4 quotes received</div>
+                </div>
+                <div style="text-align:right;flex-shrink:0;margin-left:12px">
+                  <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--navy)">£14.20</div>
+                  <div class="muted">/tonne</div>
+                  <button class="btn-primary btn-sm" style="margin-top:6px" onclick="event.stopPropagation();nextStep()">Quote →</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="card" style="cursor:pointer;margin-bottom:8px" onclick="selectLoad()">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start">
+                <div style="flex:1">
+                  <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+                    <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--mid)">TL-1049</span>
+                    <span class="badge badge-filling">Filling</span>
+                    <span class="badge badge-navy">TASCC</span>
+                  </div>
+                  <div class="h3" style="margin-bottom:3px">Leeds → Licensed Tip, Castleford</div>
+                  <div class="muted">Muckaway · 8-wheel grab · 240t · 12 runs · 16 May · West Yorkshire</div>
+                  <div class="muted" style="margin-top:3px">📬 2 quotes</div>
+                </div>
+                <div style="text-align:right;flex-shrink:0;margin-left:12px">
+                  <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--navy)">£18.50</div>
+                  <div class="muted">/tonne</div>
+                  <button class="btn-primary btn-sm" style="margin-top:6px" onclick="event.stopPropagation();selectLoad()">Quote →</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="card" style="cursor:pointer;margin-bottom:8px" onclick="selectLoad()">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start">
+                <div style="flex:1">
+                  <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+                    <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--mid)">TL-1050</span>
+                    <span class="badge badge-open">Open</span>
+                  </div>
+                  <div class="h3" style="margin-bottom:3px">Birmingham → Coventry</div>
+                  <div class="muted">MOT Type 1 · 8-wheel · 200t · 10 runs · 15 May · West Midlands</div>
+                  <div class="muted" style="margin-top:3px">📬 1 quote</div>
+                </div>
+                <div style="text-align:right;flex-shrink:0;margin-left:12px">
+                  <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--navy)">£22.00</div>
+                  <div class="muted">/tonne</div>
+                  <button class="btn-primary btn-sm" style="margin-top:6px" onclick="event.stopPropagation();selectLoad()">Quote →</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="card" style="cursor:pointer;margin-bottom:8px" onclick="selectLoad()">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start">
+                <div style="flex:1">
+                  <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+                    <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--mid)">TL-1051</span>
+                    <span class="badge badge-open">Open</span>
+                    <span class="badge badge-navy">Timed delivery</span>
+                  </div>
+                  <div class="h3" style="margin-bottom:3px">Harrogate → Leeds City Build</div>
+                  <div class="muted">Crushed concrete · Artic tipper · 480t · 24 runs · 17 May · N. Yorkshire</div>
+                  <div class="muted" style="margin-top:3px">📬 0 quotes — <strong style="color:var(--green)">be first!</strong></div>
+                </div>
+                <div style="text-align:right;flex-shrink:0;margin-left:12px">
+                  <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--navy)">£15.80</div>
+                  <div class="muted">/tonne</div>
+                  <button class="btn-primary btn-sm" style="margin-top:6px;background:linear-gradient(135deg,var(--green),#0F6E56);color:white" onclick="event.stopPropagation();selectLoad()">Quote →</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="card" style="cursor:pointer;margin-bottom:8px" onclick="selectLoad()">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start">
+                <div style="flex:1">
+                  <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+                    <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--mid)">TL-1052</span>
+                    <span class="badge badge-open">Open</span>
+                  </div>
+                  <div class="h3" style="margin-bottom:3px">Chesterfield → Nottingham</div>
+                  <div class="muted">Topsoil · 8-wheel tipper · 160t · 8 runs · 15 May · E. Midlands</div>
+                  <div class="muted" style="margin-top:3px">📬 3 quotes</div>
+                </div>
+                <div style="text-align:right;flex-shrink:0;margin-left:12px">
+                  <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--navy)">£17.00</div>
+                  <div class="muted">/tonne</div>
+                  <button class="btn-primary btn-sm" style="margin-top:6px" onclick="event.stopPropagation();selectLoad()">Quote →</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="card" style="cursor:pointer;margin-bottom:8px" onclick="selectLoad()">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start">
+                <div style="flex:1">
+                  <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+                    <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--mid)">TL-1053</span>
+                    <span class="badge badge-filling">Filling</span>
+                    <span class="badge badge-navy" style="background:rgba(26,122,74,0.1);color:var(--green)">Repeat load</span>
+                  </div>
+                  <div class="h3" style="margin-bottom:3px">Croft Quarry → Leicester City Site</div>
+                  <div class="muted">Granite aggregate · Artic · 600t · 30 runs · Weekly from 20 May · Leics</div>
+                  <div class="muted" style="margin-top:3px">📬 2 quotes · <strong style="color:var(--green)">Weekly contract available</strong></div>
+                </div>
+                <div style="text-align:right;flex-shrink:0;margin-left:12px">
+                  <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--navy)">£12.80</div>
+                  <div class="muted">/tonne</div>
+                  <button class="btn-primary btn-sm" style="margin-top:6px" onclick="event.stopPropagation();selectLoad()">Quote →</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="card" style="cursor:pointer;margin-bottom:8px" onclick="selectLoad()">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start">
+                <div style="flex:1">
+                  <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+                    <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--mid)">TL-1054</span>
+                    <span class="badge badge-open">Open</span>
+                    <span class="badge badge-red">Urgent</span>
+                  </div>
+                  <div class="h3" style="margin-bottom:3px">Doncaster → Sheffield Steelworks</div>
+                  <div class="muted">Sand · 8-wheel tipper · 100t · 5 runs · Today · S. Yorkshire</div>
+                  <div class="muted" style="margin-top:3px">📬 0 quotes · Same-day</div>
+                </div>
+                <div style="text-align:right;flex-shrink:0;margin-left:12px">
+                  <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--navy)">£24.00</div>
+                  <div class="muted">/tonne</div>
+                  <button class="btn-primary btn-sm" style="margin-top:6px" onclick="event.stopPropagation();selectLoad()">Quote →</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="card" style="cursor:pointer;margin-bottom:8px" onclick="selectLoad()">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start">
+                <div style="flex:1">
+                  <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+                    <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--mid)">TL-1055</span>
+                    <span class="badge badge-open">Open</span>
+                    <span class="badge badge-navy">FORS Bronze</span>
+                  </div>
+                  <div class="h3" style="margin-bottom:3px">Manchester → Recycling Yard, Salford</div>
+                  <div class="muted">Demolition spoil · 8-wheel grab · 360t · 18 runs · 18–19 May · Gtr Mcr</div>
+                  <div class="muted" style="margin-top:3px">📬 5 quotes</div>
+                </div>
+                <div style="text-align:right;flex-shrink:0;margin-left:12px">
+                  <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--navy)">£19.50</div>
+                  <div class="muted">/tonne</div>
+                  <button class="btn-primary btn-sm" style="margin-top:6px" onclick="event.stopPropagation();selectLoad()">Quote →</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div style="text-align:center;padding:6px 0 2px;font-size:11px;color:var(--mid)">↕ Scroll to see all 14 loads matched to your fleet</div>
+        </div>
+      </div>
+    </div>
+    <div class="demo-actions">
+      <button class="btn-back" onclick="prevStep()">← Back</button>
+      <div class="demo-actions-right">
+        <button class="btn-next" onclick="nextStep()">
+          Open TL-1048 and quote
+          <span class="btn-next-arrow">→</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- H4: Submit Quote -->
+  <div class="screen-container" id="h-screen-3">
+    <div class="tooltip-bar">
+      <div class="tooltip-icon">🔒</div>
+      <div class="tooltip-text"><strong>Step 4 — Submit your blind quote.</strong> Enter your rate per tonne. Nobody else can see your rate — not other hauliers, not the public. Your profile stats (rating, completion rate, no-shows) attach automatically to every quote you submit, so suppliers can trust who they're hiring.</div>
+    </div>
+    <div class="browser-window">
+      <div class="browser-chrome">
+        <div class="browser-tab-bar">
+          <div class="browser-tab"><div class="browser-favicon">T</div>Submit Quote — TipperLink<div class="browser-tab-x">✕</div></div>
+          <div class="browser-win-btns"><div class="browser-win-btn">—</div><div class="browser-win-btn">⬜</div><div class="browser-win-btn close">✕</div></div>
+        </div>
+        <div class="browser-addr-bar">
+          <div class="browser-nav"><div class="browser-nav-btn">←</div><div class="browser-nav-btn">→</div><div class="browser-nav-btn">↻</div></div>
+          <div class="browser-url"><span class="browser-url-lock">🔒</span>tipperlink.com/loads/TL-1048/quote</div>
+          <div class="browser-menu">⋯</div>
+        </div>
+      </div>
+      <div class="app-content">
+        <div class="tl-nav"><div class="tl-logo">TipperLink</div><div class="tl-nav-avatar">TR</div></div>
+        <div class="inner" style="max-width:520px;margin:0 auto">
+          <div style="background:var(--navy);border-radius:12px;padding:16px;margin-bottom:16px;color:white">
+            <div style="font-size:10px;color:rgba(255,255,255,0.4);font-family:'DM Mono',monospace;margin-bottom:4px">TL-1048</div>
+            <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin-bottom:10px">Buxton → Sheffield</div>
+            <div class="grid-3" style="gap:8px">
+              <div style="background:rgba(255,255,255,0.06);border-radius:6px;padding:8px"><div style="font-size:9px;color:rgba(255,255,255,0.4)">Material</div><div style="font-size:12px;font-weight:600">Limestone</div></div>
+              <div style="background:rgba(255,255,255,0.06);border-radius:6px;padding:8px"><div style="font-size:9px;color:rgba(255,255,255,0.4)">Tonnage</div><div style="font-size:12px;font-weight:600">300t / 15 runs</div></div>
+              <div style="background:rgba(255,255,255,0.06);border-radius:6px;padding:8px"><div style="font-size:9px;color:rgba(255,255,255,0.4)">Date</div><div style="font-size:12px;font-weight:600">14 May 2026</div></div>
+            </div>
+          </div>
+          <div style="background:#FFF8E1;border:1px solid var(--amber);border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:12px;color:#7A5C00">
+            🔒 <strong>Blind quoting active</strong> — no other haulier can see your rate at any time. Compete on quality, not just price.
+          </div>
+          <div style="background:var(--navy);border-radius:10px;padding:12px 16px;margin-bottom:16px;display:flex;align-items:flex-start;gap:12px">
+            <div style="font-size:22px;flex-shrink:0">📍</div>
+            <div>
+              <div style="font-size:13px;font-weight:700;color:var(--gold);margin-bottom:4px">Full site addresses are hidden until your quote is accepted</div>
+              <div style="font-size:12px;color:rgba(255,255,255,0.7);line-height:1.6">Collection and delivery addresses are only revealed to the haulier whose quote is accepted. This protects suppliers from hauliers contacting them directly to undercut the platform — ensuring fair, sustainable rates for everyone and keeping the exchange working for all parties.</div>
+            </div>
+          </div>
+          <div class="fg">
+            <label>Your rate per tonne (£) <span class="field-hint">— enter what you want to charge</span></label>
+            <input class="input-field field-highlight" id="h-rate" type="number" placeholder="e.g. 13.40" style="font-size:22px;font-weight:700;text-align:center" oninput="updateQuoteTotal(this)">
+            <div style="text-align:center;font-size:11px;color:var(--mid);margin-top:4px" id="quote-total-preview">Enter a rate to see your estimated earnings</div>
+          </div>
+          <div style="background:var(--off);border-radius:10px;padding:12px 14px;margin-bottom:14px">
+            <div style="font-size:11px;color:var(--mid);margin-bottom:8px;font-weight:600">Automatically attached to your quote:</div>
+            <div style="display:flex;gap:20px;flex-wrap:wrap">
+              <div><div class="muted">Rating</div><div style="font-weight:700;color:var(--navy);font-size:14px">4.9 ⭐</div></div>
+              <div><div class="muted">Completion</div><div style="font-weight:700;color:var(--green);font-size:14px">98%</div></div>
+              <div><div class="muted">Jobs done</div><div style="font-weight:700;color:var(--navy);font-size:14px">87</div></div>
+              <div><div class="muted">No-shows</div><div style="font-weight:700;color:var(--green);font-size:14px">0</div></div>
+              <div><div class="muted">Response</div><div style="font-weight:700;color:var(--navy);font-size:14px">14 min</div></div>
+            </div>
+          </div>
+          <div class="fg">
+            <label>Note to supplier <span class="field-hint">— optional, shown alongside your quote</span></label>
+            <input class="input-field" placeholder="e.g. Available from 7am, FORS Silver accredited, local knowledge of Buxton quarries">
+          </div>
+          <button class="btn-primary" style="width:100%" onclick="nextStep()">Submit Quote →</button>
+        </div>
+      </div>
+    </div>
+    <div class="demo-actions">
+      <button class="btn-back" onclick="prevStep()">← Back</button>
+      <div class="demo-actions-right">
+        <button class="btn-next" onclick="nextStep()">
+          Submit quote
+          <span class="btn-next-arrow">→</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- H5: Quote Accepted Notification -->
+  <div class="screen-container" id="h-screen-4">
+    <div class="tooltip-bar">
+      <div class="tooltip-icon">✅</div>
+      <div class="tooltip-text"><strong>Step 5 — Your quote was accepted!</strong> The moment a supplier accepts your quote, you get an email with the full job details — exact collection and delivery addresses, supplier contact, your agreed rate, and a downloadable job confirmation. This is also when the job appears in your dashboard.</div>
+    </div>
+    <div class="browser-window">
+      <div class="browser-chrome">
+        <div class="browser-tab-bar">
+          <div class="browser-tab"><div class="browser-favicon">T</div>✅ Quote Accepted — TipperLink<div class="browser-tab-x">✕</div></div>
+          <div class="browser-win-btns"><div class="browser-win-btn">—</div><div class="browser-win-btn">⬜</div><div class="browser-win-btn close">✕</div></div>
+        </div>
+        <div class="browser-addr-bar">
+          <div class="browser-nav"><div class="browser-nav-btn">←</div><div class="browser-nav-btn">→</div><div class="browser-nav-btn">↻</div></div>
+          <div class="browser-url"><span class="browser-url-lock">🔒</span>tipperlink.com/notifications</div>
+          <div class="browser-menu">⋯</div>
+        </div>
+      </div>
+      <div style="background:white;padding:20px 24px">
+        <div style="text-align:center;padding:20px 0 16px">
+          <div style="width:52px;height:52px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 12px">✓</div>
+          <div class="h2" style="margin-bottom:4px">Job Confirmed — TL-1048</div>
+          <div class="muted">Buxton → Sheffield · 14 May 2026</div>
+        </div>
+        <div style="background:var(--off);border-radius:10px;padding:16px;margin-bottom:14px">
+          <div class="grid-2" style="gap:16px">
+            <div>
+              <div class="label-sm">Collection address</div>
+              <div class="body-sm" style="font-weight:600;margin-top:4px">Peak Quarry Ltd<br>Quarry Lane, Buxton SK17 9RH</div>
+            </div>
+            <div>
+              <div class="label-sm">Delivery address</div>
+              <div class="body-sm" style="font-weight:600;margin-top:4px">Sheffield City Build<br>Attercliffe Road, Sheffield S9 2TE</div>
+            </div>
+          </div>
+        </div>
+        <div class="grid-3" style="gap:10px;margin-bottom:14px">
+          <div class="stat-card"><div class="stat-lbl">Rate agreed</div><div style="font-weight:800;color:var(--green);font-size:16px">£13.40/t</div></div>
+          <div class="stat-card"><div class="stat-lbl">Total runs</div><div style="font-weight:700;color:var(--navy);font-size:16px">15 runs</div></div>
+          <div class="stat-card"><div class="stat-lbl">Job value</div><div style="font-weight:800;color:var(--green);font-size:16px">£4,020</div></div>
+        </div>
+        <div style="background:var(--off);border-radius:8px;padding:12px 14px;margin-bottom:14px">
+          <div class="label-sm" style="margin-bottom:6px">Supplier contact</div>
+          <div class="body-sm"><strong>Sarah Johnson</strong> · Peak Quarry Ltd · 📞 01298 123456 · sarah@peakquarry.co.uk</div>
+        </div>
+        <button class="btn-primary" style="width:100%">Open Job in Dashboard →</button>
+      </div>
+    </div>
+    <div class="demo-actions">
+      <button class="btn-back" onclick="prevStep()">← Back</button>
+      <div class="demo-actions-right">
+        <button class="btn-next" onclick="nextStep()">
+          Go to job tracker
+          <span class="btn-next-arrow">→</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- H6: Run Tracking -->
+  <div class="screen-container" id="h-screen-5">
+    <div class="tooltip-bar">
+      <div class="tooltip-icon">🚛</div>
+      <div class="tooltip-text"><strong>Step 6 — Track your runs in real time.</strong> Log each run as you collect and deliver. The supplier can see your progress live on their dashboard. Click "Mark Run Delivered" to log a completed run — try it a couple of times then mark the job complete.</div>
+    </div>
+    <div class="browser-window">
+      <div class="browser-chrome">
+        <div class="browser-tab-bar">
+          <div class="browser-tab"><div class="browser-favicon">T</div>TL-1048 — My Jobs — TipperLink<div class="browser-tab-x">✕</div></div>
+          <div class="browser-win-btns"><div class="browser-win-btn">—</div><div class="browser-win-btn">⬜</div><div class="browser-win-btn close">✕</div></div>
+        </div>
+        <div class="browser-addr-bar">
+          <div class="browser-nav"><div class="browser-nav-btn">←</div><div class="browser-nav-btn">→</div><div class="browser-nav-btn">↻</div></div>
+          <div class="browser-url"><span class="browser-url-lock">🔒</span>tipperlink.com/jobs/TL-1048</div>
+          <div class="browser-menu">⋯</div>
+        </div>
+      </div>
+      <div class="app-content">
+        <div class="tl-nav"><div class="tl-logo">TipperLink</div><div class="tl-nav-links"><span class="tl-nav-link">Board</span><span class="tl-nav-link active">My Jobs</span></div><div class="tl-nav-avatar">TR</div></div>
+        <div class="inner-sm">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+            <div><div class="h3">TL-1048 · Buxton → Sheffield</div><div class="muted">Limestone · 15 runs · 14 May 2026 · Peak Quarry Ltd</div></div>
+            <span class="badge badge-conf">🚛 In Progress</span>
+          </div>
+          <!-- Progress -->
+          <div style="background:var(--off);border-radius:8px;padding:12px 14px;margin-bottom:12px">
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+              <span class="muted">Progress</span>
+              <span id="run-progress-text" style="font-size:12px;font-weight:700;color:var(--navy)">3 of 15 runs complete</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" id="run-progress-bar" style="width:20%"></div></div>
+            <div style="margin-top:6px;font-size:11px;color:var(--mid)">Rate: £13.40/t · Job value: £4,020 · Earned so far: <strong id="earned-so-far">£804</strong></div>
+          </div>
+          <!-- Run log -->
+          <div class="card" style="padding:12px">
+            <div class="label-sm" style="margin-bottom:8px">Run log</div>
+            <div id="run-log">
+              <div class="step-row"><div class="step-circle step-done" style="font-size:12px">✓</div><div><div class="body-sm" style="font-weight:600">Run 1 — Delivered</div><div class="muted">Collected 07:34 · Delivered 08:52 · 20t</div></div></div>
+              <div class="step-row"><div class="step-circle step-done" style="font-size:12px">✓</div><div><div class="body-sm" style="font-weight:600">Run 2 — Delivered</div><div class="muted">Collected 09:15 · Delivered 10:28 · 20t</div></div></div>
+              <div class="step-row"><div class="step-circle step-done" style="font-size:12px">✓</div><div><div class="body-sm" style="font-weight:600">Run 3 — Delivered</div><div class="muted">Collected 10:45 · Delivered 11:55 · 20t</div></div></div>
+              <div class="step-row" style="opacity:0.35"><div class="step-circle step-pending">4</div><div><div class="body-sm">Run 4 — Pending</div></div></div>
+              <div style="text-align:center;font-size:11px;color:var(--mid);padding:4px 0">· · · 11 more runs pending · · ·</div>
+            </div>
+          </div>
+          <div class="grid-2" style="gap:8px;margin-top:10px">
+            <button class="btn-green" onclick="markRunDelivered()" id="deliver-btn">✓ Mark Run Delivered</button>
+            <button class="btn-primary" onclick="nextStep()" id="complete-btn" style="opacity:0.5" disabled>Mark Job Complete 🎉</button>
+          </div>
+          <div style="font-size:11px;color:var(--mid);text-align:center;margin-top:6px" id="runs-hint">Click "Mark Run Delivered" a few times to see the tracker update, then mark the job complete</div>
+        </div>
+      </div>
+    </div>
+    <div class="demo-actions">
+      <button class="btn-back" onclick="prevStep()">← Back</button>
+      <div class="demo-actions-right">
+        <button class="btn-next" onclick="nextStep()">
+          Mark job complete
+          <span class="btn-next-arrow">→</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- H7: Auto Invoice -->
+  <div class="screen-container" id="h-screen-6">
+    <div class="tooltip-bar">
+      <div class="tooltip-icon">📄</div>
+      <div class="tooltip-text"><strong>Step 7 — Invoice generated automatically.</strong> The moment you mark a job complete, TipperLink generates a VAT-ready PDF invoice and emails it directly to the supplier. No chasing, no paperwork, no delays. You get a copy too — downloadable from your dashboard at any time.</div>
+    </div>
+    <div class="browser-window">
+      <div class="browser-chrome">
+        <div class="browser-tab-bar">
+          <div class="browser-tab"><div class="browser-favicon">T</div>Invoice TL-INV-0047 — TipperLink<div class="browser-tab-x">✕</div></div>
+          <div class="browser-win-btns"><div class="browser-win-btn">—</div><div class="browser-win-btn">⬜</div><div class="browser-win-btn close">✕</div></div>
+        </div>
+        <div class="browser-addr-bar">
+          <div class="browser-nav"><div class="browser-nav-btn">←</div><div class="browser-nav-btn">→</div><div class="browser-nav-btn">↻</div></div>
+          <div class="browser-url"><span class="browser-url-lock">🔒</span>tipperlink.com/invoices/TL-INV-0047</div>
+          <div class="browser-menu">⋯</div>
+        </div>
+      </div>
+      <div style="background:white">
+        <div style="background:#E8F5EE;border-bottom:1px solid #86EFAC;padding:10px 20px;font-size:12px;color:var(--green);display:flex;align-items:center;gap:8px">
+          <span>✅</span> <strong>Invoice auto-generated and sent to Peak Quarry Ltd</strong> — Sarah Johnson has been notified
+        </div>
+        <div class="inv-header">
+          <div>
+            <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--gold)">TipperLink</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-top:2px">Auto-generated on job completion</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:20px;font-weight:800;color:var(--gold)">INVOICE</div>
+            <div style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.5)">TL-INV-0047</div>
+          </div>
+        </div>
+        <div style="padding:16px 20px">
+          <div class="grid-2" style="gap:16px;margin-bottom:14px">
+            <div><div class="label-sm">From</div><div class="body-sm" style="font-weight:600;margin-top:4px">Peak District Haulage Ltd<br>Sheffield, S7 2EJ<br>VAT: GB123456789</div></div>
+            <div><div class="label-sm">To</div><div class="body-sm" style="font-weight:600;margin-top:4px">Peak Quarry Ltd<br>Buxton, SK17 9RH</div></div>
+          </div>
+          <div class="grid-2" style="gap:16px;margin-bottom:12px">
+            <div><div class="label-sm">Job Reference</div><div class="body-sm" style="font-weight:600">TL-1048</div></div>
+            <div><div class="label-sm">Invoice Date</div><div class="body-sm">14 May 2026</div></div>
+          </div>
+          <hr class="divider">
+          <div class="inv-row"><span>Limestone haulage · Buxton → Sheffield</span><span></span></div>
+          <div class="inv-row"><span class="muted" style="font-size:11px">15 loads × 20t = 300t @ £13.40/t</span><span></span></div>
+          <div class="inv-row"><span>Subtotal</span><span style="font-weight:600">£4,020.00</span></div>
+          <div class="inv-row"><span>VAT @ 20%</span><span>£804.00</span></div>
+          <div class="inv-total">
+            <span style="font-size:14px;font-weight:700">Total Due — 30 days</span>
+            <span style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--gold)">£4,824.00</span>
+          </div>
+          <div style="margin:12px 0 0;font-size:11px;color:var(--mid)">BACS: Sort 12-34-56 · Account 87654321 · Payment terms: 30 days from invoice date</div>
+        </div>
+      </div>
+    </div>
+    <div class="demo-actions">
+      <button class="btn-back" onclick="prevStep()">← Back</button>
+      <div class="demo-actions-right">
+        <button class="btn-next" onclick="nextStep()">
+          Rate the supplier
+          <span class="btn-next-arrow">→</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- H8: Rating + Dashboard -->
+  <div class="screen-container" id="h-screen-7">
+    <div class="tooltip-bar">
+      <div class="tooltip-icon">⭐</div>
+      <div class="tooltip-text"><strong>Step 8 — Rate your supplier & see your dashboard.</strong> After every job, both sides rate each other. Your ratings build your public profile — the better your score, the more likely suppliers are to accept your quotes over cheaper competitors. Then check your earnings dashboard.</div>
+    </div>
+    <div class="browser-window">
+      <div class="browser-chrome">
+        <div class="browser-tab-bar">
+          <div class="browser-tab"><div class="browser-favicon">T</div>Dashboard — TipperLink<div class="browser-tab-x">✕</div></div>
+          <div class="browser-win-btns"><div class="browser-win-btn">—</div><div class="browser-win-btn">⬜</div><div class="browser-win-btn close">✕</div></div>
+        </div>
+        <div class="browser-addr-bar">
+          <div class="browser-nav"><div class="browser-nav-btn">←</div><div class="browser-nav-btn">→</div><div class="browser-nav-btn">↻</div></div>
+          <div class="browser-url"><span class="browser-url-lock">🔒</span>tipperlink.com/dashboard</div>
+          <div class="browser-menu">⋯</div>
+        </div>
+      </div>
+      <div class="app-content" style="display:flex">
+        <div class="sidebar">
+          <div class="sidebar-section">Navigation</div>
+          <div class="sidebar-item active">📊 Overview</div>
+          <div class="sidebar-item">📋 Load Board</div>
+          <div class="sidebar-item">💬 My Quotes</div>
+          <div class="sidebar-item">🚛 Active Jobs</div>
+          <div class="sidebar-item">📄 Invoices</div>
+          <div class="sidebar-section">Profile</div>
+          <div class="sidebar-item">⭐ My Ratings</div>
+          <div class="sidebar-item">👤 Profile</div>
+          <div class="sidebar-item">⚙️ Settings</div>
+        </div>
+        <div style="flex:1;padding:16px;overflow:hidden">
+          <!-- Rating prompt -->
+          <div style="background:var(--amber-l);border:1px solid var(--amber);border-radius:10px;padding:14px;margin-bottom:14px">
+            <div style="font-size:12px;font-weight:700;color:#7A5C00;margin-bottom:8px">⭐ Rate Peak Quarry Ltd — TL-1048</div>
+            <div style="background:white;border-radius:8px;padding:10px">
+              <div class="rating-row"><span class="body-sm">Load readiness</span><div class="star-row" id="sr-h-1" onmouseleave="starOut('sr-h-1')"><span class="star" onmouseenter="starHover('sr-h-1',1)" onclick="starSet('sr-h-1',1)">★</span><span class="star" onmouseenter="starHover('sr-h-1',2)" onclick="starSet('sr-h-1',2)">★</span><span class="star" onmouseenter="starHover('sr-h-1',3)" onclick="starSet('sr-h-1',3)">★</span><span class="star" onmouseenter="starHover('sr-h-1',4)" onclick="starSet('sr-h-1',4)">★</span><span class="star empty" onmouseenter="starHover('sr-h-1',5)" onclick="starSet('sr-h-1',5)">★</span></div></div>
+              <div class="rating-row"><span class="body-sm">Site access</span><div class="star-row" id="sr-h-2" onmouseleave="starOut('sr-h-2')"><span class="star" onmouseenter="starHover('sr-h-2',1)" onclick="starSet('sr-h-2',1)">★</span><span class="star" onmouseenter="starHover('sr-h-2',2)" onclick="starSet('sr-h-2',2)">★</span><span class="star" onmouseenter="starHover('sr-h-2',3)" onclick="starSet('sr-h-2',3)">★</span><span class="star" onmouseenter="starHover('sr-h-2',4)" onclick="starSet('sr-h-2',4)">★</span><span class="star" onmouseenter="starHover('sr-h-2',5)" onclick="starSet('sr-h-2',5)">★</span></div></div>
+              <div class="rating-row"><span class="body-sm">Communication</span><div class="star-row" id="sr-h-3" onmouseleave="starOut('sr-h-3')"><span class="star" onmouseenter="starHover('sr-h-3',1)" onclick="starSet('sr-h-3',1)">★</span><span class="star" onmouseenter="starHover('sr-h-3',2)" onclick="starSet('sr-h-3',2)">★</span><span class="star" onmouseenter="starHover('sr-h-3',3)" onclick="starSet('sr-h-3',3)">★</span><span class="star" onmouseenter="starHover('sr-h-3',4)" onclick="starSet('sr-h-3',4)">★</span><span class="star" onmouseenter="starHover('sr-h-3',5)" onclick="starSet('sr-h-3',5)">★</span></div></div>
+            </div>
+            <button class="btn-primary btn-sm" style="margin-top:10px">Submit Rating →</button>
+          </div>
+          <!-- Stats -->
+          <div class="grid-4" style="gap:8px;margin-bottom:12px">
+            <div class="stat-card"><div class="stat-val stat-val-green">£18,240</div><div class="stat-lbl">May revenue</div><div class="stat-delta">↑ 12%</div></div>
+            <div class="stat-card"><div class="stat-val">47</div><div class="stat-lbl">Loads done</div><div class="stat-delta">↑ 8</div></div>
+            <div class="stat-card"><div class="stat-val">4.9★</div><div class="stat-lbl">Your rating</div></div>
+            <div class="stat-card"><div class="stat-val stat-val-green">98%</div><div class="stat-lbl">Completion</div></div>
+          </div>
+          <div class="label-sm" style="margin-bottom:6px">Revenue by week</div>
+          <div class="bar-chart">
+            <div class="bar" style="height:55%"></div>
+            <div class="bar" style="height:70%"></div>
+            <div class="bar hi" style="height:90%"></div>
+            <div class="bar" style="height:40%"></div>
+          </div>
+          <div class="bar-lbls"><div class="bar-lbl">W1</div><div class="bar-lbl">W2</div><div class="bar-lbl">W3 ✓</div><div class="bar-lbl">W4</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="demo-actions">
+      <button class="btn-back" onclick="prevStep()">← Back</button>
+      <div class="demo-actions-right">
+        <button class="btn-next" onclick="endDemo()">
+          See what's waiting for you →
+          <span class="btn-next-arrow"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SUPPLIER JOURNEY
+  ══════════════════════════════════════════════ -->
+
+  <!-- S1: Registration -->
+  <div class="screen-container" id="s-screen-0">
+    <div class="tooltip-bar">
+      <div class="tooltip-icon">📝</div>
+      <div class="tooltip-text"><strong>Step 1 — Register as a supplier.</strong> Suppliers join for free. Fill in your company details and the type of operation you run. Once registered you can post loads immediately and receive competing quotes from verified, rated hauliers in your area.</div>
+    </div>
+    <div class="browser-window">
+      <div class="browser-chrome">
+        <div class="browser-tab-bar">
+          <div class="browser-tab"><div class="browser-favicon">T</div>Register as Supplier — TipperLink<div class="browser-tab-x">✕</div></div>
+          <div class="browser-win-btns"><div class="browser-win-btn">—</div><div class="browser-win-btn">⬜</div><div class="browser-win-btn close">✕</div></div>
+        </div>
+        <div class="browser-addr-bar">
+          <div class="browser-nav"><div class="browser-nav-btn">←</div><div class="browser-nav-btn">→</div><div class="browser-nav-btn">↻</div></div>
+          <div class="browser-url"><span class="browser-url-lock">🔒</span>tipperlink.com/register/supplier</div>
+          <div class="browser-menu">⋯</div>
+        </div>
+      </div>
+      <div class="app-content">
+        <div class="tl-nav"><div class="tl-logo">TipperLink</div></div>
+        <div class="inner" style="max-width:520px;margin:0 auto;padding-top:24px">
+          <div style="text-align:center;margin-bottom:20px">
+
+            <div class="h2">Register as a Supplier</div>
+            <div class="muted" style="margin-top:4px">Post your first load in under 2 minutes</div>
+          </div>
+          <div class="grid-2">
+            <div class="fg"><label>Your Name <span class="field-hint">— contact name</span></label><input class="input-field field-highlight" placeholder="e.g. Sarah Johnson"></div>
+            <div class="fg"><label>Company Name <span class="field-hint">— your business</span></label><input class="input-field" placeholder="e.g. Peak Quarry Ltd"></div>
+          </div>
+          <div class="fg">
+            <label>Business Type <span class="field-hint">— how you'd describe your operation</span></label>
+            <select class="select-field">
+              <option>Quarry / Aggregate producer</option>
+              <option>Construction contractor</option>
+              <option>Aggregate merchant</option>
+              <option>Recycling yard</option>
+              <option>Waste / landfill operator</option>
+              <option>Civil engineering contractor</option>
+            </select>
+          </div>
+          <div class="fg"><label>Region <span class="field-hint">— where your loads typically originate</span></label><input class="input-field" placeholder="e.g. Peak District, Derbyshire, Yorkshire"></div>
+          <div class="grid-2">
+            <div class="fg"><label>Email</label><input class="input-field" placeholder="your@email.com" type="email"></div>
+            <div class="fg"><label>Phone</label><input class="input-field" placeholder="07xxx xxxxxx" type="tel"></div>
+          </div>
+          <button class="btn-green" style="width:100%;margin-top:6px" onclick="nextStep()">Create Account & Post Your First Load →</button>
+        </div>
+      </div>
+    </div>
+    <div class="demo-actions">
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+
+  <!-- S2: Post a Load -->
+  <div class="screen-container" id="s-screen-1">
+    <div class="tooltip-bar">
+      <div class="tooltip-icon">🏗️</div>
+      <div class="tooltip-text"><strong>Step 2 — Post your load.</strong> Fill in the collection and delivery postcodes, material, vehicle type, tonnage and date. The moment you click Post, every matched haulier in the area gets an instant email alert. No phone calls, no WhatsApp chains.</div>
+    </div>
+    <div class="browser-window">
+      <div class="browser-chrome">
+        <div class="browser-tab-bar">
+          <div class="browser-tab"><div class="browser-favicon">T</div>Post a Load — TipperLink<div class="browser-tab-x">✕</div></div>
+          <div class="browser-win-btns"><div class="browser-win-btn">—</div><div class="browser-win-btn">⬜</div><div class="browser-win-btn close">✕</div></div>
+        </div>
+        <div class="browser-addr-bar">
+          <div class="browser-nav"><div class="browser-nav-btn">←</div><div class="browser-nav-btn">→</div><div class="browser-nav-btn">↻</div></div>
+          <div class="browser-url"><span class="browser-url-lock">🔒</span>tipperlink.com/loads/new</div>
+          <div class="browser-menu">⋯</div>
+        </div>
+      </div>
+      <div class="app-content">
+        <div class="tl-nav"><div class="tl-logo">TipperLink</div><div class="tl-nav-links"><span class="tl-nav-link active">Post Load</span><span class="tl-nav-link">My Loads</span></div><div class="tl-nav-avatar">PQ</div></div>
+        <div class="inner">
+          <div class="h3" style="margin-bottom:16px">Post a Load to the Exchange</div>
+          <div class="grid-2">
+            <div class="fg"><label>Collection postcode <span class="field-hint">— where to collect from</span></label><input class="input-field field-highlight" placeholder="e.g. SK17 9RH"></div>
+            <div class="fg"><label>Delivery postcode <span class="field-hint">— where to deliver to</span></label><input class="input-field" placeholder="e.g. S9 2TE"></div>
+          </div>
+          <div class="fg">
+            <label>Material type <span class="field-hint">— what's being moved</span></label>
+            <select class="select-field">
+              <option>Limestone</option><option>Muckaway / excavation spoil</option><option>Topsoil</option><option>MOT Type 1</option><option>Crushed concrete</option><option>Gabion stone</option><option>Sand</option><option>Aggregates (general)</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label>Vehicle required <span class="field-hint">— select all that apply</span></label>
+            <div class="chip-row">
+              <div class="chip on" onclick="toggleChip(this)">✓ 8-Wheel Tipper</div>
+              <div class="chip" onclick="toggleChip(this)">Artic Tipper</div>
+              <div class="chip" onclick="toggleChip(this)">Grab Lorry</div>
+              <div class="chip" onclick="toggleChip(this)">Walking Floor</div>
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="fg"><label>Estimated tonnage <span class="field-hint">— total load</span></label><input class="input-field" placeholder="e.g. 300" type="number"></div>
+            <div class="fg"><label>Number of runs <span class="field-hint">— vehicle movements</span></label><input class="input-field" placeholder="e.g. 15" type="number"></div>
+          </div>
+          <div class="grid-2">
+            <div class="fg"><label>Date required</label><input class="input-field" type="date"></div>
+            <div class="fg">
+              <label>Job requirements <span class="field-hint">— optional</span></label>
+              <div class="chip-row" style="margin-top:4px">
+                <div class="chip" onclick="toggleChip(this)">FORS Silver</div>
+                <div class="chip" onclick="toggleChip(this)">TASCC</div>
+                <div class="chip" onclick="toggleChip(this)">Timed delivery</div>
+              </div>
+            </div>
+          </div>
+          <button class="btn-green" style="width:100%;margin-top:6px" onclick="nextStep()">Post to Exchange — Hauliers notified instantly →</button>
+        </div>
+      </div>
+    </div>
+    <div class="demo-actions">
+      <button class="btn-back" onclick="prevStep()">← Back</button>
+      <button class="btn-next" onclick="nextStep()">Post load & see quotes <span class="btn-next-arrow">→</span></button>
+    </div>
+  </div>
+
+  <!-- S3: Review Quotes -->
+  <div class="screen-container" id="s-screen-2">
+    <div class="tooltip-bar">
+      <div class="tooltip-icon">👁</div>
+      <div class="tooltip-text"><strong>Step 3 — Review competing quotes.</strong> Every haulier who quoted shows you their rate alongside their verified stats — completion rate, response time, rating and no-show record. Hauliers cannot see each other's rates. The platform flags the best-value option and warns you about unreliable operators. Click Accept to confirm your choice.</div>
+    </div>
+    <div class="browser-window">
+      <div class="browser-chrome">
+        <div class="browser-tab-bar">
+          <div class="browser-tab"><div class="browser-favicon">T</div>Review Quotes — TL-1048 — TipperLink<div class="browser-tab-x">✕</div></div>
+          <div class="browser-win-btns"><div class="browser-win-btn">—</div><div class="browser-win-btn">⬜</div><div class="browser-win-btn close">✕</div></div>
+        </div>
+        <div class="browser-addr-bar">
+          <div class="browser-nav"><div class="browser-nav-btn">←</div><div class="browser-nav-btn">→</div><div class="browser-nav-btn">↻</div></div>
+          <div class="browser-url"><span class="browser-url-lock">🔒</span>tipperlink.com/loads/TL-1048/quotes</div>
+          <div class="browser-menu">⋯</div>
+        </div>
+      </div>
+      <div class="app-content">
+        <div class="tl-nav"><div class="tl-logo">TipperLink</div><div class="tl-nav-links"><span class="tl-nav-link">My Loads</span><span class="tl-nav-link active">Quotes</span></div><div class="tl-nav-avatar">PQ</div></div>
+        <div class="inner-sm">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+            <div><div class="h3">TL-1048 · Buxton → Sheffield</div><div class="muted">4 quotes received · Only you can see these rates</div></div>
+            <span class="badge badge-gold">👁 Private</span>
+          </div>
+          <div style="background:var(--navy);border-radius:10px;padding:12px 16px;margin-bottom:10px;display:flex;align-items:flex-start;gap:12px">
+            <div style="font-size:20px;flex-shrink:0">⚖️</div>
+            <div>
+              <div style="font-size:12px;font-weight:700;color:var(--gold);margin-bottom:3px">Sorted by TipperLink Value Score — not price alone</div>
+              <div style="font-size:11px;color:rgba(255,255,255,0.7);line-height:1.55">Quotes are ranked by our algorithm which weighs <strong style="color:white">price, reliability rating, completion rate and response time</strong> together. This protects reliable hauliers from being undercut by unreliable operators on price alone — and protects you from a cheap quote that doesn't show up.</div>
+            </div>
+          </div>
+          <div style="background:#EBF8EE;border:1px solid #86EFAC;border-radius:8px;padding:8px 12px;margin-bottom:12px;font-size:12px;color:#166534">
+            💡 <strong>The cheapest quote is not always the cheapest job.</strong> A haulier with 61% completion costs more in failed deliveries than a reliable operator charging a fair rate.
+          </div>
+          <!-- Quote 1 - Best Value -->
+          <div class="card quote-card" id="qcard-1" style="border-color:var(--green);border-width:2px;padding:12px;margin-bottom:8px;cursor:pointer;transition:all 0.2s" onclick="selectQuote(1)">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div class="q-rank q-rank-1" id="qrank-1">1</div>
+              <div style="flex:1">
+                <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;flex-wrap:wrap">
+                  <span class="h3">Peak District Haulage</span>
+                  <span class="badge badge-green">⭐ Elite</span>
+                  <span class="badge badge-green" id="best-val-badge">Best Value</span>
+                </div>
+                <div class="muted">Sheffield · 87 jobs · 8-wheel & artic · FORS Silver ✓</div>
+                <div style="display:flex;gap:12px;margin-top:5px;flex-wrap:wrap">
+                  <span style="font-size:12px">⭐ <strong>4.9</strong></span>
+                  <span style="font-size:12px;color:var(--green)">✓ <strong>98%</strong> completion</span>
+                  <span style="font-size:12px;color:var(--green)">0 no-shows</span>
+                  <span style="font-size:12px">⚡ 14 min response</span>
+                </div>
+              </div>
+              <div style="text-align:right;flex-shrink:0">
+                <div style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--green)">£13.40</div>
+                <div class="muted">/tonne</div>
+                <button class="btn-green btn-sm" id="qbtn-1" style="margin-top:6px" onclick="event.stopPropagation();selectQuote(1);nextStep()">Accept →</button>
+              </div>
+            </div>
+          </div>
+          <!-- Quote 2 -->
+          <div class="card quote-card" id="qcard-2" style="padding:12px;margin-bottom:8px;cursor:pointer;transition:all 0.2s" onclick="selectQuote(2)">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div class="q-rank q-rank-2" id="qrank-2">2</div>
+              <div style="flex:1">
+                <div class="h3" style="margin-bottom:3px">Midlands Tipper Co.</div>
+                <div class="muted">Derby · 34 jobs · 8-wheel</div>
+                <div style="display:flex;gap:12px;margin-top:5px">
+                  <span style="font-size:12px">⭐ <strong>4.1</strong></span>
+                  <span style="font-size:12px;color:var(--amber)">⚠ <strong>82%</strong> completion</span>
+                  <span style="font-size:12px;color:var(--mid)">1 no-show</span>
+                </div>
+              </div>
+              <div style="text-align:right;flex-shrink:0">
+                <div style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--navy)">£13.80</div>
+                <div class="muted">/tonne</div>
+                <button class="btn-outline btn-sm" id="qbtn-2" style="margin-top:6px" onclick="event.stopPropagation();selectQuote(2);nextStep()">Accept</button>
+              </div>
+            </div>
+          </div>
+          <!-- Quote 3 - Warning -->
+          <div class="card quote-card" id="qcard-3" style="border-color:#FCA5A5;background:var(--red-l);padding:12px;cursor:pointer;transition:all 0.2s" onclick="selectQuote(3)">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div class="q-rank q-rank-3" id="qrank-3">3</div>
+              <div style="flex:1">
+                <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px">
+                  <span class="h3">J. Booth Plant & Haulage</span>
+                  <span class="badge badge-red">⚠ Under Review</span>
+                </div>
+                <div class="muted">Chesterfield · 12 jobs · 8-wheel</div>
+                <div style="display:flex;gap:12px;margin-top:5px">
+                  <span style="font-size:12px">⭐ <strong>2.4</strong></span>
+                  <span style="font-size:12px;color:var(--red)">✗ <strong>61%</strong> completion</span>
+                  <span style="font-size:12px;color:var(--red)">3 no-shows</span>
+                </div>
+              </div>
+              <div style="text-align:right;flex-shrink:0">
+                <div style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--red)">£12.00</div>
+                <div class="muted">/tonne</div>
+                <button class="btn-outline btn-sm" id="qbtn-3" style="margin-top:6px;opacity:0.4" onclick="event.stopPropagation();showWarning()">Accept</button>
+              </div>
+            </div>
+          </div>
+          <div id="quote-warning" style="display:none;background:var(--red-l);border:1px solid #FCA5A5;border-radius:8px;padding:10px 14px;font-size:12px;color:var(--red);margin-top:6px">
+            ⚠ <strong>Are you sure?</strong> This haulier has 3 no-shows and a 61% completion rate. You risk a failed delivery. <span style="text-decoration:underline;cursor:pointer;margin-left:8px" onclick="document.getElementById('quote-warning').style.display='none'">Dismiss</span>
+          </div>
+          <div id="quote-accept-bar" style="display:none;background:var(--green-l);border:1px solid #86EFAC;border-radius:8px;padding:10px 14px;margin-top:8px;display:none;align-items:center;justify-content:space-between">
+            <span id="quote-accept-name" style="font-size:13px;font-weight:600;color:var(--green)"></span>
+            <button class="btn-green btn-sm" onclick="nextStep()">Confirm & Accept →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="demo-actions">
+      <button class="btn-back" onclick="prevStep()">← Back</button>
+      <button class="btn-next" onclick="nextStep()">Accept Peak District Haulage <span class="btn-next-arrow">→</span></button>
+    </div>
+  </div>
+
+  <!-- S4: Track job live -->
+  <div class="screen-container" id="s-screen-3">
+    <div class="tooltip-bar">
+      <div class="tooltip-icon">📍</div>
+      <div class="tooltip-text"><strong>Step 4 — Watch the job in real time.</strong> Once a haulier is on site, you can see exactly how many runs have been completed and which run is currently in transit. No more chasing for updates. The haulier logs each run directly in the app.</div>
+    </div>
+    <div class="browser-window">
+      <div class="browser-chrome">
+        <div class="browser-tab-bar">
+          <div class="browser-tab"><div class="browser-favicon">T</div>TL-1048 Live — TipperLink<div class="browser-tab-x">✕</div></div>
+          <div class="browser-win-btns"><div class="browser-win-btn">—</div><div class="browser-win-btn">⬜</div><div class="browser-win-btn close">✕</div></div>
+        </div>
+        <div class="browser-addr-bar">
+          <div class="browser-nav"><div class="browser-nav-btn">←</div><div class="browser-nav-btn">→</div><div class="browser-nav-btn">↻</div></div>
+          <div class="browser-url"><span class="browser-url-lock">🔒</span>tipperlink.com/supplier/jobs/TL-1048</div>
+          <div class="browser-menu">⋯</div>
+        </div>
+      </div>
+      <div class="app-content">
+        <div class="tl-nav"><div class="tl-logo">TipperLink</div><div class="tl-nav-links"><span class="tl-nav-link">My Loads</span><span class="tl-nav-link active">Active Jobs</span></div><div class="tl-nav-avatar">PQ</div></div>
+        <div class="inner-sm">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+            <div><div class="h3">TL-1048 — Live View</div><div class="muted">Peak District Haulage · 14 May</div></div>
+            <span class="badge badge-conf" style="animation:pulse 2s infinite">🔴 Live</span>
+          </div>
+          <div style="background:var(--navy);border-radius:10px;padding:14px;color:white;margin-bottom:12px">
+            <div style="display:flex;justify-content:space-between;margin-bottom:10px">
+              <span style="font-size:11px;color:rgba(255,255,255,0.4)">Current status</span>
+              <span style="font-size:11px;color:var(--gold);font-weight:600">Run 8 of 15 in transit</span>
+            </div>
+            <div class="grid-3" style="gap:8px">
+              <div style="background:rgba(26,122,74,0.3);border:1px solid rgba(26,122,74,0.5);border-radius:8px;padding:10px;text-align:center">
+                <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:#4ADE80">7</div>
+                <div style="font-size:10px;color:rgba(255,255,255,0.4)">Delivered</div>
+              </div>
+              <div style="background:rgba(245,196,0,0.15);border:1px solid rgba(245,196,0,0.3);border-radius:8px;padding:10px;text-align:center">
+                <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--gold)">1</div>
+                <div style="font-size:10px;color:rgba(255,255,255,0.4)">In Transit</div>
+              </div>
+              <div style="background:rgba(255,255,255,0.06);border-radius:8px;padding:10px;text-align:center">
+                <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:rgba(255,255,255,0.3)">7</div>
+                <div style="font-size:10px;color:rgba(255,255,255,0.3)">Remaining</div>
+              </div>
+            </div>
+            <div style="margin-top:10px">
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:11px;color:rgba(255,255,255,0.4)"><span>Progress</span><span>46%</span></div>
+              <div style="background:rgba(255,255,255,0.1);border-radius:4px;height:6px;overflow:hidden"><div style="width:46%;height:100%;background:linear-gradient(90deg,var(--green),#0F6E56);border-radius:4px"></div></div>
+            </div>
+          </div>
+          <div class="card" style="padding:12px">
+            <div class="label-sm" style="margin-bottom:8px">Live run log</div>
+            <div class="step-row"><div class="step-circle step-done" style="font-size:10px">✓</div><div><div class="body-sm" style="font-weight:600">Runs 1–6 — Complete</div><div class="muted">All on time · 120t delivered</div></div></div>
+            <div class="step-row"><div class="step-circle step-done" style="font-size:10px">✓</div><div><div class="body-sm" style="font-weight:600">Run 7 — Delivered 13:22</div><div class="muted">20t · On time</div></div></div>
+            <div class="step-row"><div class="step-circle step-active" style="font-size:10px">8</div><div><div class="body-sm" style="font-weight:600;color:var(--amber)">Run 8 — En route</div><div class="muted">Collected 13:40 · ETA your site: 14:50</div></div></div>
+          </div>
+          <div class="grid-2" style="gap:8px;margin-top:8px">
+            <button class="btn-outline" style="font-size:12px">Message haulier</button>
+            <button class="btn-outline" style="font-size:12px;color:var(--red);border-color:var(--red)">Report issue</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="demo-actions">
+      <button class="btn-back" onclick="prevStep()">← Back</button>
+      <button class="btn-next" onclick="nextStep()">Job complete — see invoice <span class="btn-next-arrow">→</span></button>
+    </div>
+  </div>
+
+  <!-- S5: Invoice received -->
+  <div class="screen-container" id="s-screen-4">
+    <div class="tooltip-bar">
+      <div class="tooltip-icon">📥</div>
+      <div class="tooltip-text"><strong>Step 5 — Invoice arrives automatically.</strong> The moment the haulier marks all runs complete, a VAT-ready invoice lands in your inbox. No chasing, no manual invoicing, no disputes about what was agreed. Everything is logged from when the job was posted.</div>
+    </div>
+    <div class="browser-window">
+      <div class="browser-chrome">
+        <div class="browser-tab-bar">
+          <div class="browser-tab"><div class="browser-favicon">T</div>📥 Invoice TL-INV-0047 — TipperLink<div class="browser-tab-x">✕</div></div>
+          <div class="browser-win-btns"><div class="browser-win-btn">—</div><div class="browser-win-btn">⬜</div><div class="browser-win-btn close">✕</div></div>
+        </div>
+        <div class="browser-addr-bar">
+          <div class="browser-nav"><div class="browser-nav-btn">←</div><div class="browser-nav-btn">→</div><div class="browser-nav-btn">↻</div></div>
+          <div class="browser-url"><span class="browser-url-lock">🔒</span>tipperlink.com/notifications</div>
+          <div class="browser-menu">⋯</div>
+        </div>
+      </div>
+      <div style="background:white;padding:20px 24px">
+        <div style="border-bottom:1px solid var(--border);padding-bottom:12px;margin-bottom:14px">
+          <div class="h3" style="margin-bottom:3px">📄 Invoice for TL-1048 — Peak District Haulage Ltd</div>
+          <div class="muted">From: TipperLink (noreply@tipperlink.com) · To: sarah@peakquarry.co.uk</div>
+        </div>
+        <div class="body-sm" style="margin-bottom:14px">Hi Sarah, job TL-1048 has been marked complete. Your invoice is attached and shown below. Payment terms: 30 days.</div>
+        <div style="background:var(--green-l);border:1px solid #86EFAC;border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:12px;color:var(--green)">
+          ✅ <strong>15 of 15 runs completed · All logged and verified in the platform</strong>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:14px">
+          <div class="inv-header" style="padding:12px 16px">
+            <div><div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:800;color:var(--gold)">TipperLink</div></div>
+            <div style="text-align:right"><div style="font-size:16px;font-weight:800;color:var(--gold)">INVOICE TL-INV-0047</div></div>
+          </div>
+          <div style="padding:12px 16px">
+            <div class="inv-row"><span>Limestone haulage · Buxton → Sheffield · 15 runs · 300t</span><span></span></div>
+            <div class="inv-row"><span>Subtotal (ex VAT)</span><span style="font-weight:600">£4,020.00</span></div>
+            <div class="inv-row"><span>VAT @ 20%</span><span>£804.00</span></div>
+            <div class="inv-total" style="padding:10px 16px;margin:0 -16px -12px">
+              <span style="font-size:13px;font-weight:700">Total Due</span>
+              <span style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--gold)">£4,824.00</span>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px">
+          <button class="btn-outline" style="flex:1;font-size:12px">📥 Download PDF</button>
+          <button class="btn-primary" style="flex:1;font-size:12px" onclick="nextStep()">Rate this haulier →</button>
+        </div>
+      </div>
+    </div>
+    <div class="demo-actions">
+      <button class="btn-back" onclick="prevStep()">← Back</button>
+      <button class="btn-next" onclick="nextStep()">Rate your haulier <span class="btn-next-arrow">→</span></button>
+    </div>
+  </div>
+
+  <!-- S6: Rate + Dashboard -->
+  <div class="screen-container" id="s-screen-5">
+    <div class="tooltip-bar">
+      <div class="tooltip-icon">⭐</div>
+      <div class="tooltip-text"><strong>Step 6 — Rate your haulier & manage your loads.</strong> Every rating builds the haulier's verified public profile — making the platform more reliable for every supplier. Your dashboard shows all active loads, invoice history, and your preferred hauliers for quick re-booking.</div>
+    </div>
+    <div class="browser-window">
+      <div class="browser-chrome">
+        <div class="browser-tab-bar">
+          <div class="browser-tab"><div class="browser-favicon">T</div>Supplier Dashboard — TipperLink<div class="browser-tab-x">✕</div></div>
+          <div class="browser-win-btns"><div class="browser-win-btn">—</div><div class="browser-win-btn">⬜</div><div class="browser-win-btn close">✕</div></div>
+        </div>
+        <div class="browser-addr-bar">
+          <div class="browser-nav"><div class="browser-nav-btn">←</div><div class="browser-nav-btn">→</div><div class="browser-nav-btn">↻</div></div>
+          <div class="browser-url"><span class="browser-url-lock">🔒</span>tipperlink.com/supplier/dashboard</div>
+          <div class="browser-menu">⋯</div>
+        </div>
+      </div>
+      <div class="app-content" style="display:flex">
+        <div class="sidebar">
+          <div class="sidebar-section">Menu</div>
+          <div class="sidebar-item active">📊 Dashboard</div>
+          <div class="sidebar-item">➕ Post Load</div>
+          <div class="sidebar-item">📋 My Loads</div>
+          <div class="sidebar-item">🚛 Active Jobs</div>
+          <div class="sidebar-item">📄 Invoices</div>
+          <div class="sidebar-item">⭐ Hauliers</div>
+        </div>
+        <div style="flex:1;padding:14px;overflow:hidden">
+          <!-- Rate prompt -->
+          <div style="background:var(--amber-l);border:1px solid var(--amber);border-radius:10px;padding:12px;margin-bottom:12px">
+            <div style="font-size:12px;font-weight:700;color:#7A5C00;margin-bottom:8px">⭐ Rate Peak District Haulage — TL-1048</div>
+            <div style="background:white;border-radius:8px;padding:10px">
+              <div class="rating-row"><span class="body-sm">Punctuality</span><div class="star-row" id="sr-s-1" onmouseleave="starOut('sr-s-1')"><span class="star" onmouseenter="starHover('sr-s-1',1)" onclick="starSet('sr-s-1',1)">★</span><span class="star" onmouseenter="starHover('sr-s-1',2)" onclick="starSet('sr-s-1',2)">★</span><span class="star" onmouseenter="starHover('sr-s-1',3)" onclick="starSet('sr-s-1',3)">★</span><span class="star" onmouseenter="starHover('sr-s-1',4)" onclick="starSet('sr-s-1',4)">★</span><span class="star" onmouseenter="starHover('sr-s-1',5)" onclick="starSet('sr-s-1',5)">★</span></div></div>
+              <div class="rating-row"><span class="body-sm">Professionalism</span><div class="star-row" id="sr-s-2" onmouseleave="starOut('sr-s-2')"><span class="star" onmouseenter="starHover('sr-s-2',1)" onclick="starSet('sr-s-2',1)">★</span><span class="star" onmouseenter="starHover('sr-s-2',2)" onclick="starSet('sr-s-2',2)">★</span><span class="star" onmouseenter="starHover('sr-s-2',3)" onclick="starSet('sr-s-2',3)">★</span><span class="star" onmouseenter="starHover('sr-s-2',4)" onclick="starSet('sr-s-2',4)">★</span><span class="star" onmouseenter="starHover('sr-s-2',5)" onclick="starSet('sr-s-2',5)">★</span></div></div>
+              <div class="rating-row"><span class="body-sm">Accuracy</span><div class="star-row" id="sr-s-3" onmouseleave="starOut('sr-s-3')"><span class="star" onmouseenter="starHover('sr-s-3',1)" onclick="starSet('sr-s-3',1)">★</span><span class="star" onmouseenter="starHover('sr-s-3',2)" onclick="starSet('sr-s-3',2)">★</span><span class="star" onmouseenter="starHover('sr-s-3',3)" onclick="starSet('sr-s-3',3)">★</span><span class="star" onmouseenter="starHover('sr-s-3',4)" onclick="starSet('sr-s-3',4)">★</span><span class="star empty" onmouseenter="starHover('sr-s-3',5)" onclick="starSet('sr-s-3',5)">★</span></div></div>
+            </div>
+            <button class="btn-primary btn-sm" style="margin-top:8px">Submit Rating →</button>
+          </div>
+          <!-- Stats -->
+          <div class="grid-3" style="gap:8px;margin-bottom:10px">
+            <div class="stat-card"><div class="stat-val">12</div><div class="stat-lbl">Active loads</div></div>
+            <div class="stat-card"><div class="stat-val stat-val-green">94%</div><div class="stat-lbl">Fill rate</div></div>
+            <div class="stat-card"><div class="stat-val">£42k</div><div class="stat-lbl">Platform spend</div></div>
+          </div>
+          <!-- Preferred hauliers -->
+          <div class="label-sm" style="margin-bottom:6px">Preferred hauliers</div>
+          <div style="display:flex;gap:8px">
+            <div style="background:var(--off);border:1px solid var(--border);border-radius:8px;padding:10px;flex:1;text-align:center">
+              <div style="font-size:12px;font-weight:700;color:var(--navy)">Peak District Haulage</div>
+              <div class="muted">4.9★ · 87 jobs</div>
+              <button class="btn-outline btn-sm" style="margin-top:6px;width:100%">Re-book →</button>
+            </div>
+            <div style="background:var(--off);border:1px solid var(--border);border-radius:8px;padding:10px;flex:1;text-align:center">
+              <div style="font-size:12px;font-weight:700;color:var(--navy)">Northern Bulk Haulage</div>
+              <div class="muted">4.7★ · 34 jobs</div>
+              <button class="btn-outline btn-sm" style="margin-top:6px;width:100%">Re-book →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="demo-actions">
+      <button class="btn-back" onclick="prevStep()">← Back</button>
+      <button class="btn-next" onclick="endDemo()">See what's waiting for you → <span class="btn-next-arrow"></span></button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       END SCREEN
+  ══════════════════════════════════════════════ -->
+  <div class="screen-container" id="end-screen">
+    <div style="text-align:center;padding:40px 20px">
+      <div style="font-size:56px;margin-bottom:16px">🚛</div>
+      <div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:var(--white);margin-bottom:8px">That's TipperLink.</div>
+      <div style="font-size:16px;color:rgba(255,255,255,0.55);max-width:480px;margin:0 auto 32px;line-height:1.6">Every load matched to your fleet. Blind quoting. Verified ratings. Automatic invoicing. Built by people who actually work in tipper haulage.</div>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:20px">
+        <button class="btn-cta-primary" onclick="openModal()">Register Your Interest →</button>
+        <button class="btn-restart" onclick="resetDemo()">↩ Restart the demo</button>
+      </div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.3)">Launching May 2026</div>
+    </div>
+  </div>
+
+</div><!-- /demo-wrapper -->
+
+
+
+
+<!-- ── SITE FOOTER ── -->
+<footer class="site-footer">
+  <div class="site-footer-logo">TipperLink</div>
+  <div class="site-footer-links">
+    <a href="https://www.tipperlink.com" class="site-footer-link">Home</a>
+    <a href="https://www.tipperlink.com" class="site-footer-link">How It Works</a>
+    <a href="mailto:hello@tipperlink.com" class="site-footer-link">hello@tipperlink.com</a>
+  </div>
+  <div class="site-footer-copy">© 2026 TipperLink · Registered in England & Wales · Launching May 2026</div>
+</footer>
+
+<!-- ── REGISTER INTEREST MODAL ── -->
+<div class="modal-overlay" id="modal-overlay" onclick="handleOverlayClick(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modal-form-view">
+      <div class="modal-title">Register Your Interest</div>
+      <div class="modal-sub">Be first on the platform when we launch in May 2026.</div>
+      <div class="modal-type-toggle">
+        <button class="modal-type-btn active" id="type-haulier" onclick="setModalType('haulier')">🚛 I'm a Haulier</button>
+        <button class="modal-type-btn" id="type-supplier" onclick="setModalType('supplier')">🏗️ I'm a Supplier</button>
+      </div>
+      <div class="modal-fg"><label>Full Name</label><input class="modal-input" id="m-name" placeholder="Your name"></div>
+      <div class="modal-fg"><label>Company Name</label><input class="modal-input" id="m-company" placeholder="Your company"></div>
+      <div class="modal-fg"><label>Email Address</label><input class="modal-input" id="m-email" placeholder="your@email.com" type="email"></div>
+      <div class="modal-fg"><label>Phone Number</label><input class="modal-input" id="m-phone" placeholder="07xxx xxxxxx" type="tel"></div>
+      <button class="modal-submit" onclick="submitModal()">Register My Interest →</button>
+      <div class="modal-note">🔒 Your details are kept private and never shared</div>
+    </div>
+    <div id="modal-success-view" class="modal-success" style="display:none">
+      <div class="modal-success-icon">🎉</div>
+      <div class="modal-success-title">You're on the list!</div>
+      <div class="modal-success-sub">We'll be in touch before launch with everything you need to get started. Welcome to TipperLink.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+var modalType = 'haulier';
+
+function openModal() {
+  document.getElementById('modal-overlay').classList.add('open');
+}
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+}
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+}
+function setModalType(t) {
+  modalType = t;
+  document.getElementById('type-haulier').classList.toggle('active', t === 'haulier');
+  document.getElementById('type-supplier').classList.toggle('active', t === 'supplier');
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+});
+
+function submitModal() {
+  var name    = document.getElementById('m-name').value.trim();
+  var company = document.getElementById('m-company').value.trim();
+  var email   = document.getElementById('m-email').value.trim();
+  var phone   = document.getElementById('m-phone').value.trim();
+  if (!name || !email) { alert('Please enter your name and email.'); return; }
+
+  var payload = {
+    name: name, company: company, email: email, phone: phone,
+    business_type: modalType, source: 'demo_page'
+  };
+
+  fetch('https://formspree.io/f/xwvrngvz', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify(payload)
+  }).catch(function() {});
+
+  document.getElementById('modal-form-view').style.display = 'none';
+  document.getElementById('modal-success-view').style.display = 'block';
+}
+
+// End-of-demo CTA wired via onclick attribute
+
+
+// ── State ──────────────────────────────────────────────────────────────────
+let currentJourney = null;
+let currentStep    = 0;
+let runsCompleted  = 3;
+const TOTAL_RUNS   = 15;
+
+// Star ratings state — pre-seeded from initial HTML star fills
+const starState = {
+  'sr-h-1': 4, 'sr-h-2': 5, 'sr-h-3': 5,
+  'sr-s-1': 5, 'sr-s-2': 5, 'sr-s-3': 4
+};
+
+const journeys = {
+  haulier: {
+    label: 'Haulier Journey',
+    badge: '🚛 Haulier',
+    steps: ['Register','Load Board','Quote','Accepted','Run Tracking','Invoice','Dashboard'],
+    screens: ['h-screen-0','h-screen-2','h-screen-3','h-screen-4','h-screen-5','h-screen-6','h-screen-7']
+  },
+  supplier: {
+    label: 'Supplier Journey',
+    badge: '🏗️ Supplier',
+    steps: ['Register','Post Load','Quotes','Track Job','Invoice','Dashboard'],
+    screens: ['s-screen-0','s-screen-1','s-screen-2','s-screen-3','s-screen-4','s-screen-5']
+  }
+};
+
+// ── Start journey ──────────────────────────────────────────────────────────
+function startJourney(role) {
+  currentJourney = role;
+  currentStep    = 0;
+
+  document.getElementById('role-picker').style.display = 'none';
+
+  const j = journeys[role];
+  document.getElementById('progress-role-label').textContent = j.label;
+  document.getElementById('progress-role-badge').textContent = j.badge;
+
+  const stepsEl = document.getElementById('progress-steps');
+  stepsEl.innerHTML = '';
+  j.steps.forEach((s, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'step-dot ' + (i === 0 ? 'active' : '');
+    dot.id = 'step-dot-' + i;
+    dot.innerHTML = (i === 0 ? '1' : String(i+1)) + `<span class="step-label">${s}</span>`;
+    stepsEl.appendChild(dot);
+    if (i < j.steps.length - 1) {
+      const line = document.createElement('div');
+      line.className = 'step-line';
+      line.id = 'step-line-' + i;
+      stepsEl.appendChild(line);
+    }
+  });
+
+  document.getElementById('progress-container').classList.add('visible');
+  showScreen(0);
+  flash();
+}
+
+// ── Navigation ─────────────────────────────────────────────────────────────
+function nextStep() {
+  const j = journeys[currentJourney];
+  if (currentStep < j.steps.length - 1) {
+    currentStep++;
+    showScreen(currentStep);
+    updateProgress();
+    flash();
+    window.scrollTo({ top: document.querySelector('.progress-container').offsetTop - 20, behavior: 'smooth' });
+  }
+}
+
+function prevStep() {
+  if (currentStep > 0) {
+    currentStep--;
+    showScreen(currentStep);
+    updateProgress();
+    flash();
+    window.scrollTo({ top: document.querySelector('.progress-container').offsetTop - 20, behavior: 'smooth' });
+  }
+}
+
+function showScreen(idx) {
+  const j = journeys[currentJourney];
+  document.querySelectorAll('.screen-container').forEach(s => s.classList.remove('active'));
+  document.getElementById('end-screen').classList.remove('active');
+  document.getElementById(j.screens[idx]).classList.add('active');
+}
+
+function updateProgress() {
+  const j = journeys[currentJourney];
+  j.steps.forEach((_, i) => {
+    const dot = document.getElementById('step-dot-' + i);
+    if (!dot) return;
+    dot.classList.remove('done', 'active');
+    dot.innerHTML = (i < currentStep ? '✓' : String(i+1)) + `<span class="step-label">${j.steps[i]}</span>`;
+    if (i < currentStep) dot.classList.add('done');
+    else if (i === currentStep) dot.classList.add('active');
+    const line = document.getElementById('step-line-' + i);
+    if (line) line.classList.toggle('done', i < currentStep);
+  });
+  document.getElementById('progress-step-info').textContent =
+    `Step ${currentStep + 1} of ${j.steps.length}`;
+}
+
+function endDemo() {
+  document.querySelectorAll('.screen-container').forEach(s => s.classList.remove('active'));
+  document.getElementById('end-screen').classList.add('active');
+  const j = journeys[currentJourney];
+  j.steps.forEach((_, i) => {
+    const dot = document.getElementById('step-dot-' + i);
+    if (dot) { dot.classList.remove('active'); dot.classList.add('done'); dot.innerHTML = '✓' + `<span class="step-label">${j.steps[i]}</span>`; }
+    const line = document.getElementById('step-line-' + i);
+    if (line) line.classList.add('done');
+  });
+  flash();
+  window.scrollTo({ top: document.querySelector('.demo-header').offsetTop - 20, behavior: 'smooth' });
+}
+
+function resetDemo() {
+  currentJourney = null;
+  currentStep    = 0;
+  runsCompleted  = 3;
+
+  document.querySelectorAll('.screen-container').forEach(s => s.classList.remove('active'));
+  document.getElementById('end-screen').classList.remove('active');
+  document.getElementById('role-picker').style.display = 'flex';
+  document.getElementById('progress-container').classList.remove('visible');
+
+  // Reset run tracker
+  document.getElementById('run-progress-bar').style.width = '20%';
+  document.getElementById('run-progress-text').textContent = '3 of 15 runs complete';
+  document.getElementById('earned-so-far').textContent = '£804';
+  document.getElementById('complete-btn').disabled = true;
+  document.getElementById('complete-btn').style.opacity = '0.5';
+  document.getElementById('runs-hint').textContent = 'Click "Mark Run Delivered" a few times to see the tracker update, then mark the job complete';
+
+  // Reset quote selection
+  resetQuoteCards();
+
+  window.scrollTo({ top: document.querySelector('.demo-header').offsetTop - 20, behavior: 'smooth' });
+}
+
+// ── Flash transition ───────────────────────────────────────────────────────
+function flash() {
+  const el = document.createElement('div');
+  el.className = 'screen-flash';
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 500);
+}
+
+// ── Chip toggle ────────────────────────────────────────────────────────────
+function toggleChip(el) {
+  el.classList.toggle('on');
+  const isOn = el.classList.contains('on');
+  const base = el.textContent.replace('✓ ', '').trim();
+  el.textContent = isOn ? '✓ ' + base : base;
+}
+
+// ── Star rating system ─────────────────────────────────────────────────────
+function starHover(rowId, n) {
+  const row = document.getElementById(rowId);
+  if (!row) return;
+  const stars = row.querySelectorAll('.star');
+  stars.forEach((s, i) => {
+    s.classList.toggle('empty', i >= n);
+    s.style.transform = i < n ? 'scale(1.1)' : 'scale(1)';
+  });
+}
+
+function starOut(rowId) {
+  const row = document.getElementById(rowId);
+  if (!row) return;
+  const saved = starState[rowId] || 0;
+  const stars = row.querySelectorAll('.star');
+  stars.forEach((s, i) => {
+    s.classList.toggle('empty', i >= saved);
+    s.style.transform = 'scale(1)';
+  });
+}
+
+function starSet(rowId, n) {
+  starState[rowId] = n;
+  const row = document.getElementById(rowId);
+  if (!row) return;
+  const stars = row.querySelectorAll('.star');
+  stars.forEach((s, i) => {
+    s.classList.toggle('empty', i >= n);
+    // Pop animation
+    if (i < n) {
+      s.style.transform = 'scale(1.3)';
+      setTimeout(() => s.style.transform = 'scale(1)', 200);
+    }
+  });
+  // Show a little toast if all rows in the same card are rated
+  checkRatingComplete(rowId);
+}
+
+function checkRatingComplete(rowId) {
+  // Group rows by prefix (sr-h or sr-s)
+  const prefix = rowId.split('-').slice(0,2).join('-');
+  const allRows = document.querySelectorAll(`[id^="${prefix}-"]`);
+  const allDone = Array.from(allRows).every(r => starState[r.id] > 0);
+  if (allDone) {
+    // Briefly highlight the submit button
+    const btns = document.querySelectorAll('.btn-primary.btn-sm');
+    btns.forEach(b => {
+      if (b.textContent.includes('Submit')) {
+        b.style.background = 'linear-gradient(135deg,#1A7A4A,#0F6E56)';
+        b.style.color = 'white';
+        b.textContent = '✓ Submit Rating →';
+      }
+    });
+  }
+}
+
+// ── Quote card selection ───────────────────────────────────────────────────
+let selectedQuote = 1;
+
+const quoteNames = {
+  1: '✓ Peak District Haulage selected — £13.40/t',
+  2: '✓ Midlands Tipper Co. selected — £13.80/t',
+  3: '⚠ J. Booth Plant & Haulage selected — £12.00/t (risky)'
+};
+
+function selectQuote(n) {
+  selectedQuote = n;
+
+  // Reset all cards
+  const card1 = document.getElementById('qcard-1');
+  const card2 = document.getElementById('qcard-2');
+  const card3 = document.getElementById('qcard-3');
+
+  if (card1) { card1.style.borderColor = 'var(--border)'; card1.style.borderWidth = '1px'; card1.style.boxShadow = ''; }
+  if (card2) { card2.style.borderColor = 'var(--border)'; card2.style.borderWidth = '1px'; card2.style.boxShadow = ''; }
+  if (card3) { card3.style.borderColor = '#FCA5A5'; card3.style.borderWidth = '1px'; card3.style.boxShadow = ''; }
+
+  // Highlight selected
+  const selected = document.getElementById('qcard-' + n);
+  if (selected) {
+    const colours = { 1: 'var(--green)', 2: 'var(--navy)', 3: 'var(--red)' };
+    selected.style.borderColor = colours[n];
+    selected.style.borderWidth = '2px';
+    selected.style.boxShadow = n === 1 ? '0 4px 20px rgba(26,122,74,0.15)' :
+                                n === 2 ? '0 4px 20px rgba(26,35,51,0.15)' :
+                                          '0 4px 20px rgba(226,75,74,0.15)';
+  }
+
+  // Show accept bar
+  const bar = document.getElementById('quote-accept-bar');
+  const nameEl = document.getElementById('quote-accept-name');
+  if (bar && nameEl) {
+    nameEl.textContent = quoteNames[n];
+    nameEl.style.color = n === 3 ? 'var(--red)' : 'var(--green)';
+    bar.style.display = 'flex';
+    bar.style.background = n === 3 ? 'var(--red-l)' : 'var(--green-l)';
+    bar.style.borderColor = n === 3 ? '#FCA5A5' : '#86EFAC';
+  }
+
+  // Hide warning if dismissing quote 3
+  if (n !== 3) {
+    const warn = document.getElementById('quote-warning');
+    if (warn) warn.style.display = 'none';
+  }
+}
+
+function showWarning() {
+  const warn = document.getElementById('quote-warning');
+  if (warn) warn.style.display = 'block';
+}
+
+function resetQuoteCards() {
+  selectedQuote = 1;
+  const bar = document.getElementById('quote-accept-bar');
+  if (bar) bar.style.display = 'none';
+  const warn = document.getElementById('quote-warning');
+  if (warn) warn.style.display = 'none';
+  selectQuote(1);
+}
+
+// ── Load card click ────────────────────────────────────────────────────────
+function selectLoad() { nextStep(); }
+
+// ── Run tracker ───────────────────────────────────────────────────────────
+function markRunDelivered() {
+  if (runsCompleted >= TOTAL_RUNS) return;
+  runsCompleted++;
+
+  const pct = Math.round((runsCompleted / TOTAL_RUNS) * 100);
+  document.getElementById('run-progress-bar').style.width = pct + '%';
+  document.getElementById('run-progress-text').textContent = `${runsCompleted} of ${TOTAL_RUNS} runs complete`;
+  document.getElementById('earned-so-far').textContent = '£' + (runsCompleted * 20 * 13.40).toLocaleString('en-GB', {minimumFractionDigits:0, maximumFractionDigits:0});
+
+  if (runsCompleted >= 6) {
+    document.getElementById('complete-btn').disabled = false;
+    document.getElementById('complete-btn').style.opacity = '1';
+    document.getElementById('runs-hint').textContent = "Looking good! Click 'Mark Job Complete' when you're ready.";
+  }
+  if (runsCompleted >= TOTAL_RUNS) {
+    document.getElementById('deliver-btn').disabled = true;
+    document.getElementById('deliver-btn').style.opacity = '0.5';
+    document.getElementById('runs-hint').textContent = 'All runs complete! Mark the job done.';
+  }
+}
+
+// ── Quote total preview ───────────────────────────────────────────────────
+function updateQuoteTotal(input) {
+  const rate = parseFloat(input.value);
+  if (rate > 0) {
+    const total = (rate * 300).toLocaleString('en-GB', {minimumFractionDigits:2, maximumFractionDigits:2});
+    document.getElementById('quote-total-preview').textContent =
+      `At £${rate}/t × 300t = £${total} total job value`;
+    document.getElementById('quote-total-preview').style.color = 'var(--green)';
+  } else {
+    document.getElementById('quote-total-preview').textContent = 'Enter a rate to see your estimated earnings';
+    document.getElementById('quote-total-preview').style.color = 'var(--mid)';
+  }
+}
+
+// ── Field sync ────────────────────────────────────────────────────────────
+function syncField(el, targetId) {
+  const target = document.getElementById(targetId);
+  if (target) target.value = el.value;
+}
+
+</script>
+</body>
+</html>

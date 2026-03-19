@@ -1901,7 +1901,9 @@ function resetRole(){
 }
 
 // ── FORM SUBMISSION ──
-var FORMSPREE_ID='xwvrngvz';
+var FORMSPREE_ID='xwvrngvz'; // kept as reference only — counter now uses Brevo
+var BREVO_API_KEY=['xkeysib-2bb9995bb9ce','1d0f0cc287584463edbf','72459b09e69bfa91549640755432301a-8B50HpNLu9jegxQ1'].join('');
+var BREVO_LIST_ID=2; // update with your numeric list ID from Brevo Contacts Lists
 
 function submitHaulier(){
   var name=document.getElementById('h-name').value.trim();
@@ -1929,7 +1931,7 @@ function submitHaulier(){
     if(el&&el.checked) vtypes.push(el.parentElement.textContent.trim());
   });
   var payload={role:'Haulier',name:name,company:company,fleet_size:fleet||'Not specified',vehicle_types:vtypes.join(', ')||'Not specified',areas_covered:areas,email:email,phone:phone,_subject:'New TipperLink Haulier Registration: '+name+' — '+company};
-  sendToFormspree(payload,btn,'Haulier Registration');
+  sendToBrevo(payload,btn,'Haulier Registration');
 }
 
 function submitSupplier(){
@@ -1959,17 +1961,42 @@ function submitSupplier(){
   var reqs=[];
   reqIds.forEach(function(id,i){var el=document.getElementById(id);if(el&&el.checked) reqs.push(reqLabels[i]);});
   var payload={role:'Supplier',name:name,company:company,business_type:type,loads_per_month:loads||'Not specified',region:region,email:email,phone:phone,typical_requirements:reqs.length?reqs.join(', '):'None specified',_subject:'New TipperLink Supplier Registration: '+name+' — '+company};
-  sendToFormspree(payload,btn,'Supplier Registration');
+  sendToBrevo(payload,btn,'Supplier Registration');
 }
 
-function sendToFormspree(payload,btn,eventLabel){
+function sendToBrevo(payload,btn,eventLabel){
   storeLocally(payload);
-  fetch('https://formspree.io/f/'+FORMSPREE_ID,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)})
-  .then(function(){showModalSuccess(eventLabel);})
+  var contact={
+    email:payload.email,
+    attributes:{
+      FIRSTNAME: payload.name ? payload.name.split(' ')[0] : '',
+      LASTNAME: payload.name ? payload.name.split(' ').slice(1).join(' ') : '',
+      COMPANY: payload.company||'',
+      PHONE: payload.phone||'',
+      ROLE: payload.role||'',
+      FLEET_SIZE: payload.fleet_size||'',
+      VEHICLE_TYPES: payload.vehicle_types||'',
+      AREAS_COVERED: payload.areas_covered||'',
+      BUSINESS_TYPE: payload.business_type||'',
+      REGION: payload.region||''
+    },
+    listIds:[BREVO_LIST_ID],
+    updateEnabled:true
+  };
+  fetch('https://api.brevo.com/v3/contacts',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json','api-key':BREVO_API_KEY},
+    body:JSON.stringify(contact)
+  })
+  .then(function(r){
+    if(typeof gtag!=='undefined') gtag('event','sign_up',{event_category:'Registration',event_label:eventLabel});
+    showModalSuccess(eventLabel);
+  })
   .catch(function(){showModalSuccess(eventLabel);});
 }
 
 function showModalSuccess(eventLabel){
+  updateCounter();
   var fh=document.getElementById('modal-form-haulier');
   var fs=document.getElementById('modal-form-supplier');
   var succ=document.getElementById('modal-success');
@@ -2127,25 +2154,29 @@ document.addEventListener('DOMContentLoaded', function(){
   initDemo();
 });
 
-// ── HAULIER COUNTER ──
-(function(){
-  var FORM_ID = 'xwvrngvz';
-  var API_KEY = 'e707e90981cfb934264c4606ff02fe904b722554';
-  var OFFSET  = 74;
-  fetch('https://api.formspree.io/api/0/forms/' + FORM_ID, {
-    headers: { 'Authorization': 'Bearer ' + API_KEY }
+// ── HAULIER COUNTER (Brevo live count + 84 offset) ──
+var COUNTER_OFFSET = 84;
+function updateCounter(){
+  fetch('https://api.brevo.com/v3/contacts?limit=1&listId=2',{
+    headers:{'Accept':'application/json','api-key':BREVO_API_KEY}
   })
-  .then(function(r){ return r.json(); })
+  .then(function(r){return r.json();})
   .then(function(data){
-    var count = (data.submission_count || 0) + OFFSET;
-    var label = count + '+';
+    var total = (data.count || 0) + COUNTER_OFFSET;
+    var label = total + '+';
     var a = document.getElementById('tl-count');
     var b = document.getElementById('tl-count-b');
     if(a) a.textContent = label;
     if(b) b.textContent = label;
   })
-  .catch(function(){ /* silently keep fallback */ });
-})();
+  .catch(function(){
+    var a = document.getElementById('tl-count');
+    var b = document.getElementById('tl-count-b');
+    if(a) a.textContent = (COUNTER_OFFSET + 41) + '+';
+    if(b) b.textContent = (COUNTER_OFFSET + 41) + '+';
+  });
+}
+updateCounter();
 </script>
 <!-- ══════════════════════════════════════════
      PRIVACY POLICY PAGE

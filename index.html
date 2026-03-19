@@ -467,8 +467,8 @@ footer{background:var(--navy);border-top:3px solid var(--gold);padding:52px 48px
 
 /* ── FADE UP ── */
 .fu{opacity:1;transform:translateY(0);transition:opacity .6s,transform .6s}
-.fu.animate{opacity:0;transform:translateY(20px)}
-.fu.animate.vis{opacity:1;transform:translateY(0)}
+.fu.ready{opacity:0;transform:translateY(20px)}
+.fu.ready.vis{opacity:1;transform:translateY(0)}
 
 /* ── RESPONSIVE ── */
 /* ── HAMBURGER BUTTON ── */
@@ -492,30 +492,7 @@ footer{background:var(--navy);border-top:3px solid var(--gold);padding:52px 48px
   .how-grid{grid-template-columns:repeat(2,1fr)}
   [style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:repeat(2,1fr)}
 }
-@media(max-width:900px){
-  nav{padding:0 20px}
-  .nav-links{display:none}
-  .nav-cta{display:none}
-  .hamburger{display:flex}
-  .mobile-menu{display:flex}
-  .hero{padding:100px 24px 60px;min-height:auto}
-  .hero-inner{grid-template-columns:1fr}
-  .hero-right{display:none}
-  .how-grid,.why-panels,.rating-grid,.mp-section-inner,.dash-grid,.kpi-grid{grid-template-columns:1fr}
-  [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr !important}
-  .how-section,.why-section,.rating-section,.testimonial-section,.cta-section{padding:48px 24px}
-  .product-nav{padding:0 20px;overflow-x:auto}
-  .product-section{padding:36px 20px}
-  .contact-inner{padding:40px 20px}
-  .form-row2{grid-template-columns:1fr}
-  .cinfo{grid-template-columns:1fr}
-  footer{padding:40px 20px 24px}
-  .footer-cols{grid-template-columns:1fr 1fr;gap:28px}
-  .footer-brand{grid-column:1/-1}
-  .mp-notify{flex-direction:column}
-  .mp-notify-form{flex-direction:column;width:100%}
-  .mp-notify-input{width:100%}
-  .mp-how-grid{grid-template-columns:1fr}
+
 }
 </style>
 </head>
@@ -546,7 +523,7 @@ footer{background:var(--navy);border-top:3px solid var(--gold);padding:52px 48px
   </div>
   <div class="nav-links">
     <a onclick="showPage('home')" id="nav-home">Home</a>
-    <a onclick="openDemoPicker()" id="nav-demo">Try the Demo</a>
+    <a onclick="window.location.href='https://www.tipperlink.com/demo'" id="nav-demo">Try the Demo</a>
     <a onclick="showProductPage('features')" id="nav-product">How It Works</a>
 
     <a onclick="showPage('contact')" id="nav-contact">Contact</a>
@@ -560,7 +537,7 @@ footer{background:var(--navy);border-top:3px solid var(--gold);padding:52px 48px
 <!-- ── MOBILE DRAWER ── -->
 <div class="mobile-menu" id="mobile-menu">
   <a onclick="closeMobileMenu();showPage('home')">Home</a>
-  <a onclick="closeMobileMenu();openDemoPicker()">Try the Demo</a>
+  <a onclick="closeMobileMenu();window.location.href='https://www.tipperlink.com/demo'">Try the Demo</a>
   <a onclick="closeMobileMenu();showProductPage('features')">How It Works</a>
 
   <a onclick="closeMobileMenu();showPage('contact')">Contact</a>
@@ -584,9 +561,11 @@ footer{background:var(--navy);border-top:3px solid var(--gold);padding:52px 48px
       <h1>The UK's First Exchange<br><em>Built for Tippers<br>&amp; Grabs Only.</em></h1>
       <p class="hero-sub">Every other platform buries tipper work in a haystack of curtainsiders. TipperLink is built <strong style="color:var(--gold)">exclusively</strong> for tipper and grab haulage — every load, every member, every rating is relevant to you.</p>
       <div class="hero-actions">
-        <button class="btn-primary" onclick="openDemoPicker()">See It in Action →</button>
+        <button class="btn-primary" onclick="window.location.href='https://www.tipperlink.com/demo'">See It in Action →</button>
         <button class="btn-outline" onclick="openModal()">Register Your Interest →</button>
       </div>
+
+
       <hr class="hero-divider"/>
       <div class="hero-props">
         <div class="hero-prop">
@@ -644,49 +623,17 @@ footer{background:var(--navy);border-top:3px solid var(--gold);padding:52px 48px
   </div>
 </section>
 
-<!-- ── HOW IT WORKS ── -->
-<section class="how-section" id="how">
-  <div class="how-inner">
-    <p class="sec-label">How It Works</p>
-    <h2 class="sec-title">Post it. Quote it. Done.</h2>
-    <p class="sec-sub">From load posted to haulier confirmed in minutes — not phone calls, not spreadsheets, not WhatsApp chains.</p>
-    <div class="how-grid">
-      <div class="how-card fu">
-        <div class="how-num">01</div>
-        <div class="how-icon">📋</div>
-        <h3 class="how-title">Post Your Load</h3>
-        <p class="how-text">Choose your vehicle type — artic, 8-wheel, 4-wheel, grab or walking floor. Tonnage calculates automatically. Live on the exchange in seconds.</p>
-      </div>
-      <div class="how-card fu" style="transition-delay:.1s">
-        <div class="how-num">02</div>
-        <div class="how-icon">💬</div>
-        <h3 class="how-title">Competing Quotes Come In</h3>
-        <p class="how-text">Matched hauliers submit blind quotes — rates are private, not visible to competitors. Completion rate and star rating attach to every quote automatically.</p>
-      </div>
-      <div class="how-card fu" style="transition-delay:.2s">
-        <div class="how-num">03</div>
-        <div class="how-icon">✅</div>
-        <h3 class="how-title">Check Ratings &amp; Accept</h3>
-        <p class="how-text">Review quotes alongside each haulier's verified score. Accept the best one — confirmed instantly, others automatically declined. Job done.</p>
-      </div>
-    </div>
-    <div style="text-align:center;margin-top:40px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-      <button class="btn-primary" onclick="openDemoPicker()">See It in Action →</button>
-      <button class="btn-outline" style="color:var(--navy);border-color:rgba(26,35,51,0.25);" onclick="openModal()">Register Your Interest →</button>
-    </div>
-  </div>
-</section>
 
 <!-- ── RATINGS ── -->
 <section class="rating-section" id="ratings">
   <div class="rating-grid">
-    <div class="rating-content fu">
+    <div class="rating-content">
       <p class="sec-label sec-label--left">Haulier Reliability</p>
       <h2>Know who you're hiring<br>before you say yes</h2>
       <p>Every haulier on TipperLink has a public score built from verified job history — completion rate, response time and customer rating. It's on every quote, automatically. There's no way to game it.</p>
       <p style="margin-top:10px">The rating system makes the real cost visible before you commit.</p>
     </div>
-    <div class="fu" style="transition-delay:.15s">
+    <div class="style="transition-delay:.15s"">
       <div class="scard-demo">
         <h4>Live Reliability Scores — Example</h4>
         <div class="shc"><div><div class="shc-name">Peak District Haulage Ltd</div><div class="shc-meta">Sheffield · 87 loads · 8-wheel &amp; artic fleet</div><span class="sbadge sb-elite">⭐ Elite Haulier</span></div><div class="shc-right"><div class="shc-stars">★★★★★</div><div style="font-size:12px;font-weight:800;color:var(--navy)">4.9 / 5.0</div><div class="shc-stats">98% completion</div></div></div>
@@ -705,7 +652,7 @@ footer{background:var(--navy);border-top:3px solid var(--gold);padding:52px 48px
     <h2 class="sec-title">Two problems. One platform.</h2>
     <p class="sec-sub">Hauliers waste miles running empty. Suppliers waste time ringing round for quotes. TipperLink fixes both — with ratings that hold everyone accountable.</p>
     <div class="why-panels">
-      <div class="why-panel haulier fu">
+      <div class="why-panel haulier">
         <div class="why-panel-icon">🚛</div>
         <div class="why-panel-tag">For Hauliers</div>
         <h3 class="why-panel-title">Grow your business.<br>Fill every run.</h3>
@@ -718,7 +665,7 @@ footer{background:var(--navy);border-top:3px solid var(--gold);padding:52px 48px
         </div>
         <div class="why-panel-cta"><button class="btn-primary" onclick="openModal()">Register as a Haulier →</button></div>
       </div>
-      <div class="why-panel supplier fu" style="transition-delay:.08s">
+      <div class="why-panel supplier" style="transition-delay:.08s">
         <div class="why-panel-icon">⛏️</div>
         <div class="why-panel-tag">For Suppliers &amp; Customers</div>
         <h3 class="why-panel-title">Get the best haulier<br>for every job.</h3>
@@ -752,6 +699,45 @@ footer{background:var(--navy);border-top:3px solid var(--gold);padding:52px 48px
   </div>
 </section>
 
+
+
+<!-- ── MEMBERSHIP INCLUDES ── -->
+<section style="background:var(--off);padding:64px 48px;border-top:1px solid var(--border)">
+  <div style="max-width:760px;margin:0 auto;text-align:center">
+    <p class="sec-label">Haulier Membership</p>
+    <h2 class="sec-title" style="margin-bottom:10px">TipperLink membership includes:</h2>
+    <p class="sec-sub" style="margin-bottom:40px">Everything you need to find work, build your reputation, and run more efficiently — from day one.</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:left">
+
+      <div style="background:var(--white);border:1.5px solid var(--border);border-radius:14px;padding:22px 20px">
+        <div style="font-size:24px;margin-bottom:10px">📋</div>
+        <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--navy);margin-bottom:6px">Access to loads</div>
+        <p style="font-size:13px;color:var(--mid);line-height:1.6">Live load board matched exclusively to your vehicle types and operating areas. Every load relevant to you.</p>
+      </div>
+
+      <div style="background:var(--white);border:1.5px solid var(--border);border-radius:14px;padding:22px 20px">
+        <div style="font-size:24px;margin-bottom:10px">⭐</div>
+        <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--navy);margin-bottom:6px">Access to verified hauliers</div>
+        <p style="font-size:13px;color:var(--mid);line-height:1.6">Rated, verified operators with completion rates and job history on every quote. Know who you're hiring before you commit.</p>
+      </div>
+
+      <div style="background:var(--white);border:1.5px solid rgba(245,196,0,0.5);border-radius:14px;padding:22px 20px;position:relative">
+        <div style="position:absolute;top:-10px;right:14px;background:var(--gold);color:var(--navy);font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;font-family:'DM Sans',sans-serif">NEW</div>
+        <div style="font-size:24px;margin-bottom:10px">🎁</div>
+        <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--navy);margin-bottom:6px">Exclusive cost-saving deals</div>
+        <p style="font-size:13px;color:var(--mid);line-height:1.6;margin-bottom:10px">Pre-negotiated member discounts with leading UK suppliers — fuel cards, fleet insurance, tyres, breakdown cover and more.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:5px">
+          <span style="background:rgba(245,196,0,0.1);border:1px solid rgba(245,196,0,0.3);border-radius:20px;padding:2px 9px;font-size:11px;color:var(--navy);font-family:'DM Sans',sans-serif">⛽ Fuel cards</span>
+          <span style="background:rgba(245,196,0,0.1);border:1px solid rgba(245,196,0,0.3);border-radius:20px;padding:2px 9px;font-size:11px;color:var(--navy);font-family:'DM Sans',sans-serif">🛡️ Insurance</span>
+          <span style="background:rgba(245,196,0,0.1);border:1px solid rgba(245,196,0,0.3);border-radius:20px;padding:2px 9px;font-size:11px;color:var(--navy);font-family:'DM Sans',sans-serif">🔧 Tyres</span>
+          <span style="background:rgba(245,196,0,0.1);border:1px solid rgba(245,196,0,0.3);border-radius:20px;padding:2px 9px;font-size:11px;color:var(--navy);font-family:'DM Sans',sans-serif">🚨 Breakdown</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ── CTA ── -->
 <section class="cta-section">
   <h2>Launching May 2026.<br>Get in first.</h2>
@@ -763,7 +749,7 @@ footer{background:var(--navy);border-top:3px solid var(--gold);padding:52px 48px
     </div>
   </div>
   <div class="cta-btns">
-    <button class="btn-navy" onclick="openDemoPicker()">See It in Action →</button>
+    <button class="btn-navy" onclick="window.location.href='https://www.tipperlink.com/demo'">See It in Action →</button>
     <button class="btn-ghost" onclick="openModal()">Register Your Interest →</button>
   </div>
   <p class="cta-note">UK tipper &amp; grab haulage exchange · Built exclusively for the industry</p>
@@ -1500,7 +1486,7 @@ footer{background:var(--navy);border-top:3px solid var(--gold);padding:52px 48px
         <div style="font-size:13px;color:var(--soft)">Launching May 2026 — be first on the platform.</div>
       </div>
       <div style="display:flex;gap:12px;flex-wrap:wrap">
-        <button onclick="openDemoPicker()" class="btn-outline" style="font-size:14px;padding:12px 24px">Try the Demo →</button>
+        <button onclick="window.location.href='https://www.tipperlink.com/demo'" class="btn-outline" style="font-size:14px;padding:12px 24px">Try the Demo →</button>
         <button onclick="openModal()" class="btn-primary" style="font-size:14px;padding:12px 24px">Register Your Interest →</button>
       </div>
     </div>
@@ -1682,6 +1668,26 @@ footer{background:var(--navy);border-top:3px solid var(--gold);padding:52px 48px
         </div>
       </div>
 
+      <!-- Registered details card -->
+      <div style="background:#fff;border-radius:14px;border:1.5px solid var(--border);padding:22px;margin-bottom:16px">
+        <div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--navy);margin-bottom:10px">📋 Company Details</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div>
+            <div style="font-size:11px;font-weight:600;color:var(--mid);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:3px">Registered Name</div>
+            <div style="font-size:13px;color:var(--navy);font-weight:600">TipperLink Ltd</div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:600;color:var(--mid);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:3px">Company Number</div>
+            <div style="font-size:13px;color:var(--navy);font-weight:600">17102964</div>
+          </div>
+
+          <div style="grid-column:1/-1">
+            <div style="font-size:11px;font-weight:600;color:var(--mid);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:3px">Registered Address</div>
+            <div style="font-size:13px;color:var(--navy)">Suite A, 82 James Carter Road, Mildenhall, Bury St. Edmunds, England, IP28 7DE</div>
+          </div>
+        </div>
+      </div>
+
       <!-- Register CTA -->
       <div style="background:var(--navy);border-radius:16px;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;border:1px solid rgba(245,196,0,0.15)">
         <div>
@@ -1692,7 +1698,7 @@ footer{background:var(--navy);border-top:3px solid var(--gold);padding:52px 48px
       </div>
 
       <!-- Legal note -->
-      <p style="font-size:12px;color:var(--soft);margin-top:28px;line-height:1.6">TipperLink · Registered in England &amp; Wales · <a href="mailto:hello@tipperlink.com" style="color:var(--mid);text-decoration:none">hello@tipperlink.com</a> · <a onclick="showPage('privacy')" style="color:var(--mid);cursor:pointer;text-decoration:none">Privacy Policy</a> · <a onclick="showPage('terms')" style="color:var(--mid);cursor:pointer;text-decoration:none">Terms of Use</a></p>
+      <p style="font-size:12px;color:var(--soft);margin-top:28px;line-height:1.6">TipperLink Ltd · Company No. 17102964 · Registered in England &amp; Wales<br>Suite A, 82 James Carter Road, Mildenhall, Bury St. Edmunds, IP28 7DE · <a href="mailto:hello@tipperlink.com" style="color:var(--mid);text-decoration:none">hello@tipperlink.com</a> · <a onclick="showPage('privacy')" style="color:var(--mid);cursor:pointer;text-decoration:none">Privacy Policy</a> · <a onclick="showPage('terms')" style="color:var(--mid);cursor:pointer;text-decoration:none">Terms of Use</a></p>
 
     </div>
   </div>
@@ -1731,7 +1737,8 @@ footer{background:var(--navy);border-top:3px solid var(--gold);padding:52px 48px
       <!-- Platform column -->
       <div class="footer-col">
         <h4>The Platform</h4>
-        <a onclick="openDemoPicker()">See It in Action</a>
+        <a onclick="window.location.href='https://www.tipperlink.com/demo'">See It in Action</a>
+        
         <a onclick="showPage('product');showProductTab('features')">Features &amp; How It Works</a>
         <a onclick="showPage('product');showProductTab('performance')">Performance Metrics</a>
         <a onclick="showPage('product');showProductTab('marketplace')">Aggregate Marketplace</a>
@@ -1751,13 +1758,22 @@ footer{background:var(--navy);border-top:3px solid var(--gold);padding:52px 48px
         <a onclick="showPage('privacy')">Privacy Policy</a>
         <a onclick="showPage('terms')">Terms of Use</a>
         <a href="mailto:hello@tipperlink.com">hello@tipperlink.com</a>
+        <div style="margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.06)">
+          <div style="font-size:12px;color:var(--soft2);line-height:1.7">
+            TipperLink Ltd<br>
+            Co. No. 17102964<br>
+            Suite A, 82 James Carter Road<br>
+            Mildenhall, Bury St. Edmunds<br>
+            IP28 7DE
+          </div>
+        </div>
       </div>
 
     </div>
 
     <!-- Bottom bar -->
     <div class="footer-bottom">
-      <p>© 2026 TipperLink · Registered in England &amp; Wales · Launching May 2026</p>
+      <p>© 2026 TipperLink Ltd · Company No. 17102964 · Registered in England &amp; Wales · Launching May 2026</p>
       <div style="display:flex;gap:20px">
         <a onclick="showPage('privacy')">Privacy</a>
         <a onclick="showPage('terms')">Terms</a>
@@ -2059,7 +2075,10 @@ function initDemo(){
 
 // ── FADE UP ──
 var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting) e.target.classList.add('vis');});},{threshold:0.12});
-document.querySelectorAll('.fu').forEach(function(el){el.classList.add('animate');obs.observe(el);});
+document.querySelectorAll('.fu').forEach(function(el){
+  var rect=el.getBoundingClientRect();
+  if(rect.top>window.innerHeight){el.classList.add('ready');obs.observe(el);}
+});
 
 // ── GA4 SCROLL DEPTH ──
 var scrollMilestones={25:false,50:false,75:false,90:false};
@@ -2112,7 +2131,7 @@ document.addEventListener('DOMContentLoaded', function(){
 (function(){
   var FORM_ID = 'xwvrngvz';
   var API_KEY = 'e707e90981cfb934264c4606ff02fe904b722554';
-  var OFFSET  = 50;
+  var OFFSET  = 74;
   fetch('https://api.formspree.io/api/0/forms/' + FORM_ID, {
     headers: { 'Authorization': 'Bearer ' + API_KEY }
   })
@@ -2144,7 +2163,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
         <div>
           <h2 style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--navy);margin-bottom:10px">1. Who We Are</h2>
-          <p style="font-size:15px;color:var(--body-text);line-height:1.75">TipperLink is a UK-registered company operating the TipperLink digital exchange platform at tipperlink.com. We are the data controller for the personal information we collect through this website and platform. If you have any questions about this policy, please contact us at <strong><a href="mailto:hello@tipperlink.com" style="color:var(--navy)">hello@tipperlink.com</a></strong>.</p>
+          <p style="font-size:15px;color:var(--body-text);line-height:1.75">TipperLink Ltd (Company No. 17102964, registered in England &amp; Wales) operates the TipperLink digital exchange platform at tipperlink.com. Registered address: Suite A, 82 James Carter Road, Mildenhall, Bury St. Edmunds, England, IP28 7DE. We are the data controller for the personal information we collect through this website and platform. If you have any questions about this policy, please contact us at <strong><a href="mailto:hello@tipperlink.com" style="color:var(--navy)">hello@tipperlink.com</a></strong>.</p>
         </div>
 
         <div>
@@ -2220,7 +2239,7 @@ document.addEventListener('DOMContentLoaded', function(){
         </div>
 
         <div style="background:#f8f9fa;border-radius:10px;padding:20px 24px;border-left:4px solid var(--navy)">
-          <p style="font-size:14px;color:var(--body-text);line-height:1.65"><strong>Contact:</strong> TipperLink · <a href="mailto:hello@tipperlink.com" style="color:var(--navy)">hello@tipperlink.com</a><br>Registered in England &amp; Wales · tipperlink.com</p>
+          <p style="font-size:14px;color:var(--body-text);line-height:1.65"><strong>Contact:</strong> TipperLink Ltd · Company No. 17102964 · Suite A, 82 James Carter Road, Mildenhall, Bury St. Edmunds, IP28 7DE · <a href="mailto:hello@tipperlink.com" style="color:var(--navy)">hello@tipperlink.com</a><br>Registered in England &amp; Wales · tipperlink.com</p>
         </div>
 
       </div>
@@ -2308,4 +2327,26 @@ document.addEventListener('DOMContentLoaded', function(){
         </div>
 
         <div>
-          <h2 style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--
+          <h2 style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--navy);margin-bottom:10px">10. Changes to These Terms</h2>
+          <p style="font-size:15px;color:var(--body-text);line-height:1.75">We may update these terms from time to time. We will notify registered members of any material changes by email at least 30 days before they take effect. Continued use of TipperLink after that date constitutes acceptance of the updated terms.</p>
+        </div>
+
+        <div>
+          <h2 style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--navy);margin-bottom:10px">11. Governing Law</h2>
+          <p style="font-size:15px;color:var(--body-text);line-height:1.75">These terms are governed by the laws of England and Wales. Any disputes will be subject to the exclusive jurisdiction of the courts of England and Wales.</p>
+        </div>
+
+        <div style="margin-top:32px;padding:20px 24px;background:var(--off);border-radius:12px;border:1px solid var(--border)">
+          <p style="font-size:14px;color:var(--body-text);line-height:1.65"><strong>Contact:</strong> TipperLink Ltd · Company No. 17102964 · Suite A, 82 James Carter Road, Mildenhall, Bury St. Edmunds, IP28 7DE · <a href="mailto:hello@tipperlink.com" style="color:var(--navy)">hello@tipperlink.com</a><br>Registered in England &amp; Wales · tipperlink.com</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+
+</body>
+</html>

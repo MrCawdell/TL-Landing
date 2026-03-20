@@ -46,6 +46,22 @@
 </script>
 
 <!-- ── GOOGLE ANALYTICS 4 ── -->
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','2646197289091444');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2646197289091444&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel -->
+
 <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-F5W1FGZ105"></script>
 <script>
@@ -174,10 +190,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--navy);borde
 .why-benefit-ico{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;margin-top:1px}
 .why-panel.haulier .why-benefit-ico{background:rgba(245,196,0,0.1);border:1px solid rgba(245,196,0,0.2)}
 .why-panel.supplier .why-benefit-ico{background:var(--off);border:1px solid var(--border)}
-.why-benefit-text strong{font-size:13px;font-weight:700;display:block;margin-bottom:1px}
+.why-benefit-text strong{font-size:13px;font-weight:700;display:block;margin-bottom:3px}
 .why-panel.haulier .why-benefit-text strong{color:var(--white)}
 .why-panel.supplier .why-benefit-text strong{color:var(--navy)}
-.why-benefit-text span{font-size:12px;line-height:1.5}
+.why-benefit-text span{font-size:12px;line-height:1.55;display:block}
 .why-panel.haulier .why-benefit-text span{color:var(--soft2)}
 .why-panel.supplier .why-benefit-text span{color:var(--mid)}
 .why-panel-cta{margin-top:18px}
@@ -658,10 +674,10 @@ footer{background:var(--navy);border-top:3px solid var(--gold);padding:52px 48px
         <h3 class="why-panel-title">Grow your business.<br>Fill every run.</h3>
         <p class="why-panel-sub">Stop relying on one or two customers. TipperLink gives you a live feed of loads that match your vehicle — so you're always in the right place at the right time.</p>
         <div class="why-benefits">
-          <div class="why-benefit"><div class="why-benefit-ico">🔔</div><div class="why-benefit-text"><strong>Instant load alerts in your area</strong></div></div>
-          <div class="why-benefit"><div class="why-benefit-ico">📍</div><div class="why-benefit-text"><strong>Cover backloads automatically</strong></div></div>
-          <div class="why-benefit"><div class="why-benefit-ico">⭐</div><div class="why-benefit-text"><strong>Your rating wins you work</strong></div></div>
-          <div class="why-benefit"><div class="why-benefit-ico">💷</div><div class="why-benefit-text"><strong>Keep more of what you earn</strong></div></div>
+          <div class="why-benefit"><div class="why-benefit-ico">🔔</div><div class="why-benefit-text"><strong>Instant load alerts in your area</strong><span>Notified the moment a matching load is posted — before anyone else sees it</span></div></div>
+          <div class="why-benefit"><div class="why-benefit-ico">📍</div><div class="why-benefit-text"><strong>Cover backloads automatically</strong><span>Find a return load before you finish your first run — cut dead mileage for good</span></div></div>
+          <div class="why-benefit"><div class="why-benefit-ico">⭐</div><div class="why-benefit-text"><strong>Your rating wins you work</strong><span>The stronger your completion score, the more customers choose you over cheaper rivals</span></div></div>
+          <div class="why-benefit"><div class="why-benefit-ico">💷</div><div class="why-benefit-text"><strong>Keep more of what you earn</strong><span>No agency cuts, no middlemen — quote direct, get paid direct</span></div></div>
         </div>
         <div class="why-panel-cta"><button class="btn-primary" onclick="openModal()">Register as a Haulier →</button></div>
       </div>
@@ -671,10 +687,10 @@ footer{background:var(--navy);border-top:3px solid var(--gold);padding:52px 48px
         <h3 class="why-panel-title">Get the best haulier<br>for every job.</h3>
         <p class="why-panel-sub">Post your load, compare rated hauliers side by side, and accept the best one. No ringing round, no guesswork — just the right haulier for the job.</p>
         <div class="why-benefits">
-          <div class="why-benefit"><div class="why-benefit-ico">📊</div><div class="why-benefit-text"><strong>Get competing quotes in minutes</strong></div></div>
-          <div class="why-benefit"><div class="why-benefit-ico">⚡</div><div class="why-benefit-text"><strong>Extra vehicles, same day</strong></div></div>
-          <div class="why-benefit"><div class="why-benefit-ico">✅</div><div class="why-benefit-text"><strong>See the record before you commit</strong></div></div>
-          <div class="why-benefit"><div class="why-benefit-ico">🔍</div><div class="why-benefit-text"><strong>No more chasing for updates</strong></div></div>
+          <div class="why-benefit"><div class="why-benefit-ico">📊</div><div class="why-benefit-text"><strong>Competing quotes in minutes</strong><span>Matched hauliers in your area respond fast — with their full reliability record attached to every quote</span></div></div>
+          <div class="why-benefit"><div class="why-benefit-ico">✅</div><div class="why-benefit-text"><strong>See reliability before you commit</strong><span>Completion rate, no-shows and star rating visible on every quote — no surprises on the day</span></div></div>
+          <div class="why-benefit"><div class="why-benefit-ico">📄</div><div class="why-benefit-text"><strong>Invoice generated automatically</strong><span>The moment the last run is logged, a VAT-ready invoice lands in your inbox — no chasing</span></div></div>
+          <div class="why-benefit"><div class="why-benefit-ico">🔍</div><div class="why-benefit-text"><strong>Watch every run live</strong><span>Real-time run tracking from your supplier dashboard — always know where your job stands</span></div></div>
         </div>
         <div class="why-panel-cta"><a onclick="openModal()">Post a Load →</a></div>
       </div>
@@ -1997,6 +2013,7 @@ function sendToBrevo(payload,btn,eventLabel){
 
 function showModalSuccess(eventLabel){
   updateCounter();
+  if(typeof fbq!=='undefined') fbq('track','Lead');
   var fh=document.getElementById('modal-form-haulier');
   var fs=document.getElementById('modal-form-supplier');
   var succ=document.getElementById('modal-success');

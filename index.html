@@ -504,9 +504,86 @@ footer{background:var(--navy);border-top:3px solid var(--gold);padding:52px 48px
 .mobile-menu .mob-cta{display:block;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy);border:none;border-radius:10px;padding:16px;font-weight:700;font-size:16px;cursor:pointer;font-family:'DM Sans',sans-serif;text-align:center;margin-top:20px;width:100%}
 .mob-divider{height:1px;background:rgba(255,255,255,0.07);margin:8px 0}
 
+/* ── TABLET (max 1100px) ── */
 @media(max-width:1100px){
   .how-grid{grid-template-columns:repeat(2,1fr)}
-  [style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:repeat(2,1fr)}
+  .footer-cols{grid-template-columns:1fr 1fr;gap:28px}
+  .footer-brand{grid-column:1/-1}
+}
+
+/* ── MOBILE (max 768px) ── */
+@media(max-width:768px){
+
+  /* NAV */
+  nav{padding:0 20px;height:60px}
+  .nav-links{display:none}
+  .nav-cta{display:none}
+  .hamburger{display:flex}
+  .logo-text strong{font-size:16px}
+  .logo-text span{display:none}
+  .logo-icon{width:38px;height:32px}
+
+  /* HERO */
+  .hero{padding:80px 20px 48px}
+  .hero-inner{grid-template-columns:1fr;gap:32px}
+  .hero-right{display:none}
+  h1{font-size:clamp(30px,8vw,44px)}
+  .hero-sub{font-size:15px}
+  .hero-actions{flex-direction:column;gap:10px}
+  .hero-actions .btn-primary,.hero-actions .btn-outline{width:100%;text-align:center;justify-content:center}
+  .hero-props{grid-template-columns:1fr;gap:10px}
+  .hero-prop-desc{display:none}
+  .hero-badge{font-size:11px;padding:5px 12px}
+
+  /* SECTIONS */
+  .how-section,.why-section,.rating-section,.testimonial-section,.cta-section{padding:48px 20px}
+  .how-grid{grid-template-columns:1fr;gap:14px}
+  .rating-grid{grid-template-columns:1fr;gap:24px}
+  .why-panels{grid-template-columns:1fr;gap:16px}
+  .why-panel{padding:22px 18px}
+  .why-section .sec-title,.how-section .sec-title{font-size:clamp(22px,6vw,32px)}
+
+  /* CTA */
+  .cta-section h2{font-size:clamp(24px,7vw,36px)}
+  .cta-btns{flex-direction:column;align-items:stretch;max-width:360px;margin-left:auto;margin-right:auto}
+  .cta-btns .btn-navy,.cta-btns .btn-outline{width:100%;text-align:center;justify-content:center;box-sizing:border-box}
+
+  /* MEMBERSHIP INCLUDES */
+  [style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:1fr!important}
+
+  /* FOOTER */
+  footer{padding:40px 20px 24px}
+  .footer-cols{grid-template-columns:1fr;gap:24px}
+  .footer-brand{grid-column:auto}
+  .footer-bottom{flex-direction:column;gap:12px;text-align:center}
+  .footer-bottom div{flex-wrap:wrap;justify-content:center}
+  .footer-col div[style*="margin-top:14px"]{margin-top:10px!important}
+
+  /* MODALS */
+  .modal-box{padding:28px 20px;margin:16px}
+  .modal-tabs{gap:6px}
+  .modal-tab{font-size:13px;padding:8px 12px}
+
+  /* PRODUCT PAGE TABS */
+  .product-nav{padding:0 16px;gap:0;overflow-x:auto}
+  .ptab{font-size:12px;padding:14px 12px;white-space:nowrap;min-width:auto}
+
+  /* INNER PAGES */
+  .pt-nav>div{padding:48px 20px!important}
+}
+
+/* ── SMALL MOBILE (max 480px) ── */
+@media(max-width:480px){
+  nav{padding:0 16px}
+  .hero{padding:72px 16px 40px}
+  h1{font-size:28px}
+  .hero-actions .btn-primary,.hero-actions .btn-outline{font-size:14px;padding:13px 20px}
+  .how-section,.why-section,.rating-section,.testimonial-section,.cta-section{padding:40px 16px}
+  footer{padding:32px 16px 20px}
+  .scard-demo{padding:12px}
+  .shc{padding:8px 10px}
+  blockquote{font-size:clamp(17px,5vw,24px)!important}
+  .cta-section p{font-size:15px}
 }
 
 }

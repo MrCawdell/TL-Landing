@@ -518,6 +518,7 @@ footer{background:var(--navy);border-top:3px solid var(--gold);padding:52px 48px
   nav{padding:0 20px;height:60px}
   .nav-links{display:none}
   .nav-cta{display:none}
+  .nav-sign-in{display:none}
   .hamburger{display:flex}
   .logo-text strong{font-size:16px}
   .logo-text span{display:none}
@@ -621,8 +622,10 @@ footer{background:var(--navy);border-top:3px solid var(--gold);padding:52px 48px
 
     <a onclick="showPage('contact')" id="nav-contact">Contact</a>
   </div>
- <a href="https://app.tipperlink.com/login" style="color:var(--nav-text);text-decoration:none;font-size:14px;font-weight:500;margin-right:8px">Sign in</a>
- <a href="https://app.tipperlink.com/register" class="nav-cta" style="text-decoration:none">Sign Up Free →</a>
+  <div style="display:flex;align-items:center;gap:12px">
+    <a href="https://app.tipperlink.com/login" class="nav-sign-in" style="color:var(--nav-text);text-decoration:none;font-size:14px;font-weight:500">Sign in</a>
+    <a href="https://app.tipperlink.com/register" class="nav-cta" style="text-decoration:none">Sign Up →</a>
+  </div>
   <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -638,7 +641,7 @@ footer{background:var(--navy);border-top:3px solid var(--gold);padding:52px 48px
   <div class="mob-divider"></div>
   <a onclick="closeMobileMenu();showPage('privacy')">Privacy Policy</a>
   <a onclick="closeMobileMenu();showPage('terms')">Terms of Use</a>
-  <button class="mob-cta" onclick="closeMobileMenu();openModal()">Register Your Interest →</button>
+  <a href="https://app.tipperlink.com/register" class="mob-cta" style="text-decoration:none;display:block;text-align:center" onclick="closeMobileMenu()">Sign Up Free →</a>
 </div>
 
 <!-- ══════════════════════════════════════════

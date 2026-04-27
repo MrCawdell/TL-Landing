@@ -2262,28 +2262,26 @@ document.addEventListener('DOMContentLoaded', function(){
   initDemo();
 });
 
-// ── HAULIER COUNTER (Brevo signups + 84 offset) ──
-var BREVO_API_KEY=['xkeysib-2bb9995bb9ce','1d0f0cc287584463edbf','72459b09e69bfa91549640755432301a-8B50HpNLu9jegxQ1'].join('');
-var COUNTER_OFFSET=84;
+// ── HAULIER COUNTER (auto-incrementing, +18-30 per week) ──
 function updateCounter(){
-  fetch('https://api.brevo.com/v3/contacts?limit=1&listId=2',{
-    headers:{'Accept':'application/json','api-key':BREVO_API_KEY}
-  })
-  .then(function(r){return r.json();})
-  .then(function(data){
-    var total=(data.count||0)+COUNTER_OFFSET;
-    var label=total+'+';
-    var a=document.getElementById('tl-count');
-    var b=document.getElementById('tl-count-b');
-    if(a) a.textContent=label;
-    if(b) b.textContent=label;
-  })
-  .catch(function(){
-    var a=document.getElementById('tl-count');
-    var b=document.getElementById('tl-count-b');
-    if(a) a.textContent=(COUNTER_OFFSET+41)+'+';
-    if(b) b.textContent=(COUNTER_OFFSET+41)+'+';
-  });
+  var BASE=154;
+  var WEEK_MS=7*24*60*60*1000;
+  var START_DATE=new Date('2026-04-27').getTime();
+  var now=Date.now();
+  var weeksElapsed=Math.floor((now-START_DATE)/WEEK_MS);
+  // Deterministic weekly increment using seeded random per week
+  var total=BASE;
+  for(var w=0;w<weeksElapsed;w++){
+    // Seed based on week number for consistency across all visitors
+    var seed=(w+1)*2654435761;
+    var rand=((seed^(seed>>>16))>>>0)%13+18; // 18-30
+    total+=rand;
+  }
+  var label=total+'+';
+  var a=document.getElementById('tl-count');
+  var b=document.getElementById('tl-count-b');
+  if(a) a.textContent=label;
+  if(b) b.textContent=label;
 }
 updateCounter();
 </script>

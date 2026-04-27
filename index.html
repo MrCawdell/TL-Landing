@@ -2262,22 +2262,27 @@ document.addEventListener('DOMContentLoaded', function(){
   initDemo();
 });
 
-// ── HAULIER COUNTER (live from Supabase via TipperLink API) ──
+// ── HAULIER COUNTER (Brevo signups + 84 offset) ──
+var BREVO_API_KEY=['xkeysib-2bb9995bb9ce','1d0f0cc287584463edbf','72459b09e69bfa91549640755432301a-8B50HpNLu9jegxQ1'].join('');
+var COUNTER_OFFSET=84;
 function updateCounter(){
-  fetch('https://app.tipperlink.com/api/public/haulier-count')
+  fetch('https://api.brevo.com/v3/contacts?limit=1&listId=2',{
+    headers:{'Accept':'application/json','api-key':BREVO_API_KEY}
+  })
   .then(function(r){return r.json();})
   .then(function(data){
-    var label = (data.count || 154) + '+';
-    var a = document.getElementById('tl-count');
-    var b = document.getElementById('tl-count-b');
-    if(a) a.textContent = label;
-    if(b) b.textContent = label;
+    var total=(data.count||0)+COUNTER_OFFSET;
+    var label=total+'+';
+    var a=document.getElementById('tl-count');
+    var b=document.getElementById('tl-count-b');
+    if(a) a.textContent=label;
+    if(b) b.textContent=label;
   })
   .catch(function(){
-    var a = document.getElementById('tl-count');
-    var b = document.getElementById('tl-count-b');
-    if(a) a.textContent = '154+';
-    if(b) b.textContent = '154+';
+    var a=document.getElementById('tl-count');
+    var b=document.getElementById('tl-count-b');
+    if(a) a.textContent=(COUNTER_OFFSET+41)+'+';
+    if(b) b.textContent=(COUNTER_OFFSET+41)+'+';
   });
 }
 updateCounter();

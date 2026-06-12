@@ -2524,5 +2524,20 @@ function declineCookies(){
 })();
 </script>
 
+<script>
+/* Live registered-haulier count from the app API; keeps the static number on failure. */
+(function(){
+  fetch('https://app.tipperlink.com/api/platform/stats')
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if(d && typeof d.hauliers === 'number'){
+        var ids = ['tl-count','tl-count-b'];
+        for(var i=0;i<ids.length;i++){ var el = document.getElementById(ids[i]); if(el) el.textContent = d.hauliers; }
+      }
+    })
+    .catch(function(){});
+})();
+</script>
+
 </body>
 </html>

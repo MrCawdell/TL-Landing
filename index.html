@@ -267,10 +267,9 @@ h1.hero-h{
 
 /* ── Vehicles ────────────────────────────────────────────────── */
 .veh{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:18px;background:var(--panel);border-top:2px solid;padding:28px 20px 24px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--panel);border-top:2px solid;padding:32px 16px;
 }
-.veh svg{width:100%;height:auto;max-width:280px}
 .veh span{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.16em}
 .veh-teal{border-top-color:rgba(0,191,165,.5)}
 .veh-teal span{color:var(--primary)}
@@ -379,48 +378,6 @@ h1.hero-h{
 @media(min-width:640px){.foot-bot{flex-direction:row;justify-content:space-between}}
 .foot-bot p{margin:0;font-size:12px;color:rgba(104,115,128,.6)}
 
-/* ── Modal (registration) ────────────────────────────────────── */
-.ov{display:none;position:fixed;inset:0;z-index:9998;background:rgba(4,15,24,.85);
-  backdrop-filter:blur(4px);overflow-y:auto;padding:24px}
-.modal{max-width:560px;margin:40px auto;background:var(--card);border-radius:var(--r-xl);
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 24px 64px rgba(0,0,0,.5);overflow:hidden}
-.modal-hd{padding:28px 32px 0;display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
-.modal-hd h3{margin:0;font-size:22px;font-weight:700;color:var(--light);letter-spacing:-.01em}
-.modal-hd p{margin:8px 0 0;font-size:13px;line-height:1.6;color:var(--mid)}
-.modal-x{background:none;border:none;color:var(--mid);font-size:22px;cursor:pointer;line-height:1;padding:0}
-.modal-x:hover{color:var(--light)}
-.roles{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:24px 32px 32px}
-.role{
-  border-radius:var(--r-lg);border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);
-  padding:20px 16px;cursor:pointer;text-align:left;transition:border-color .15s,background .15s;
-}
-.role:hover{border-color:rgba(0,191,165,.4);background:rgba(0,191,165,.06)}
-.role b{display:block;font-size:14px;font-weight:600;color:var(--light);margin-bottom:4px}
-.role span{font-size:12px;color:var(--mid);line-height:1.5}
-.fld{margin-top:14px}
-.fld label{display:block;font-size:11px;font-weight:600;text-transform:uppercase;
-  letter-spacing:.1em;color:var(--mid);margin-bottom:6px}
-.fld input,.fld select{
-  width:100%;padding:11px 14px;border-radius:var(--r-md);
-  border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);
-  color:var(--light);font-size:14px;font-family:inherit;outline:none;
-}
-.fld input:focus,.fld select:focus{border-color:var(--primary)}
-.fld select option{background:var(--card);color:var(--light)}
-.chk{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:8px}
-.chk label{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--mid);
-  text-transform:none;letter-spacing:0;font-weight:400;cursor:pointer;margin:0}
-.chk input{width:auto;accent-color:var(--primary)}
-.err{display:none;background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.3);
-  border-radius:var(--r-md);padding:10px 14px;margin-top:14px;font-size:13px;
-  color:var(--danger);font-weight:500;line-height:1.5}
-.modal-submit{
-  width:100%;margin-top:20px;background:var(--primary);color:var(--primary-ink);
-  border:none;border-radius:var(--r-lg);padding:14px;font-size:15px;font-weight:700;cursor:pointer;
-}
-.modal-submit:hover{opacity:.9}
-.modal-submit:disabled{opacity:.6;cursor:default}
-
 /* ── Cookie banner ───────────────────────────────────────────── */
 .ck{display:none;position:fixed;inset:auto 0 0 0;z-index:9999;background:var(--card);
   border-top:2px solid var(--primary);padding:16px 24px;box-shadow:0 -4px 24px rgba(0,0,0,.4)}
@@ -443,7 +400,6 @@ h1.hero-h{
   .hero{padding-top:96px}
   .aud-body,.cmp,.step,.feat{padding:24px}
   .nav-signin{display:none}
-  .roles{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -622,114 +578,15 @@ h1.hero-h{
     </p>
     <div class="grid-hair g4">
       <div class="veh veh-teal">
-        <svg viewBox="0 0 360 130" fill="none" stroke="#00BFA5" aria-hidden="true">
-          <line x1="185" y1="91" x2="348" y2="91" stroke-width="1.6"/>
-          <path d="M238 91 L238 52 L258 36 L336 36 L348 52 L348 91" stroke-width="1.8" stroke-linejoin="round"/>
-          <path d="M327 39 L340 54 L340 76 L316 76 L316 39 Z" stroke-width="1.2" stroke-linejoin="round" opacity=".6"/>
-          <rect x="238" y="29" width="70" height="10" rx="2" stroke-width="1.2"/>
-          <rect x="244" y="10" width="7" height="24" rx="1" stroke-width="1.4"/>
-          <circle cx="235" cy="60" r="4" stroke-width="1.2"/>
-          <line x1="239" y1="78" x2="255" y2="78" stroke-width="1.2"/>
-          <line x1="239" y1="85" x2="255" y2="85" stroke-width="1.2"/>
-          <rect x="196" y="86" width="30" height="6" rx="1" stroke-width="1.4"/>
-          <circle cx="322" cy="105" r="11" stroke-width="1.8"/><circle cx="322" cy="105" r="4.5" stroke-width="1.2"/>
-          <circle cx="258" cy="105" r="11" stroke-width="1.8"/><circle cx="258" cy="105" r="4.5" stroke-width="1.2"/>
-          <circle cx="234" cy="105" r="11" stroke-width="1.8"/><circle cx="234" cy="105" r="4.5" stroke-width="1.2"/>
-          <line x1="186" y1="80" x2="186" y2="100" stroke-width="1.2" stroke-dasharray="3 2.5" opacity=".7"/>
-          <line x1="14" y1="91" x2="183" y2="91" stroke-width="1.6"/>
-          <rect x="168" y="85" width="20" height="7" rx="1" stroke-width="1.4"/>
-          <path d="M176 88 L170 42 L28 52 L28 88 Z" stroke-width="1.8" stroke-linejoin="round"/>
-          <line x1="75" y1="52" x2="72" y2="88" stroke-width=".9" opacity=".5"/>
-          <line x1="118" y1="47" x2="115" y2="88" stroke-width=".9" opacity=".5"/>
-          <line x1="100" y1="88" x2="112" y2="62" stroke-width="2"/>
-          <rect x="108" y="58" width="9" height="6" rx="1" stroke-width="1.2"/>
-          <line x1="28" y1="52" x2="18" y2="88" stroke-width="1.4"/>
-          <circle cx="80" cy="105" r="11" stroke-width="1.8"/><circle cx="80" cy="105" r="4.5" stroke-width="1.2"/>
-          <circle cx="56" cy="105" r="11" stroke-width="1.8"/><circle cx="56" cy="105" r="4.5" stroke-width="1.2"/>
-        </svg>
         <span>Artic Tipper</span>
       </div>
       <div class="veh veh-teal">
-        <svg viewBox="0 0 360 130" fill="none" stroke="#00BFA5" aria-hidden="true">
-          <line x1="18" y1="91" x2="342" y2="91" stroke-width="1.6"/>
-          <path d="M256 91 L256 50 L278 33 L334 33 L346 50 L346 91" stroke-width="1.8" stroke-linejoin="round"/>
-          <path d="M316 36 L332 52 L332 76 L308 76 L308 36 Z" stroke-width="1.2" stroke-linejoin="round" opacity=".6"/>
-          <rect x="256" y="26" width="64" height="9" rx="2" stroke-width="1.2"/>
-          <rect x="262" y="8" width="7" height="22" rx="1" stroke-width="1.4"/>
-          <line x1="257" y1="78" x2="272" y2="78" stroke-width="1.2"/>
-          <line x1="257" y1="85" x2="272" y2="85" stroke-width="1.2"/>
-          <rect x="24" y="38" width="228" height="53" rx="2" stroke-width="1.8"/>
-          <line x1="70" y1="38" x2="70" y2="91" stroke-width=".9" opacity=".4"/>
-          <line x1="112" y1="38" x2="112" y2="91" stroke-width=".9" opacity=".4"/>
-          <line x1="154" y1="38" x2="154" y2="91" stroke-width=".9" opacity=".4"/>
-          <line x1="196" y1="38" x2="196" y2="91" stroke-width=".9" opacity=".4"/>
-          <line x1="24" y1="38" x2="16" y2="91" stroke-width="1.4"/>
-          <line x1="140" y1="91" x2="148" y2="60" stroke-width="1.8" opacity=".6"/>
-          <circle cx="320" cy="105" r="11" stroke-width="1.8"/><circle cx="320" cy="105" r="4.5" stroke-width="1.2"/>
-          <circle cx="264" cy="105" r="11" stroke-width="1.8"/><circle cx="264" cy="105" r="4.5" stroke-width="1.2"/>
-          <circle cx="106" cy="105" r="11" stroke-width="1.8"/><circle cx="106" cy="105" r="4.5" stroke-width="1.2"/>
-          <circle cx="80" cy="105" r="11" stroke-width="1.8"/><circle cx="80" cy="105" r="4.5" stroke-width="1.2"/>
-        </svg>
         <span>8-Wheel Tipper</span>
       </div>
       <div class="veh veh-lime">
-        <svg viewBox="0 0 360 130" fill="none" stroke="#C8E94E" aria-hidden="true">
-          <line x1="18" y1="91" x2="342" y2="91" stroke-width="1.6"/>
-          <path d="M252 91 L252 48 L274 32 L332 32 L344 50 L344 91" stroke-width="1.8" stroke-linejoin="round"/>
-          <path d="M314 35 L330 51 L330 74 L306 74 L306 35 Z" stroke-width="1.2" stroke-linejoin="round" opacity=".6"/>
-          <rect x="252" y="25" width="64" height="9" rx="2" stroke-width="1.2"/>
-          <rect x="258" y="8" width="7" height="21" rx="1" stroke-width="1.4"/>
-          <line x1="253" y1="78" x2="268" y2="78" stroke-width="1.2"/>
-          <line x1="253" y1="85" x2="268" y2="85" stroke-width="1.2"/>
-          <path d="M24 91 L32 58 L242 58 L242 91" stroke-width="1.8" stroke-linejoin="round"/>
-          <line x1="82" y1="58" x2="78" y2="91" stroke-width=".9" opacity=".5"/>
-          <line x1="140" y1="58" x2="137" y2="91" stroke-width=".9" opacity=".5"/>
-          <line x1="194" y1="58" x2="191" y2="91" stroke-width=".9" opacity=".5"/>
-          <rect x="158" y="44" width="18" height="15" rx="1" stroke-width="1.4"/>
-          <line x1="167" y1="44" x2="152" y2="14" stroke-width="2"/>
-          <line x1="152" y1="14" x2="206" y2="22" stroke-width="2"/>
-          <line x1="206" y1="22" x2="200" y2="44" stroke-width="1.4"/>
-          <path d="M192 44 C188 56 184 60 180 58 C176 56 174 52 174 44" stroke-width="1.6"/>
-          <path d="M200 44 C204 56 208 60 212 58 C216 56 218 52 218 44" stroke-width="1.6"/>
-          <line x1="120" y1="91" x2="120" y2="104" stroke-width="1.4"/>
-          <line x1="112" y1="104" x2="128" y2="104" stroke-width="1.4"/>
-          <circle cx="316" cy="105" r="11" stroke-width="1.8"/><circle cx="316" cy="105" r="4.5" stroke-width="1.2"/>
-          <circle cx="82" cy="105" r="11" stroke-width="1.8"/><circle cx="82" cy="105" r="4.5" stroke-width="1.2"/>
-          <circle cx="58" cy="105" r="11" stroke-width="1.8"/><circle cx="58" cy="105" r="4.5" stroke-width="1.2"/>
-        </svg>
         <span>Grab Lorry</span>
       </div>
       <div class="veh veh-lime">
-        <svg viewBox="0 0 360 130" fill="none" stroke="#C8E94E" aria-hidden="true">
-          <line x1="190" y1="91" x2="350" y2="91" stroke-width="1.6"/>
-          <path d="M238 91 L238 50 L260 34 L338 34 L350 52 L350 91" stroke-width="1.8" stroke-linejoin="round"/>
-          <path d="M320 37 L338 54 L338 76 L314 76 L314 37 Z" stroke-width="1.2" stroke-linejoin="round" opacity=".6"/>
-          <rect x="238" y="27" width="68" height="9" rx="2" stroke-width="1.2"/>
-          <rect x="244" y="9" width="7" height="22" rx="1" stroke-width="1.4"/>
-          <line x1="239" y1="78" x2="254" y2="78" stroke-width="1.2"/>
-          <line x1="239" y1="85" x2="254" y2="85" stroke-width="1.2"/>
-          <rect x="200" y="85" width="30" height="7" rx="1" stroke-width="1.4"/>
-          <circle cx="326" cy="105" r="11" stroke-width="1.8"/><circle cx="326" cy="105" r="4.5" stroke-width="1.2"/>
-          <circle cx="262" cy="105" r="11" stroke-width="1.8"/><circle cx="262" cy="105" r="4.5" stroke-width="1.2"/>
-          <circle cx="238" cy="105" r="11" stroke-width="1.8"/><circle cx="238" cy="105" r="4.5" stroke-width="1.2"/>
-          <line x1="191" y1="79" x2="191" y2="100" stroke-width="1.2" stroke-dasharray="3 2.5" opacity=".7"/>
-          <line x1="14" y1="91" x2="188" y2="91" stroke-width="1.6"/>
-          <rect x="14" y="38" width="174" height="53" rx="2" stroke-width="1.8"/>
-          <line x1="24" y1="38" x2="24" y2="91" stroke-width="1.4"/>
-          <rect x="172" y="83" width="20" height="9" rx="1" stroke-width="1.4"/>
-          <line x1="155" y1="91" x2="155" y2="107" stroke-width="1.4"/>
-          <line x1="148" y1="107" x2="162" y2="107" stroke-width="1.4"/>
-          <line x1="40" y1="91" x2="40" y2="86" stroke-width="1.1" opacity=".6"/>
-          <line x1="56" y1="91" x2="56" y2="86" stroke-width="1.1" opacity=".6"/>
-          <line x1="72" y1="91" x2="72" y2="86" stroke-width="1.1" opacity=".6"/>
-          <line x1="88" y1="91" x2="88" y2="86" stroke-width="1.1" opacity=".6"/>
-          <line x1="104" y1="91" x2="104" y2="86" stroke-width="1.1" opacity=".6"/>
-          <line x1="120" y1="91" x2="120" y2="86" stroke-width="1.1" opacity=".6"/>
-          <line x1="136" y1="91" x2="136" y2="86" stroke-width="1.1" opacity=".6"/>
-          <line x1="152" y1="91" x2="152" y2="86" stroke-width="1.1" opacity=".6"/>
-          <circle cx="82" cy="105" r="11" stroke-width="1.8"/><circle cx="82" cy="105" r="4.5" stroke-width="1.2"/>
-          <circle cx="58" cy="105" r="11" stroke-width="1.8"/><circle cx="58" cy="105" r="4.5" stroke-width="1.2"/>
-        </svg>
         <span>Walking Floor</span>
       </div>
     </div>
@@ -934,10 +791,6 @@ h1.hero-h{
       <a href="https://app.tipperlink.com/register?role=supplier" class="btn btn-ghost">
         Sign up as Supplier <svg class="ic" width="16" height="16"><use href="#i-arrow"/></svg></a>
     </div>
-    <p style="margin-top:24px;font-size:12px;color:rgba(104,115,128,.6)">
-      Not ready to sign up? <a href="#" onclick="openModal();return false;" style="color:var(--primary);font-weight:600">Register your interest</a>
-      and we will be in touch.
-    </p>
   </div>
 </section>
 
@@ -977,87 +830,6 @@ h1.hero-h{
   </div>
 </footer>
 
-<!-- ── REGISTRATION MODAL (lead capture, posts to /api/marketing/subscribe) ─ -->
-<div class="ov" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-  <div class="modal">
-    <div class="modal-hd">
-      <div>
-        <h3 id="modal-title">Register your interest</h3>
-        <p>Tell us a little about your business and we will be in touch.</p>
-      </div>
-      <button class="modal-x" onclick="closeModal()" aria-label="Close">&times;</button>
-    </div>
-
-    <div id="modal-step1">
-      <div class="roles">
-        <button class="role" id="role-haulier-btn" onclick="pickRole('haulier')">
-          <b>I'm a Haulier</b><span>I run tippers, grabs or walking floors and want more work.</span>
-        </button>
-        <button class="role" id="role-supplier-btn" onclick="pickRole('supplier')">
-          <b>I'm a Supplier</b><span>I have loads that need moving and want competitive quotes.</span>
-        </button>
-      </div>
-    </div>
-
-    <div id="modal-form-haulier" style="display:none;padding:0 32px 32px">
-      <div class="fld"><label for="h-name">Your name *</label><input id="h-name" type="text" autocomplete="name"/></div>
-      <div class="fld"><label for="h-company">Company *</label><input id="h-company" type="text" autocomplete="organization"/></div>
-      <div class="fld"><label for="h-email">Email *</label><input id="h-email" type="email" autocomplete="email"/></div>
-      <div class="fld"><label for="h-phone">Phone</label><input id="h-phone" type="tel" autocomplete="tel"/></div>
-      <div class="fld"><label for="h-fleet">Fleet size</label>
-        <select id="h-fleet"><option value="">Select…</option><option>1-3</option><option>4-10</option><option>11-25</option><option>26+</option></select></div>
-      <div class="fld"><label for="h-areas">Areas covered *</label><input id="h-areas" type="text" placeholder="e.g. Yorkshire, North East"/></div>
-      <div class="fld"><label>Vehicle types</label>
-        <div class="chk">
-          <label><input type="checkbox" id="vt-8wheel"/>8-Wheeler</label>
-          <label><input type="checkbox" id="vt-artic"/>Artic Tipper</label>
-          <label><input type="checkbox" id="vt-grab"/>Grab Lorry</label>
-          <label><input type="checkbox" id="vt-6wheel"/>6-Wheeler</label>
-          <label><input type="checkbox" id="vt-walking"/>Walking Floor</label>
-        </div></div>
-      <div class="err" id="h-error"></div>
-      <button class="modal-submit" id="h-submit-btn" onclick="submitHaulier()">Register My Interest &rarr;</button>
-    </div>
-
-    <div id="modal-form-supplier" style="display:none;padding:0 32px 32px">
-      <div class="fld"><label for="s-name">Your name *</label><input id="s-name" type="text" autocomplete="name"/></div>
-      <div class="fld"><label for="s-company">Company *</label><input id="s-company" type="text" autocomplete="organization"/></div>
-      <div class="fld"><label for="s-email">Email *</label><input id="s-email" type="email" autocomplete="email"/></div>
-      <div class="fld"><label for="s-phone">Phone</label><input id="s-phone" type="tel" autocomplete="tel"/></div>
-      <div class="fld"><label for="s-type">Business type *</label>
-        <select id="s-type"><option value="">Select…</option><option>Quarry / Aggregates</option><option>Construction</option>
-          <option>Waste Management</option><option>Groundworks</option><option>Agricultural</option><option>Other</option></select></div>
-      <div class="fld"><label for="s-loads">Loads per month</label>
-        <select id="s-loads"><option value="">Select…</option><option>1-10</option><option>11-50</option><option>51-200</option><option>200+</option></select></div>
-      <div class="fld"><label for="s-region">Region *</label><input id="s-region" type="text" placeholder="e.g. East Anglia"/></div>
-      <div class="fld"><label>Typical requirements</label>
-        <div class="chk">
-          <label><input type="checkbox" id="req-fors-b"/>FORS Bronze</label>
-          <label><input type="checkbox" id="req-fors-s"/>FORS Silver</label>
-          <label><input type="checkbox" id="req-tascc"/>TASCC</label>
-          <label><input type="checkbox" id="req-timed"/>Timed Delivery</label>
-          <label><input type="checkbox" id="req-induction"/>Site Induction</label>
-        </div></div>
-      <div class="err" id="s-error"></div>
-      <button class="modal-submit" id="s-submit-btn" onclick="submitSupplier()">Register as a Supplier &rarr;</button>
-    </div>
-
-    <div id="modal-success" style="display:none;padding:48px 32px;text-align:center">
-      <div style="width:56px;height:56px;border-radius:50%;background:rgba(0,191,165,.14);display:flex;
-        align-items:center;justify-content:center;margin:0 auto 20px">
-        <svg class="ic" width="26" height="26" style="color:var(--primary)"><use href="#i-check"/></svg>
-      </div>
-      <h3 style="margin:0 0 10px;font-size:20px;font-weight:700;color:var(--light)">You're registered</h3>
-      <p style="margin:0;font-size:14px;line-height:1.7;color:var(--mid)">
-        Thanks — we have your details and will be in touch shortly. In the meantime you can
-        <a href="https://app.tipperlink.com/register" style="color:var(--primary);font-weight:600">create your account</a>
-        and start straight away.
-      </p>
-      <button class="modal-submit" style="margin-top:24px" onclick="closeModal()">Close</button>
-    </div>
-  </div>
-</div>
-
 <!-- ── COOKIE BANNER ────────────────────────────────────────────────────── -->
 <div class="ck" id="cookie-banner">
   <div class="ck-in">
@@ -1079,107 +851,6 @@ document.querySelectorAll('svg.ic').forEach(function(s){
 });
 
 document.getElementById('yr').textContent = new Date().getFullYear();
-
-/* ── Registration modal ─────────────────────────────────────────────────── */
-function openModal(){
-  document.getElementById('modal-overlay').style.display='block';
-  document.getElementById('modal-step1').style.display='block';
-  document.getElementById('modal-form-haulier').style.display='none';
-  document.getElementById('modal-form-supplier').style.display='none';
-  document.getElementById('modal-success').style.display='none';
-  document.body.style.overflow='hidden';
-}
-function closeModal(){
-  document.getElementById('modal-overlay').style.display='none';
-  document.body.style.overflow='';
-}
-function pickRole(role){
-  document.getElementById('modal-step1').style.display='none';
-  document.getElementById(role==='supplier'?'modal-form-supplier':'modal-form-haulier').style.display='block';
-}
-document.getElementById('modal-overlay').addEventListener('click',function(e){
-  if(e.target===this) closeModal();
-});
-document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeModal(); });
-
-/* ── Form submission ────────────────────────────────────────────────────── */
-/* Contact creation runs server-side at app.tipperlink.com/api/marketing/subscribe.
-   The Brevo key used to live here, in the page source of a public site. */
-var SUBSCRIBE_ENDPOINT='https://app.tipperlink.com/api/marketing/subscribe';
-
-function val(id){ var el=document.getElementById(id); return el?el.value.trim():''; }
-function validEmail(e){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
-function fail(errId,msg){
-  var el=document.getElementById(errId);
-  if(el){ el.textContent=msg; el.style.display='block'; }
-}
-
-function submitHaulier(){
-  var name=val('h-name'), company=val('h-company'), email=val('h-email'),
-      phone=val('h-phone'), fleet=val('h-fleet'), areas=val('h-areas');
-  if(!name||!company||!email||!areas){ return fail('h-error','Please fill in all required fields.'); }
-  if(!validEmail(email)){ return fail('h-error','Please enter a valid email address.'); }
-  document.getElementById('h-error').style.display='none';
-  var btn=document.getElementById('h-submit-btn');
-  if(btn){ btn.textContent='Sending…'; btn.disabled=true; }
-  var vt=[];
-  [['vt-8wheel','8-Wheeler'],['vt-artic','Artic Tipper'],['vt-grab','Grab Lorry'],
-   ['vt-6wheel','6-Wheeler'],['vt-walking','Walking Floor']].forEach(function(p){
-    var el=document.getElementById(p[0]); if(el&&el.checked) vt.push(p[1]);
-  });
-  send({role:'Haulier',name:name,company:company,email:email,phone:phone,
-        fleet_size:fleet||'Not specified',vehicle_types:vt.join(', ')||'Not specified',
-        areas_covered:areas},btn,'Haulier Registration');
-}
-
-function submitSupplier(){
-  var name=val('s-name'), company=val('s-company'), email=val('s-email'), phone=val('s-phone'),
-      type=val('s-type'), loads=val('s-loads'), region=val('s-region');
-  if(!name||!company||!email||!type||!region){ return fail('s-error','Please fill in all required fields.'); }
-  if(!validEmail(email)){ return fail('s-error','Please enter a valid email address.'); }
-  document.getElementById('s-error').style.display='none';
-  var btn=document.getElementById('s-submit-btn');
-  if(btn){ btn.textContent='Sending…'; btn.disabled=true; }
-  send({role:'Supplier',name:name,company:company,email:email,phone:phone,
-        business_type:type,loads_per_month:loads||'Not specified',region:region},btn,'Supplier Registration');
-}
-
-function storeLocally(payload){
-  try{
-    var all=JSON.parse(localStorage.getItem('tl_registrations')||'[]');
-    all.push({ts:new Date().toISOString(),data:payload});
-    localStorage.setItem('tl_registrations',JSON.stringify(all));
-  }catch(e){}
-}
-
-function send(payload,btn,eventLabel){
-  storeLocally(payload);
-  fetch(SUBSCRIBE_ENDPOINT,{
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify(payload)
-  })
-  .then(function(r){
-    /* fetch only rejects on a network failure, so a 400 or 502 lands here too.
-       Without this check every outcome reported success and failed signups were
-       lost silently — the visitor was told it worked and nothing was recorded. */
-    if(!r.ok) throw new Error('HTTP '+r.status);
-    if(typeof gtag!=='undefined') gtag('event','sign_up',{event_category:'Registration',event_label:eventLabel});
-    if(typeof fbq!=='undefined') fbq('track','Lead');
-    document.getElementById('modal-form-haulier').style.display='none';
-    document.getElementById('modal-form-supplier').style.display='none';
-    document.getElementById('modal-success').style.display='block';
-  })
-  .catch(function(){ showSubmitError(payload.role,btn); });
-}
-
-/* The submission is kept in localStorage by storeLocally() before it is sent,
-   so asking the person to retry or email in does not cost them what they typed. */
-function showSubmitError(role,btn){
-  fail(role==='Supplier'?'s-error':'h-error',
-    'Sorry, we could not complete your registration. Please try again, or email hello@tipperlink.com and we will set you up.');
-  if(btn){ btn.textContent=role==='Supplier'?'Register as a Supplier →':'Register My Interest →'; btn.disabled=false; }
-}
 
 /* ── Cookie consent ─────────────────────────────────────────────────────── */
 function acceptCookies(){

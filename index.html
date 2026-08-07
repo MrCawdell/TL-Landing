@@ -2014,8 +2014,9 @@ function resetRole(){
 
 // ── FORM SUBMISSION ──
 var FORMSPREE_ID='xwvrngvz'; // kept as reference only — counter now uses Brevo
-var BREVO_API_KEY=['xkeysib-2bb9995bb9ce','1d0f0cc287584463edbf','72459b09e69bfa91549640755432301a-8B50HpNLu9jegxQ1'].join('');
-var BREVO_LIST_ID=2; // update with your numeric list ID from Brevo Contacts Lists
+// Contact creation runs server-side at app.tipperlink.com/api/marketing/subscribe.
+// The Brevo key used to live here, in the page source of a public site.
+var SUBSCRIBE_ENDPOINT='https://app.tipperlink.com/api/marketing/subscribe';
 
 function submitHaulier(){
   var name=document.getElementById('h-name').value.trim();
@@ -2078,33 +2079,31 @@ function submitSupplier(){
 
 function sendToBrevo(payload,btn,eventLabel){
   storeLocally(payload);
-  var contact={
-    email:payload.email,
-    attributes:{
-      FIRSTNAME: payload.name ? payload.name.split(' ')[0] : '',
-      LASTNAME: payload.name ? payload.name.split(' ').slice(1).join(' ') : '',
-      COMPANY: payload.company||'',
-      PHONE: payload.phone||'',
-      ROLE: payload.role||'',
-      FLEET_SIZE: payload.fleet_size||'',
-      VEHICLE_TYPES: payload.vehicle_types||'',
-      AREAS_COVERED: payload.areas_covered||'',
-      BUSINESS_TYPE: payload.business_type||'',
-      REGION: payload.region||''
-    },
-    listIds:[BREVO_LIST_ID],
-    updateEnabled:true
-  };
-  fetch('https://api.brevo.com/v3/contacts',{
+  fetch(SUBSCRIBE_ENDPOINT,{
     method:'POST',
-    headers:{'Content-Type':'application/json','Accept':'application/json','api-key':BREVO_API_KEY},
-    body:JSON.stringify(contact)
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(payload)
   })
   .then(function(r){
+    // fetch only rejects on a network failure, so a 400 or 502 lands here too.
+    // Without this check every outcome reported success and failed signups were
+    // lost silently — the visitor was told it worked and nothing was recorded.
+    if(!r.ok) throw new Error('HTTP '+r.status);
     if(typeof gtag!=='undefined') gtag('event','sign_up',{event_category:'Registration',event_label:eventLabel});
     showModalSuccess(eventLabel);
   })
-  .catch(function(){showModalSuccess(eventLabel);});
+  .catch(function(){ showSubmitError(payload.role,btn); });
+}
+
+// The submission is kept in localStorage by storeLocally() before it is sent,
+// so asking the person to retry or email in does not cost them what they typed.
+function showSubmitError(role,btn){
+  var errEl=document.getElementById(role==='Supplier'?'s-error':'h-error');
+  if(errEl){
+    errEl.textContent='Sorry, we could not complete your registration. Please try again, or email hello@tipperlink.com and we will set you up.';
+    errEl.style.display='block';
+  }
+  if(btn){btn.textContent=role==='Supplier'?'Register as a Supplier →':'Register My Interest →';btn.disabled=false;}
 }
 
 function showModalSuccess(eventLabel){
